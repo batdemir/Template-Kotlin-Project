@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="com.batdemir.template.data.entities.ui.ActionItemModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/root_item_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="@{model.enabled}"
+        android:focusable="@{model.enabled}"
+        app:cardBackgroundColor="@{model.selected ? @color/gray : @color/white}"
+        app:cardCornerRadius="0sp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="@dimen/padding">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_icon"
+                android:layout_width="32sp"
+                android:layout_height="32sp"
+                android:visibility="@{TextUtils.isEmpty(model.iconRes) ? View.GONE: View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/text_view_edit_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:setImage="@{model.iconRes}"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_edit_title"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:singleLine="true"
+                android:text="@{model.title}"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:visibility="@{TextUtils.isEmpty(model.title) ? View.GONE: View.VISIBLE}"
+                app:layout_constraintBottom_toTopOf="@id/text_view_edit_sub_title"
+                app:layout_constraintEnd_toStartOf="@id/image_next"
+                app:layout_constraintStart_toEndOf="@id/image_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_edit_sub_title"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
+                android:singleLine="true"
+                android:text="@{model.subTitle}"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:visibility="@{TextUtils.isEmpty(model.subTitle) ? View.GONE: View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/image_next"
+                app:layout_constraintStart_toEndOf="@id/image_icon"
+                app:layout_constraintTop_toBottomOf="@id/text_view_edit_title"
+                tools:text="Sub title" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_next"
+                android:layout_width="16sp"
+                android:layout_height="16sp"
+                android:src="@drawable/ic_gray_next"
+                android:visibility="@{model.enabled ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_edit_title"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
