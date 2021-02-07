@@ -78,7 +78,7 @@
                 android:id="@+id/image_next"
                 android:layout_width="16sp"
                 android:layout_height="16sp"
-                android:src="@drawable/ic_gray_next"
+                android:src="@drawable/ic_black_next"
                 android:visibility="@{model.enabled ? View.VISIBLE : View.GONE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -48,16 +48,24 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    sourceSets {
+        main {
+            java {
+                srcDirs += 'build/generated/source/navigation-args'
+            }
+        }
+    }
 }
 
 dependencies {
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
     // android supports
     implementation "com.google.android.material:material:$versions.materialVersion"
     // architecture components
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.appcompat:appcompat:$versions.appCompatVersion"
+    implementation "androidx.legacy:legacy-support-v4:$versions.legacySupportVersion"
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
     implementation "androidx.core:core-ktx:$versions.coreVersion"
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
@@ -77,15 +85,14 @@ dependencies {
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
     implementation "androidx.room:room-runtime:$versions.roomVersion"
     implementation "androidx.room:room-ktx:$versions.roomVersion"
-    implementation 'androidx.navigation:navigation-fragment:2.3.2'
-    implementation 'androidx.navigation:navigation-ui:2.3.2'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.3'
+    implementation 'androidx.preference:preference-ktx:1.1.1'
     kapt "androidx.room:room-compiler:$versions.roomVersion"
     // debugging
     implementation "com.jakewharton.timber:timber:$versions.timberVersion"
     // chart
     implementation "com.github.PhilJay:MPAndroidChart:$versions.chartVersion"
-    // dexter
-    implementation "com.karumi:dexter:$versions.dexterVersion"
     // lingver
     implementation "com.github.YarikSOffice:lingver:$versions.lingverVersion"
     // glide

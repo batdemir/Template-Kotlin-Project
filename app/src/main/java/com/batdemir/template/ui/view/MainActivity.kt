@@ -10,15 +10,20 @@ import com.batdemir.template.databinding.ActivityMainBinding
 import com.batdemir.template.di.component.DashboardComponent
 import com.batdemir.template.di.component.HomeComponent
 import com.batdemir.template.di.component.NotificationsComponent
+import com.batdemir.template.di.component.SettingsComponent
 import com.batdemir.template.ui.base.BaseActivity
 import com.batdemir.template.utils.setupWithNavController
+import javax.inject.Inject
 
 class MainActivity :
     BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+    @Inject
+    lateinit var viewModel: MainViewModel
+    lateinit var homeComponent: HomeComponent
+    lateinit var dashboardComponent: DashboardComponent
+    lateinit var notificationsComponent: NotificationsComponent
+    lateinit var settingsComponent: SettingsComponent
     private var currentNavController: LiveData<NavController>? = null
-    var homeComponent: HomeComponent? = null
-    var dashboardComponent: DashboardComponent? = null
-    var notificationsComponent: NotificationsComponent? = null
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
@@ -28,9 +33,7 @@ class MainActivity :
         setupBottomNavigationBar()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return currentNavController?.value?.navigateUp() ?: false
-    }
+    override fun onSupportNavigateUp(): Boolean = currentNavController?.value?.navigateUp() ?: false
 
     override fun onBackPressed() {
         if (!onSupportNavigateUp())
@@ -43,6 +46,7 @@ class MainActivity :
         homeComponent = applicationComponent.homeComponent().create()
         dashboardComponent = applicationComponent.dashboardComponent().create()
         notificationsComponent = applicationComponent.notificationsComponent().create()
+        settingsComponent = applicationComponent.settingsComponent().create()
     }
 
     override fun setupDefinition(savedInstanceState: Bundle?) {
@@ -62,6 +66,7 @@ class MainActivity :
      * Called on first creation and when restoring state.
      */
     private fun setupBottomNavigationBar() {
+        setSupportActionBar(binding!!.toolbar)
         val navGraphIds = listOf(
             R.navigation.home_navigation,
             R.navigation.dashboard_navigation,

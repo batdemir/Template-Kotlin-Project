@@ -1,10 +1,6 @@
 package com.batdemir.template.ui.view.notifications
 
 import android.os.Bundle
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.ActivityResultRegistry
-import androidx.activity.result.contract.ActivityResultContract
 import com.batdemir.template.R
 import com.batdemir.template.databinding.FragmentNotificationsBinding
 import com.batdemir.template.ui.base.BaseFragment
@@ -16,9 +12,7 @@ class NotificationsFragment :
     @Inject
     lateinit var viewModel: NotificationsViewModel
 
-    override fun inject() {
-        (requireActivity() as MainActivity).notificationsComponent?.inject(this)
-    }
+    override fun inject() = (requireActivity() as MainActivity).notificationsComponent.inject(this)
 
     override fun setupDefinition(savedInstanceState: Bundle?) {
         //("Not yet implemented")

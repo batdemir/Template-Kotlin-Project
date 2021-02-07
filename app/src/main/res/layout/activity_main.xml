@@ -12,6 +12,26 @@
         android:orientation="vertical"
         tools:context=".ui.MainActivity">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:navigationIconTint="?attr/colorControlNormal"
+                tools:title="test" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navigation_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"

@@ -1,10 +1,6 @@
 package com.batdemir.template.ui.view.dashboard
 
 import android.os.Bundle
-import androidx.activity.result.ActivityResultCallback
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.ActivityResultRegistry
-import androidx.activity.result.contract.ActivityResultContract
 import com.batdemir.template.R
 import com.batdemir.template.databinding.FragmentDashboardBinding
 import com.batdemir.template.ui.base.BaseFragment
@@ -16,9 +12,7 @@ class DashboardFragment :
     @Inject
     lateinit var viewModel: DashboardViewModel
 
-    override fun inject() {
-        (requireActivity() as MainActivity).dashboardComponent?.inject(this)
-    }
+    override fun inject() = (requireActivity() as MainActivity).dashboardComponent.inject(this)
 
     override fun setupDefinition(savedInstanceState: Bundle?) {
         //("Not yet implemented")

@@ -7,5 +7,6 @@
     <dimen name="margin_large">16sp</dimen>
     <dimen name="margin_small">4sp</dimen>
     <dimen name="margin">8sp</dimen>
-    <dimen name="elevation">8sp</dimen>
+    <dimen name="elevation_day">8sp</dimen>
+    <dimen name="elevation_night">24sp</dimen>
 </resources>

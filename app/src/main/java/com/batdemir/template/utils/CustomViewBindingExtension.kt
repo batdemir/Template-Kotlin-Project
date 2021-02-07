@@ -9,7 +9,7 @@ import com.google.android.material.imageview.ShapeableImageView
 class CustomViewBindingExtension {
     companion object {
         @JvmStatic
-        @BindingAdapter("app:setImage")
+        @BindingAdapter("setImage")
         fun ShapeableImageView.bindImage(res: String?) {
             if (res.isNullOrEmpty())
                 return
@@ -20,7 +20,7 @@ class CustomViewBindingExtension {
         }
 
         @JvmStatic
-        @BindingAdapter("app:setAdapter")
+        @BindingAdapter("setAdapterRecyclerAdapter")
         fun RecyclerView.bindRecyclerViewAdapter(adapter: RecyclerView.Adapter<*>?) {
             if (adapter == null)
                 return
@@ -29,7 +29,7 @@ class CustomViewBindingExtension {
         }
 
         @JvmStatic
-        @BindingAdapter("app:setAdapter")
+        @BindingAdapter("setAdapterViewPager2Adapter")
         fun ViewPager2.bindViewPager2Adapter(adapter: RecyclerView.Adapter<*>?) {
             if (adapter == null)
                 return

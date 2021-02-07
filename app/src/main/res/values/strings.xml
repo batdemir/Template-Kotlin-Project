@@ -1,7 +1,30 @@
 <resources>
-    <string name="app_name">kotlin.template.project</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="app_name" translatable="false">batdemir</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_settings">Settings</string>
+
+    <!-- KEYS -->
+    <string name="KEY_LANGUAGE" translatable="false">language</string>
+    <string name="KEY_THEME" translatable="false">theme</string>
+    <string name="KEY_APPLICATION_CATEGORY" translatable="false">application_category</string>
+    <string name="KEY_ABOUT_CATEGORY" translatable="false">about_category</string>
+    <string name="KEY_VERSION" translatable="false">version</string>
+    <string name="KEY_PRIVACY" translatable="false">privacy</string>
+
+    <!-- SETTINGS -->
+    <string name="application_settings">Application Settings</string>
+    <string name="language">Language</string>
+    <string-array name="languages">
+        <item>English</item>
+        <item>Türkçe</item>
+    </string-array>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="theme">Theme</string>
+    <string name="version">Version</string>
+    <string name="about">About</string>
+    <string name="privacy">Privacy</string>
 </resources>

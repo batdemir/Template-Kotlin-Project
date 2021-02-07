@@ -14,13 +14,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Template"
+        android:theme="@style/Theme.Project.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity
             android:name=".ui.view.MainActivity"
-            android:label="@string/title_activity_main"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Project.NoActionBar" />
         <activity
             android:name=".ui.view.SplashActivity"
             android:screenOrientation="portrait"
