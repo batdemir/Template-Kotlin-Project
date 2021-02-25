@@ -11,11 +11,11 @@
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorSecondaryVariant">@color/secondaryLightColor</item>
         <item name="android:textColorSecondary">@color/secondaryTextColor</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
-        <!-- Customize your theme here. -->
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="textAllCaps">false</item>
     </style>

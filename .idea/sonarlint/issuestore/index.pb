@@ -101,8 +101,6 @@ F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
 ?
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
-@
-local.properties,0/7/0712df971a99ac4d2fccb8e0fb19f377f3374cca
 y
 Iapp/src/main/java/com/batdemir/template/di/component/SettingsComponent.kt,1/7/1734b2ccc1fb412c29a350b5f5f7dae2afb0a3a9
 |

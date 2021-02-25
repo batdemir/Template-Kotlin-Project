@@ -11,7 +11,6 @@ import com.batdemir.template.ui.base.BaseFragment
 import com.batdemir.template.ui.view.MainActivity
 import javax.inject.Inject
 
-
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     @Inject
