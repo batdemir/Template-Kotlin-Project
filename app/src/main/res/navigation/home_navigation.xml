@@ -17,9 +17,16 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_presentationActivity"
+            app:destination="@id/presentationActivity" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.batdemir.template.ui.view.settings.SettingsFragment"
         android:label="@string/title_settings" />
+    <activity
+        android:id="@+id/presentationActivity"
+        android:name="com.batdemir.template.ui.view.presentation.PresentationActivity"
+        android:label="PresentationActivity" />
 </navigation>

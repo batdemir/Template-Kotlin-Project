@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:clickable="@{model.enabled}"
         android:focusable="@{model.enabled}"
-        app:cardBackgroundColor="@{model.selected ? @color/gray : @color/white}"
+        app:cardBackgroundColor="@{model.selected ? @color/selected : @color/un_selected}"
         app:cardCornerRadius="0sp"
         app:cardUseCompatPadding="true"
         app:contentPadding="@dimen/padding">
@@ -40,7 +40,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{model.iconRes}"
-                tools:src="@drawable/ic_launcher_foreground" />
+                tools:src="@mipmap/ic_launcher" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_edit_title"

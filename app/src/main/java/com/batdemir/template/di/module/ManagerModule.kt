@@ -1,13 +1,15 @@
 package com.batdemir.template.di.module
 
-import com.batdemir.template.di.manager.language.ILanguageManager
-import com.batdemir.template.di.manager.language.LanguageManager
-import com.batdemir.template.di.manager.resource.IResourceManager
-import com.batdemir.template.di.manager.resource.ResourceManager
-import com.batdemir.template.di.manager.storage.IStorageManager
-import com.batdemir.template.di.manager.storage.StorageManager
-import com.batdemir.template.di.manager.theme.IThemeManager
-import com.batdemir.template.di.manager.theme.ThemeManager
+import com.batdemir.template.di.manager.hdmi.MyHdmiManager
+import com.batdemir.template.di.manager.hdmi.MyHdmiManagerImp
+import com.batdemir.template.di.manager.language.MyLanguageManager
+import com.batdemir.template.di.manager.language.MyLanguageManagerImp
+import com.batdemir.template.di.manager.resource.MyResourceManager
+import com.batdemir.template.di.manager.resource.MyResourceManagerImp
+import com.batdemir.template.di.manager.storage.MyStorageManager
+import com.batdemir.template.di.manager.storage.MyStorageManagerImp
+import com.batdemir.template.di.manager.theme.MyThemeManager
+import com.batdemir.template.di.manager.theme.MyThemeManagerImp
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -16,17 +18,21 @@ import javax.inject.Singleton
 abstract class ManagerModule {
     @Singleton
     @Binds
-    abstract fun provideLanguage(languageHandler: LanguageManager): ILanguageManager
+    abstract fun provideHdmi(myHdmiManagerImp: MyHdmiManagerImp): MyHdmiManager
 
     @Singleton
     @Binds
-    abstract fun provideResource(resourceInitializer: ResourceManager): IResourceManager
+    abstract fun provideLanguage(myLanguageHandlerImp: MyLanguageManagerImp): MyLanguageManager
 
     @Singleton
     @Binds
-    abstract fun provideStorage(storageManager: StorageManager): IStorageManager
+    abstract fun provideResource(resourceInitializerImp: MyResourceManagerImp): MyResourceManager
 
     @Singleton
     @Binds
-    abstract fun provideTheme(themeManager: ThemeManager): IThemeManager
+    abstract fun provideStorage(prefStorageManagerImp: MyStorageManagerImp): MyStorageManager
+
+    @Singleton
+    @Binds
+    abstract fun provideTheme(myThemeManagerImp: MyThemeManagerImp): MyThemeManager
 }

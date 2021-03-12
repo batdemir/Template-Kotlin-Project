@@ -3,48 +3,48 @@ package com.batdemir.template.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import com.batdemir.template.data.entities.Resource
+import com.batdemir.template.data.entities.ResourceModel
 import kotlinx.coroutines.Dispatchers
 
 //Local and remote
 fun <T, A> performGetOperation(
     databaseQuery: () -> LiveData<T>,
-    networkCall: suspend () -> Resource<A>,
+    networkCall: suspend () -> ResourceModel<A>,
     saveCallResult: suspend (A) -> Unit
-): LiveData<Resource<T>> =
+): LiveData<ResourceModel<T>> =
     liveData(Dispatchers.IO) {
-        emit(Resource.loading())
-        val source = databaseQuery.invoke().map { Resource.success(it) }
+        emit(ResourceModel.loading())
+        val source = databaseQuery.invoke().map { ResourceModel.success(it) }
         emitSource(source)
 
         val responseStatus = networkCall.invoke()
-        if (responseStatus.status == Resource.Status.SUCCESS) {
+        if (responseStatus.status == ResourceModel.Status.SUCCESS) {
             saveCallResult(responseStatus.data!!)
 
-        } else if (responseStatus.status == Resource.Status.ERROR) {
-            emit(Resource.error(responseStatus.message!!))
+        } else if (responseStatus.status == ResourceModel.Status.ERROR) {
+            emit(ResourceModel.error(responseStatus.message!!))
             emitSource(source)
         }
     }
 
 // Only remote
-fun <T> performGetOperation(networkCall: suspend () -> Resource<T>):
-        LiveData<Resource<T>> =
+fun <T> performGetOperation(networkCall: suspend () -> ResourceModel<T>):
+        LiveData<ResourceModel<T>> =
     liveData(Dispatchers.IO) {
-        emit(Resource.loading())
+        emit(ResourceModel.loading())
         val responseStatus = networkCall.invoke()
-        if (responseStatus.status == Resource.Status.SUCCESS) {
-            emit(Resource.success(responseStatus.data!!))
-        } else if (responseStatus.status == Resource.Status.ERROR) {
-            emit(Resource.error(responseStatus.message!!))
+        if (responseStatus.status == ResourceModel.Status.SUCCESS) {
+            emit(ResourceModel.success(responseStatus.data!!))
+        } else if (responseStatus.status == ResourceModel.Status.ERROR) {
+            emit(ResourceModel.error(responseStatus.message!!))
         }
     }
 
 // Only local
 fun <T> performGetOperation(databaseQuery: () -> LiveData<T>):
-        LiveData<Resource<T>> =
+        LiveData<ResourceModel<T>> =
     liveData(Dispatchers.IO) {
-        emit(Resource.loading())
-        val source = databaseQuery.invoke().map { Resource.success(it) }
+        emit(ResourceModel.loading())
+        val source = databaseQuery.invoke().map { ResourceModel.success(it) }
         emitSource(source)
     }

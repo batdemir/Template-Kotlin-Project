@@ -11,8 +11,9 @@ import com.batdemir.template.di.component.DashboardComponent
 import com.batdemir.template.di.component.HomeComponent
 import com.batdemir.template.di.component.NotificationsComponent
 import com.batdemir.template.di.component.SettingsComponent
-import com.batdemir.template.ui.base.BaseActivity
+import com.batdemir.template.ui.base.view.BaseActivity
 import com.batdemir.template.utils.setupWithNavController
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import javax.inject.Inject
 
 class MainActivity :
@@ -24,6 +25,7 @@ class MainActivity :
     lateinit var notificationsComponent: NotificationsComponent
     lateinit var settingsComponent: SettingsComponent
     private var currentNavController: LiveData<NavController>? = null
+    var progressBar: LinearProgressIndicator? = null
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
@@ -50,8 +52,10 @@ class MainActivity :
     }
 
     override fun setupDefinition(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null)
+        progressBar = binding!!.progressBar
+        if (savedInstanceState == null) {
             setupBottomNavigationBar()
+        }
     }
 
     override fun setupData() {

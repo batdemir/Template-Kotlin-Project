@@ -17,4 +17,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_dark">#FF212121</color>
     <color name="dark_gray">#FF121212</color>
+
+    <color name="selected">#FFBABABA</color>
+    <color name="un_selected">#FF121212</color>
 </resources>

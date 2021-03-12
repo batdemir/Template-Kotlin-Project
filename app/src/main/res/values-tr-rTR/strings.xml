@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_home">Ev</string>
-    <string name="title_dashboard">Pano</string>
-    <string name="title_notifications">Bildirim</string>
+    <string name="title_dashboard">StackOverFlow</string>
+    <string name="title_notifications">Github</string>
     <string name="title_settings">Ayarlar</string>
 
     <!-- SETTINGS -->

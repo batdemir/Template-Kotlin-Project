@@ -7,7 +7,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.batdemir.template.R
-import com.batdemir.template.ui.base.BaseAction
+import com.batdemir.template.ui.base.view.BaseAction
 import com.batdemir.template.ui.view.MainActivity
 import com.batdemir.template.utils.reset
 import javax.inject.Inject
