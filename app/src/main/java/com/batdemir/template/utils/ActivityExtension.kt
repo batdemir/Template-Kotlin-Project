@@ -12,12 +12,10 @@ fun Activity.move(
     bundle: Bundle? = null
 ) {
     val intent = Intent(this, to)
-    if (bundle != null)
-        intent.putExtras(bundle)
+    if (bundle != null) intent.putExtras(bundle)
     this.startActivity(intent)
     this.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-    if (!isKeepHistory)
-        finish()
+    if (!isKeepHistory) finish()
 }
 
 fun Activity.reset() {

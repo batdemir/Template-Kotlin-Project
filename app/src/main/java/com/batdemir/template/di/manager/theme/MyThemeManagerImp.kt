@@ -11,20 +11,15 @@ class MyThemeManagerImp @Inject constructor(
     private val storageManager: MyStorageManager
 ) : MyThemeManager {
     override fun setDefaultTheme() {
-        val themeMode =
-            storageManager.getInt(myResourceManager.getResources().getString(R.string.KEY_THEME))
+        val themeMode = storageManager.getInt(myResourceManager.getResources().getString(R.string.KEY_THEME))
         if (themeMode == -1) changeTheme(AppCompatDelegate.MODE_NIGHT_NO)
         else changeTheme(themeMode)
     }
 
     override fun changeTheme(themeMode: Int) {
         when (themeMode) {
-            AppCompatDelegate.MODE_NIGHT_NO -> AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_NO
-            )
-            AppCompatDelegate.MODE_NIGHT_YES -> AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_YES
-            )
+            AppCompatDelegate.MODE_NIGHT_NO -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            AppCompatDelegate.MODE_NIGHT_YES -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             else -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         storageManager.setInt(

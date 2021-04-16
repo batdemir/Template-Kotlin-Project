@@ -7,14 +7,14 @@
 
         <variable
             name="adapter"
-            type="com.batdemir.template.ui.adapter.ActionAdapter" />
+            type="com.batdemir.template.ui.adapter.BaseAdapter" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/root_fragment_notification"
+        android:id="@+id/root_fragment_github"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.notifications.NotificationsFragment">
+        tools:context=".ui.view.github.GithubFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

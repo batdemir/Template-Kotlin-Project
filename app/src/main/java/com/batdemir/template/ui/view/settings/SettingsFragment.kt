@@ -13,7 +13,8 @@ import com.batdemir.template.utils.reset
 import javax.inject.Inject
 
 class SettingsFragment :
-    PreferenceFragmentCompat(), BaseAction {
+    PreferenceFragmentCompat(),
+    BaseAction {
     @Inject
     lateinit var viewModel: SettingsViewModel
     private lateinit var languagePreference: ListPreference

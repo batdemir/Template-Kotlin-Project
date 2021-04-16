@@ -1,16 +1,17 @@
 package com.batdemir.template.data.remote
 
-import com.batdemir.template.data.entities.ResourceModel
+import com.batdemir.template.data.entities.Resource
 import retrofit2.Response
 import timber.log.Timber
 
 abstract class BaseDataSource {
-    protected suspend fun <T> getResult(call: suspend () -> Response<T>): ResourceModel<T> {
+    protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
         try {
             val response = call()
             if (response.isSuccessful) {
                 val body = response.body()
-                if (body != null) return ResourceModel.success(body)
+                return if (body != null) Resource.success(body)
+                else error(response.errorBody().toString())
             }
             return error(" ${response.code()} ${response.message()}")
         } catch (e: Exception) {
@@ -18,8 +19,8 @@ abstract class BaseDataSource {
         }
     }
 
-    private fun <T> error(message: String): ResourceModel<T> {
+    private fun <T> error(message: String?): Resource<T> {
         Timber.d(message)
-        return ResourceModel.error("Network call has failed for a following reason: $message")
+        return Resource.error(Throwable("Network call has failed for a following reason: $message"))
     }
 }

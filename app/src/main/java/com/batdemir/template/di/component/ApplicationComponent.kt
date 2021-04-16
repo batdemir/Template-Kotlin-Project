@@ -33,7 +33,7 @@ interface ApplicationComponent {
     fun inject(splashActivity: SplashActivity)
     fun inject(mainActivity: MainActivity)
     fun homeComponent(): HomeComponent.Factory
-    fun dashboardComponent(): DashboardComponent.Factory
-    fun notificationsComponent(): NotificationsComponent.Factory
+    fun stackOverFlowComponent(): StackOverFlowComponent.Factory
+    fun githubComponent(): GithubComponent.Factory
     fun settingsComponent(): SettingsComponent.Factory
 }

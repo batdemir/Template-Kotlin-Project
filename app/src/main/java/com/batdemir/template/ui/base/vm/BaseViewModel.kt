@@ -11,70 +11,64 @@ import kotlinx.coroutines.flow.onEach
 abstract class BaseViewModel(
     val baseLiveData: MutableLiveData<State> = MutableLiveData()
 ) : ViewModel() {
-    init {
-        baseLiveData.value = State.Nothing
-    }
-
-    inline fun <T> Flow<Resource<T>>.sendRequest(
+    inline fun <T> Flow<Resource<T>>.handle(
         requestType: RequestType = RequestType.ACTION,
         errorType: ErrorType = ErrorType.NOT_SHOW,
-        crossinline onComplete: (T) -> Unit
+        crossinline onComplete: (T) -> Unit,
     ) {
         onEach { response ->
-            when (response) {
-                is Resource.Loading -> baseLiveData.value = State.ShowLoading
-                is Resource.Error -> {
+            when (response.status) {
+                Resource.Status.LOADING -> baseLiveData.value = State.ShowLoading(requestType)
+                Resource.Status.ERROR -> {
                     when (errorType) {
                         ErrorType.NOT_SHOW -> baseLiveData.value = State.Error
-                        ErrorType.SHOW -> baseLiveData.value =
-                            State.ShowError(response.exception, requestType)
+                        ErrorType.SHOW -> baseLiveData.value = State.ShowError(requestType, response.throwable)
                     }
                 }
-                is Resource.Success -> {
-                    onComplete(response.data)
-                    baseLiveData.value = State.ShowContent
+                Resource.Status.SUCCESS -> {
+                    onComplete(response.data!!)
+                    baseLiveData.value = State.ShowContent(requestType)
                 }
             }
         }.launchIn(viewModelScope)
     }
 
-    inline fun <T> Flow<Resource<T>>.sendRequest(
+    inline fun <T> Flow<Resource<T>>.handle(
         requestType: RequestType = RequestType.ACTION,
         errorType: ErrorType = ErrorType.NOT_SHOW,
         crossinline onComplete: (T) -> Unit,
-        crossinline onError: (Throwable) -> Unit
+        crossinline onError: (Throwable?) -> Unit,
     ) {
         onEach { response ->
-            when (response) {
-                is Resource.Loading -> baseLiveData.value = State.ShowLoading
-                is Resource.Error -> {
-                    onError(response.exception)
+            when (response.status) {
+                Resource.Status.LOADING -> baseLiveData.value = State.ShowLoading(requestType)
+                Resource.Status.ERROR -> {
+                    onError(response.throwable)
                     when (errorType) {
                         ErrorType.NOT_SHOW -> baseLiveData.value = State.Error
-                        ErrorType.SHOW -> baseLiveData.value =
-                            State.ShowError(response.exception, requestType)
+                        ErrorType.SHOW -> baseLiveData.value = State.ShowError(requestType, response.throwable)
                     }
                 }
-                is Resource.Success -> {
-                    onComplete(response.data)
-                    baseLiveData.value = State.ShowContent
+                Resource.Status.SUCCESS -> {
+                    onComplete(response.data!!)
+                    baseLiveData.value = State.ShowContent(requestType)
                 }
             }
         }.launchIn(viewModelScope)
     }
 
     sealed class State {
-        object Nothing : State()
         object Error : State()
-        object ShowLoading : State()
-        object ShowContent : State()
-        data class ShowError(val throwable: Throwable, val requestType: RequestType) : State()
+        data class ShowContent(val requestType: RequestType) : State()
+        data class ShowLoading(val requestType: RequestType) : State()
+        data class ShowError(val requestType: RequestType, val throwable: Throwable?) : State()
         data class ShowDialog(val message: String) : State()
     }
 
     enum class RequestType {
         INIT,
-        ACTION
+        ACTION,
+        CUSTOM
     }
 
     enum class ErrorType {

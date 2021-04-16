@@ -13,13 +13,10 @@ class MyHdmiManagerImp @Inject constructor(
 ) : MyHdmiReceiver.HdmiOnStateListener,
     MyHdmiManager {
     private val myHdmiReceiver: MyHdmiReceiver = MyHdmiReceiver()
-    private val displayManager: DisplayManager =
-        context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+    private val displayManager: DisplayManager = context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
     private val displays: MutableLiveData<List<Display>?> = MutableLiveData()
     private val presentationDisplay: MutableLiveData<Display?> = MutableLiveData()
-    private val state: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply {
-        value = false
-    }
+    private val state: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply { value = false }
 
     init {
         myHdmiReceiver.setListener(this)
@@ -30,8 +27,7 @@ class MyHdmiManagerImp @Inject constructor(
         Thread.sleep(100)
         val mDisplays = displayManager.displays.toList()
         displays.postValue(mDisplays)
-        presentationDisplay.postValue(
-            mDisplays.firstOrNull { display -> display.name != DEFAULT_DISPLAY_NAME })
+        presentationDisplay.postValue(mDisplays.firstOrNull { display -> display.name != DEFAULT_DISPLAY_NAME })
         hdmiConnectionChanged()
     }
 

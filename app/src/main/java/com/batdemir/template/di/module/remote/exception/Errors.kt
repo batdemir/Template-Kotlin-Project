@@ -19,7 +19,7 @@ data class Error(
 class Message {
     var type: String? = null
     var reason: String? = null
-    var message: String? = null
+    private var message: String? = null
     var subject: String? = null
 
     override fun toString(): String {

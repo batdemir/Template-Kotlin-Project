@@ -1,15 +1,28 @@
 package com.batdemir.template.ui.base.view
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.batdemir.template.R
+import com.batdemir.template.ui.base.vm.BaseViewModel
+import com.batdemir.template.utils.observe
+import javax.inject.Inject
 
-abstract class BaseActivity<X : ViewDataBinding> constructor(
+abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
     private val layoutId: Int
 ) : AppCompatActivity(),
     BaseAction {
-    protected var binding: X? = null
+    @Inject
+    lateinit var viewModel: V
+    private var binding: B? = null
+    private var progressDialog: Dialog? = null
+
+    fun getBinding(): B {
+        return if (binding != null) binding!! else throw NullPointerException("Expression 'binding' must not be null")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()
@@ -23,5 +36,97 @@ abstract class BaseActivity<X : ViewDataBinding> constructor(
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    override fun setupData() {
+        observe(viewModel.baseLiveData, ::onStateChanged)
+    }
+
+    private fun onStateChanged(state: BaseViewModel.State) {
+        when (state) {
+            is BaseViewModel.State.Error -> error()
+            is BaseViewModel.State.ShowLoading -> showLoading(state.requestType)
+            is BaseViewModel.State.ShowContent -> showContent(state.requestType)
+            is BaseViewModel.State.ShowError -> showError(state.requestType, state.throwable)
+            is BaseViewModel.State.ShowDialog -> showDialog(state.message)
+        }
+    }
+
+    private fun generateActionRequestError(message: String) {
+        onStateChanged(BaseViewModel.State.ShowContent(BaseViewModel.RequestType.CUSTOM))
+        AlertDialog.Builder(this)
+            .setMessage(message)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                dialog?.dismiss()
+            }
+            .show()
+    }
+
+    private fun generateInitRequestError(message: String) {
+        AlertDialog.Builder(this)
+            .setMessage(message)
+            .setPositiveButton(R.string.ok) { dialog, _ ->
+                run {
+                    dialog?.dismiss()
+                    onBackPressed()
+                }
+            }
+            .show()
+    }
+
+    fun showLoading(requestType: BaseViewModel.RequestType) {
+        when (requestType) {
+            BaseViewModel.RequestType.ACTION -> showProgress()
+            BaseViewModel.RequestType.INIT -> showProgress()
+            BaseViewModel.RequestType.CUSTOM -> showContent(requestType)
+        }
+    }
+
+    fun showContent(requestType: BaseViewModel.RequestType) {
+        when (requestType) {
+            BaseViewModel.RequestType.ACTION,
+            BaseViewModel.RequestType.INIT,
+            BaseViewModel.RequestType.CUSTOM,
+            -> dismissProgress()
+        }
+    }
+
+    fun showDialog(message: String) {
+        AlertDialog.Builder(baseContext)
+            .setMessage(message)
+            .setPositiveButton(R.string.ok) { dialog, _ -> dialog?.dismiss() }
+    }
+
+    fun showError(requestType: BaseViewModel.RequestType, throwable: Throwable?) {
+        dismissProgress()
+        when (requestType) {
+            BaseViewModel.RequestType.ACTION -> generateActionRequestError(throwable?.message ?: "")
+            BaseViewModel.RequestType.INIT -> generateInitRequestError(throwable?.message ?: "")
+            BaseViewModel.RequestType.CUSTOM -> showContent(requestType)
+        }
+    }
+
+    fun error() {
+        dismissProgress()
+    }
+
+    private fun showProgress() {
+        if (progressDialog == null) {
+            progressDialog = Dialog(this, R.style.ThemeOverlay_MaterialComponents_Dialog).apply {
+                setCancelable(false)
+                setContentView(R.layout.view_progress)
+            }
+        }
+        if (progressDialog?.isShowing == false) {
+            progressDialog?.show()
+        }
+    }
+
+    private fun dismissProgress() {
+        progressDialog?.let {
+            if (it.isShowing) {
+                it.dismiss()
+            }
+        }
     }
 }

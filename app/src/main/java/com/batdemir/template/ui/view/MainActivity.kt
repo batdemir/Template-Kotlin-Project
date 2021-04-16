@@ -1,31 +1,27 @@
 package com.batdemir.template.ui.view
 
 import android.os.Bundle
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.batdemir.template.R
 import com.batdemir.template.app.MyApplication
 import com.batdemir.template.databinding.ActivityMainBinding
-import com.batdemir.template.di.component.DashboardComponent
+import com.batdemir.template.di.component.GithubComponent
 import com.batdemir.template.di.component.HomeComponent
-import com.batdemir.template.di.component.NotificationsComponent
 import com.batdemir.template.di.component.SettingsComponent
+import com.batdemir.template.di.component.StackOverFlowComponent
 import com.batdemir.template.ui.base.view.BaseActivity
 import com.batdemir.template.utils.setupWithNavController
-import com.google.android.material.progressindicator.LinearProgressIndicator
-import javax.inject.Inject
 
 class MainActivity :
-    BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
-    @Inject
-    lateinit var viewModel: MainViewModel
+    BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
     lateinit var homeComponent: HomeComponent
-    lateinit var dashboardComponent: DashboardComponent
-    lateinit var notificationsComponent: NotificationsComponent
+    lateinit var stackOverFlowComponent: StackOverFlowComponent
+    lateinit var githubComponent: GithubComponent
     lateinit var settingsComponent: SettingsComponent
     private var currentNavController: LiveData<NavController>? = null
-    var progressBar: LinearProgressIndicator? = null
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
@@ -46,13 +42,12 @@ class MainActivity :
         val applicationComponent = (application as MyApplication).applicationComponent
         applicationComponent.inject(this)
         homeComponent = applicationComponent.homeComponent().create()
-        dashboardComponent = applicationComponent.dashboardComponent().create()
-        notificationsComponent = applicationComponent.notificationsComponent().create()
+        stackOverFlowComponent = applicationComponent.stackOverFlowComponent().create()
+        githubComponent = applicationComponent.githubComponent().create()
         settingsComponent = applicationComponent.settingsComponent().create()
     }
 
     override fun setupDefinition(savedInstanceState: Bundle?) {
-        progressBar = binding!!.progressBar
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
@@ -70,18 +65,18 @@ class MainActivity :
      * Called on first creation and when restoring state.
      */
     private fun setupBottomNavigationBar() {
-        setSupportActionBar(binding!!.toolbar)
+        setSupportActionBar(getBinding().toolbar)
         val navGraphIds = listOf(
             R.navigation.home_navigation,
-            R.navigation.dashboard_navigation,
-            R.navigation.notifications_navigation
+            R.navigation.stack_over_flow_navigation,
+            R.navigation.github_navigation
         )
 
         // Setup the bottom navigation view with a list of navigation graphs
-        val controller = binding!!.bottomNavigationView.setupWithNavController(
+        val controller = getBinding().bottomNavigationView.setupWithNavController(
             navGraphIds = navGraphIds,
             fragmentManager = supportFragmentManager,
-            containerId = binding!!.navigationHostFragment.id,
+            containerId = getBinding().navigationHostFragment.id,
             intent = intent
         )
 

@@ -7,14 +7,14 @@
 
         <variable
             name="adapter"
-            type="com.batdemir.template.ui.adapter.ActionAdapter" />
+            type="com.batdemir.template.ui.adapter.BaseAdapter" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/root_fragment_dashboard"
+        android:id="@+id/root_fragment_stack_over_flow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.view.dashboard.DashboardFragment">
+        tools:context=".ui.view.stackoverflow.StackOverFlowFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

@@ -1,7 +1,7 @@
 package com.batdemir.template.ui.view
 
-import androidx.lifecycle.ViewModel
+import com.batdemir.template.ui.base.vm.BaseViewModel
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
-) : ViewModel()
+) : BaseViewModel()

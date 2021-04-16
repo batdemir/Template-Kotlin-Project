@@ -19,6 +19,8 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
+val buildType: BuildType = BuildType.RELEASE
+
 android {
     compileSdkVersion(AppConfig.compileSdk)
     defaultConfig {
@@ -32,37 +34,39 @@ android {
     buildFeatures {
         dataBinding = true
     }
-    buildTypes {
-        getByName(BuildType.DEBUG.value) {
-            this.buildConfigField(
-                "String",
-                "GITHUB_API",
-                properties["TEST_GITHUB_API"].toString()
-            )
-            this.buildConfigField(
-                "String",
-                "STACK_OVER_FLOW_API",
-                properties["TEST_STACK_OVER_FLOW_API"].toString()
-            )
-            this.resValue("string", "app_name", getAppName(BuildType.DEBUG))
-        }
-        getByName(BuildType.RELEASE.value) {
-            this.buildConfigField(
-                "String",
-                "GITHUB_API",
-                properties["PROD_GITHUB_API"].toString()
-            )
-            this.buildConfigField(
-                "String",
-                "STACK_OVER_FLOW_API",
-                properties["PROD_STACK_OVER_FLOW_API"].toString()
-            )
-            this.resValue("string", "app_name", getAppName(BuildType.RELEASE))
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+    buildTypes.all {
+        when (buildType) {
+            BuildType.DEBUG -> {
+                this.buildConfigField(
+                    "String",
+                    "GITHUB_API",
+                    properties["TEST_GITHUB_API"].toString()
+                )
+                this.buildConfigField(
+                    "String",
+                    "STACK_OVER_FLOW_API",
+                    properties["TEST_STACK_OVER_FLOW_API"].toString()
+                )
+                this.resValue("string", "app_name", getAppName(BuildType.DEBUG))
+            }
+            BuildType.RELEASE -> {
+                this.buildConfigField(
+                    "String",
+                    "GITHUB_API",
+                    properties["PROD_GITHUB_API"].toString()
+                )
+                this.buildConfigField(
+                    "String",
+                    "STACK_OVER_FLOW_API",
+                    properties["PROD_STACK_OVER_FLOW_API"].toString()
+                )
+                this.resValue("string", "app_name", getAppName(BuildType.RELEASE))
+                isMinifyEnabled = false
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            }
         }
     }
     compileOptions {

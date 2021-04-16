@@ -6,12 +6,12 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/dashboard_navigation"
+        android:id="@+id/stack_over_flow_navigation"
         android:icon="@drawable/ic_black_stack_over_flow"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_stack_over_flow" />
 
     <item
-        android:id="@+id/notifications_navigation"
+        android:id="@+id/github_navigation"
         android:icon="@drawable/ic_black_github"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_github" />
 </menu>

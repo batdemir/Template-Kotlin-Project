@@ -1,8 +1,7 @@
 <resources>
-    <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">StackOverFlow</string>
-    <string name="title_notifications">Github</string>
+    <string name="title_stack_over_flow">StackOverFlow</string>
+    <string name="title_github">Github</string>
     <string name="title_settings">Settings</string>
 
     <!-- KEYS -->

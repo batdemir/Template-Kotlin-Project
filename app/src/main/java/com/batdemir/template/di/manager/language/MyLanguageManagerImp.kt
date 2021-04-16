@@ -14,10 +14,9 @@ class MyLanguageManagerImp @Inject constructor(
     private val myStorageManager: MyStorageManager
 ) : MyLanguageManager {
     override fun setDefaultLanguage(application: MyApplication) {
-        val languageName =
-            myStorageManager.getString(
-                myResourceManager.getResources().getString(R.string.KEY_LANGUAGE)
-            )
+        val languageName = myStorageManager.getString(
+            myResourceManager.getResources().getString(R.string.KEY_LANGUAGE)
+        )
         if (languageName.isEmpty())
             Lingver.init(
                 application,

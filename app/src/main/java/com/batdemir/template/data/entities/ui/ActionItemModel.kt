@@ -2,24 +2,25 @@ package com.batdemir.template.data.entities.ui
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.batdemir.template.data.entities.RecyclerItem
 
 data class ActionItemModel(
-    val id: Long,
+    override val id: Long,
     val title: String?,
     val subTitle: String?,
     val iconRes: String?,
     val isEnabled: Boolean,
     val navigateUrl: String?,
-    var isSelected: Boolean = false
-) : Parcelable {
+    override var isSelected: Boolean = false
+) : Parcelable, RecyclerItem {
     constructor(parcel: Parcel) : this(
-        parcel.readLong(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readByte() != 0.toByte(),
-        parcel.readString(),
-        parcel.readByte() != 0.toByte()
+        id = parcel.readLong(),
+        title = parcel.readString(),
+        subTitle = parcel.readString(),
+        iconRes = parcel.readString(),
+        isEnabled = parcel.readByte() != 0.toByte(),
+        navigateUrl = parcel.readString(),
+        isSelected = parcel.readByte() != 0.toByte()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

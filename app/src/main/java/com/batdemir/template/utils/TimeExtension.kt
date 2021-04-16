@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun String.toDate(format: DateFormat, locale: Locale = Locale.ROOT): Date? {
-    val simpleDateFormat: SimpleDateFormat = SimpleDateFormat(format.toString(), locale)
+    val simpleDateFormat = SimpleDateFormat(format.toString(), locale)
     return simpleDateFormat.parse(this)
 }
 
@@ -18,7 +18,7 @@ fun String.toDateFormat(
 }
 
 fun Date.toString(format: DateFormat, locale: Locale = Locale.ROOT): String {
-    val simpleDateFormat: SimpleDateFormat = SimpleDateFormat(format.toString(), locale)
+    val simpleDateFormat = SimpleDateFormat(format.toString(), locale)
     return simpleDateFormat.format(this)
 }
 

@@ -3,10 +3,7 @@ package com.batdemir.template.di.module.remote
 import android.content.Context
 import com.batdemir.template.BuildConfig
 import com.batdemir.template.data.Constant
-import com.batdemir.template.di.module.remote.interceptor.AcceptLanguageInterceptor
-import com.batdemir.template.di.module.remote.interceptor.AuthInterceptor
-import com.batdemir.template.di.module.remote.interceptor.EncodingInterceptor
-import com.batdemir.template.di.module.remote.interceptor.UserAgentInterceptor
+import com.batdemir.template.di.module.remote.interceptor.*
 import com.batdemir.template.utils.DateFormat
 import com.google.gson.GsonBuilder
 import com.readystatesoftware.chuck.ChuckInterceptor
@@ -33,9 +30,12 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClientBuilder(): OkHttpClient.Builder = OkHttpClient.Builder()
+    fun provideOkHttpClientBuilder(
+        hostSelectionInterceptor: HostSelectionInterceptor
+    ): OkHttpClient.Builder = OkHttpClient.Builder()
         .readTimeout(Constant.TIMEOUT, TimeUnit.SECONDS)
         .connectTimeout(Constant.TIMEOUT, TimeUnit.SECONDS)
+        .addInterceptor(hostSelectionInterceptor)
 
     @Provides
     @Singleton
@@ -49,6 +49,10 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor()
+
+    @Provides
+    @Singleton
+    fun provideHostSelectionInterceptor(): HostSelectionInterceptor = HostSelectionInterceptor()
 
     @Provides
     @Singleton

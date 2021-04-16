@@ -18,20 +18,17 @@ object RepositoryModule {
     fun provideRepositoryExample(
         remoteDataSource: ExampleRemoteDataSource,
         localeDataSource: ExampleLocalDataSource,
-    ) =
-        ExampleRepository(remoteDataSource, localeDataSource)
+    ) = ExampleRepository(remoteDataSource, localeDataSource)
 
     @Singleton
     @Provides
     fun provideRepositoryGithub(
         remoteDataSource: GithubUserRemoteDataSource
-    ) =
-        GithubRepository(remoteDataSource)
+    ) = GithubRepository(remoteDataSource)
 
     @Singleton
     @Provides
     fun provideRepositoryStackOverFlow(
         remoteDataSource: StackOverFlowRemoteDataSource
-    ) =
-        StackOverFlowRepository(remoteDataSource)
+    ) = StackOverFlowRepository(remoteDataSource)
 }

@@ -14,7 +14,10 @@ class AcceptLanguageInterceptor @Inject constructor(
         val request = chain
             .request()
             .newBuilder()
-            .addHeader("Accept-Language", mLanguage)
+            .addHeader(
+                name = "Accept-Language",
+                value = mLanguage
+            )
             .build()
         return chain.proceed(request)
     }

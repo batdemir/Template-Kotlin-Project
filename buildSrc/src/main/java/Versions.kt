@@ -1,76 +1,53 @@
 //version constants for the Kotlin DSL dependencies
 object Versions {
     //app level
-    const val gradle = "4.1.2"
-    const val kotlin = "1.4.31"
-    const val navigation = "2.3.3"
+    const val gradle = "4.1.3"
+    const val kotlin = "1.4.32"
 
-    //kotlin
-    const val coroutinesVersion = "1.4.0"
-
-    // support library
-    const val appCompatVersion = "1.2.0"
-    const val legacySupportVersion = "1.0.0"
-    const val materialVersion = "1.3.0"
-
-    // architecture components
-    const val constraintVersion = "2.0.4"
-    const val coreVersion = "1.3.2"
-    const val fragmentVersion = "1.3.0"
-    const val lifecycleLiveVersion = "2.3.0"
-    const val lifecycleVersion = "2.2.0"
-    const val lifecycleStateVersion = "2.2.0"
-    const val preferenceVersion = "1.1.1"
-    const val navigationVersion = "2.3.3"
-    const val navigationCompVersion = "1.0.0-alpha08"
-    const val viewPagerVersion = "1.0.0"
-    const val pagingVersion = "3.0.0-beta01"
-    const val startupVersion = "1.0.0"
-    const val roomVersion = "2.2.6"
-
-    // rx
-    const val rxKotlin = "3.0.1"
-    const val rxAndroid = "3.0.0"
-
-    // debugging
+    //dependency level
+    const val androidxAppCompatVersion = "1.2.0"
+    const val androidxConstraintLayoutVersion = "2.0.4"
+    const val androidxCoreVersion = "1.3.2"
+    const val androidxFragmentVersion = "1.3.2"
+    const val androidxLegacySupportVersion = "1.0.0"
+    const val androidxLifeCycleCommonVersion = "2.3.1"
+    const val androidxLifeCycleExtensionsVersion = "2.2.0"
+    const val androidxLifeCycleLiveDataVersion = "2.3.1"
+    const val androidxLifeCycleViewModelVersion = "2.3.1"
+    const val androidxLifeCycleStateVersion = "2.3.1"
+    const val androidxNavigationComposeVersion = "1.0.0-alpha10"
+    const val androidxNavigationVersion = "2.3.5"
+    const val androidxPagingVersion = "3.0.0-beta03"
+    const val androidxPreferenceVersion = "1.1.1"
+    const val androidxRoomVersion = "2.2.6"
+    const val androidxStartUpVersion = "1.0.0"
+    const val androidxViewPagerVersion = "1.0.0"
+    const val googleMaterialVersion = "1.3.0"
+    const val googleDaggerVersion = "2.34.1"
+    const val googleFirebaseAnalyticsVersion = "18.0.3"
+    const val googleFirebaseBomVersion = "27.0.0"
+    const val googleFirebaseConfigVersion = "20.0.4"
+    const val googleFirebaseFireStoreVersion = "22.1.1"
+    const val googleFirebasePerfVersion = "19.1.1"
+    const val googleServiceVersion = "4.3.4"
+    const val githubGlideVersion = "4.12.0"
+    const val githubMPAndroidChartVersion = "v3.1.0"
+    const val lingverVersion = "1.3.0"
     const val timberVersion = "4.7.1"
+    const val jetBrainsCoroutinesVersion = "1.4.3"
+    const val squareupRetrofitVersion = "2.9.0"
+    const val squareupOkHttpVersion = "5.0.0-alpha.2"
     const val chuckVersion = "1.1.0"
 
-    // chart
-    const val chartVersion = "v3.1.0"
-
-    // lingver
-    const val lingverVersion = "1.3.0"
-
-    // glide
-    const val glideVersion = "4.12.0"
-
-    // dagger
-    const val daggerVersion = "2.33"
-
-    // network
-    const val retrofitVersion = "2.9.0"
-    const val okhttpVersion = "5.0.0-alpha.2"
-
-    // firebase
-    const val fireBomVersion = "26.2.0"
-    const val fireAnalyticsVersion = "18.0.2"
-    const val firePerfVersion = "19.1.1"
-    const val fireFireStoreVersion = "22.1.1"
-    const val fireConfigVersion = "20.0.4"
-
-    // unit test
-    const val truthVersion = "1.1"
-    const val junitVersion = "4.13.2"
-    const val turbineVersion = "0.2.1"
-    const val robolectricVersion = "4.4"
-    const val androidxTest = "1.3.0"
-    const val androidxTestJunit = "1.1.2"
-    const val androidTestRunner = "1.3.0-beta01"
-    const val espressoVersion = "3.3.0"
-    const val mockitoKotlinVersion = "2.2.0"
-    const val mockitoInlineVersion = "3.5.13"
-
-    // google service
-    const val googleServiceVersion = "4.3.4"
+    //dependency level test
+    const val testTruthVersion = "1.1"
+    const val testJunitVersion = "4.13.2"
+    const val testTurbineVersion = "0.2.1"
+    const val testRobolectricVersion = "4.4"
+    const val testAndroidxTest = "1.3.0"
+    const val testAndroidxTestJunit = "1.1.2"
+    const val testAndroidTestRunner = "1.3.0-beta01"
+    const val testEspressoVersion = "3.3.0"
+    const val testMockitoKotlinVersion = "2.2.0"
+    const val testMockitoInlineVersion = "3.5.13"
 }
