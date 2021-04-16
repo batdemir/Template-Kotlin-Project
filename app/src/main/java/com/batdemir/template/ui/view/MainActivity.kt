@@ -1,7 +1,6 @@
 package com.batdemir.template.ui.view
 
 import android.os.Bundle
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
