@@ -6,16 +6,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import com.batdemir.template.data.entities.RecyclerItem
 
-class BaseAdapter<T : RecyclerItem, V : ViewDataBinding>(
+class BasePagingAdapter<T : RecyclerItem, V : ViewDataBinding>(
     private val layoutId: Int,
     private var bindListener: BindListener<T, V>? = null,
     private var itemListener: ItemListener<T>? = null,
-    private val enableSelectionEvent: Boolean = true
-) : ListAdapter<RecyclerItem, BaseViewHolder<V>>(BASE_DIFF_UTIL) {
+    private val enableSelectionEvent: Boolean = true,
+    diffCallback: DiffUtil.ItemCallback<T>
+) : PagingDataAdapter<T, BaseViewHolder<V>>(diffCallback) {
     private var lastSelectedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<V> {

@@ -4,6 +4,8 @@ import com.batdemir.template.data.local.datasource.ExampleLocalDataSource
 import com.batdemir.template.data.remote.datasource.ExampleRemoteDataSource
 import com.batdemir.template.data.remote.datasource.GithubUserRemoteDataSource
 import com.batdemir.template.data.remote.datasource.StackOverFlowRemoteDataSource
+import com.batdemir.template.data.remote.service.GithubService
+import com.batdemir.template.data.remote.service.StackOverFlowService
 import com.batdemir.template.data.repository.ExampleRepository
 import com.batdemir.template.data.repository.GithubRepository
 import com.batdemir.template.data.repository.StackOverFlowRepository
@@ -23,12 +25,14 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideRepositoryGithub(
+        service: GithubService,
         remoteDataSource: GithubUserRemoteDataSource
-    ) = GithubRepository(remoteDataSource)
+    ) = GithubRepository(service, remoteDataSource)
 
     @Singleton
     @Provides
     fun provideRepositoryStackOverFlow(
+        service: StackOverFlowService,
         remoteDataSource: StackOverFlowRemoteDataSource
-    ) = StackOverFlowRepository(remoteDataSource)
+    ) = StackOverFlowRepository(service, remoteDataSource)
 }

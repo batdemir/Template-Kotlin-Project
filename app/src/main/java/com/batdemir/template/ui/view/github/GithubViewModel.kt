@@ -1,33 +1,18 @@
 package com.batdemir.template.ui.view.github
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asFlow
-import com.batdemir.template.data.entities.ui.ActionItemModel
+import androidx.paging.PagingData
+import com.batdemir.template.data.Constant
+import com.batdemir.template.data.entities.db.GithubUser
+import com.batdemir.template.data.remote.datasource.paging.GithubSearchParams
 import com.batdemir.template.data.repository.GithubRepository
 import com.batdemir.template.ui.base.vm.BaseViewModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GithubViewModel @Inject constructor(
     private val githubRepository: GithubRepository
 ) : BaseViewModel() {
-    private val _models: MutableLiveData<List<ActionItemModel>> = MutableLiveData()
-    val model: LiveData<List<ActionItemModel>> = _models
-
-    fun getModels(forceRefresh: Boolean) {
-        if (_models.value == null || forceRefresh)
-            githubRepository.getUsers().asFlow().handle {
-                _models.postValue(it.map { item ->
-                    ActionItemModel(
-                        id = item.id,
-                        title = item.login,
-                        iconRes = item.avatarUrl,
-                        subTitle = item.type,
-                        isEnabled = true,
-                        isSelected = false,
-                        navigateUrl = null
-                    )
-                })
-            }
-    }
+    fun getModels(): Flow<PagingData<GithubUser>> = githubRepository.getUsersPaging(
+        GithubSearchParams(perPage = Constant.NETWORK_PAGE_SIZE.toLong())
+    )
 }

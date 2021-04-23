@@ -1,10 +1,12 @@
 package com.batdemir.template.data.entities.db
 
+import com.batdemir.template.data.entities.RecyclerItem
 import com.google.gson.annotations.SerializedName
 
 data class GithubUser(
+    override val id: Long,
+    override var isSelected: Boolean,
     val login: String,
-    val id: Long,
     @SerializedName("node_id")
     val nodeId: String,
     @SerializedName("avatar_url")
@@ -53,5 +55,5 @@ data class GithubUser(
     @SerializedName("created_at")
     val createdAt: String,
     @SerializedName("updated_at")
-    val updatedAt: String
-)
+    val updatedAt: String,
+) : RecyclerItem

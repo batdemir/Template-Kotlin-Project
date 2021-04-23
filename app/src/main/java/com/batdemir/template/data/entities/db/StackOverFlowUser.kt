@@ -1,12 +1,14 @@
 package com.batdemir.template.data.entities.db
 
+import com.batdemir.template.data.entities.RecyclerItem
 import com.google.gson.annotations.SerializedName
 
 data class StackOverFlowUser(
+    @SerializedName("account_id")
+    override val id: Long,
+    override var isSelected: Boolean,
     @SerializedName("badge_counts")
     val stackOverFlowBadgeCounts: StackOverFlowBadgeCounts,
-    @SerializedName("account_id")
-    val accountId: Long,
     @SerializedName("is_employee")
     val isEmployee: Boolean,
     @SerializedName("last_access_date")
@@ -32,5 +34,5 @@ data class StackOverFlowUser(
     @SerializedName("profile_image")
     val profileImage: String,
     @SerializedName("display_name")
-    val displayName: String
-)
+    val displayName: String,
+) : RecyclerItem

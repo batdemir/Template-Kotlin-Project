@@ -4,8 +4,15 @@ import com.batdemir.template.data.entities.db.GithubUser
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface GithubService {
+    @GET("users")
+    suspend fun getUsersPaging(
+        @Query("since") since: Long? = null,
+        @Query("per_page") perPage: Long? = null,
+    ): List<GithubUser>
+
     @GET("users")
     suspend fun getUsers(): Response<List<GithubUser>>
 

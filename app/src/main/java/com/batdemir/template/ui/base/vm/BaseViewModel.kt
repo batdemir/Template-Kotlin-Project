@@ -59,9 +59,9 @@ abstract class BaseViewModel(
 
     sealed class State {
         object Error : State()
-        data class ShowContent(val requestType: RequestType) : State()
-        data class ShowLoading(val requestType: RequestType) : State()
-        data class ShowError(val requestType: RequestType, val throwable: Throwable?) : State()
+        data class ShowContent(val requestType: RequestType = RequestType.INIT) : State()
+        data class ShowLoading(val requestType: RequestType = RequestType.INIT) : State()
+        data class ShowError(val requestType: RequestType = RequestType.INIT, val throwable: Throwable?) : State()
         data class ShowDialog(val message: String) : State()
     }
 
