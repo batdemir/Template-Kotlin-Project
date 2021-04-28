@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.batdemir.template.data.Constant
-import com.batdemir.template.data.entities.db.StackOverFlowUser
+import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.datasource.StackOverFlowRemoteDataSource
 import com.batdemir.template.data.remote.datasource.paging.StackOverFlowPagingRemoteDataSource
 import com.batdemir.template.data.remote.datasource.paging.StackOverFlowSearchParams
@@ -17,7 +17,7 @@ class StackOverFlowRepository @Inject constructor(
     private val service: StackOverFlowService,
     private val remoteDataSource: StackOverFlowRemoteDataSource
 ) {
-    fun getUsersPaging(searchParams: StackOverFlowSearchParams): Flow<PagingData<StackOverFlowUser>> = Pager(
+    fun getUsersPaging(searchParams: StackOverFlowSearchParams): Flow<PagingData<ActionItemModel>> = Pager(
         config = PagingConfig(pageSize = Constant.NETWORK_PAGE_SIZE, enablePlaceholders = false),
         pagingSourceFactory = { StackOverFlowPagingRemoteDataSource(service, searchParams) }
     ).flow

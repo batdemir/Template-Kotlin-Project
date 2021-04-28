@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.StackOverFlowOrderType
 import com.batdemir.template.data.StackOverFlowSortType
-import com.batdemir.template.data.entities.db.StackOverFlowUser
+import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.service.StackOverFlowService
 import com.batdemir.template.di.module.remote.exception.Error
 import com.google.gson.Gson
@@ -14,8 +14,8 @@ import retrofit2.HttpException
 class StackOverFlowPagingRemoteDataSource(
     private val service: StackOverFlowService,
     private val searchParams: StackOverFlowSearchParams
-) : PagingSource<StackOverFlowLoadParams, StackOverFlowUser>() {
-    override suspend fun load(params: LoadParams<StackOverFlowLoadParams>): LoadResult<StackOverFlowLoadParams, StackOverFlowUser> {
+) : PagingSource<StackOverFlowLoadParams, ActionItemModel>() {
+    override suspend fun load(params: LoadParams<StackOverFlowLoadParams>): LoadResult<StackOverFlowLoadParams, ActionItemModel> {
         return try {
             val key = params.key ?: StackOverFlowLoadParams(Constant.START_PAGE_INDEX)
             val response = service.getUsersPaging(
@@ -40,7 +40,16 @@ class StackOverFlowPagingRemoteDataSource(
                 else -> StackOverFlowLoadParams(key.page + 1)
             }
             LoadResult.Page(
-                data = response.items,
+                data = response.items.map { model ->
+                    ActionItemModel(
+                        id = model.id,
+                        title = model.displayName,
+                        subTitle = model.userType,
+                        iconRes = model.profileImage,
+                        isEnabled = true,
+                        navigateUrl = null,
+                    )
+                },
                 prevKey = prevKey,
                 nextKey = nextKey
             )
@@ -51,7 +60,7 @@ class StackOverFlowPagingRemoteDataSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<StackOverFlowLoadParams, StackOverFlowUser>): StackOverFlowLoadParams {
+    override fun getRefreshKey(state: PagingState<StackOverFlowLoadParams, ActionItemModel>): StackOverFlowLoadParams {
         return StackOverFlowLoadParams(0)
     }
 }

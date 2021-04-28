@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{model.iconRes}"
                 tools:src="@mipmap/ic_launcher"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_edit_title"
@@ -58,7 +58,7 @@
                 app:layout_constraintStart_toEndOf="@id/image_icon"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title"
-                tools:visibility="visible"/>
+                tools:visibility="visible" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_edit_sub_title"

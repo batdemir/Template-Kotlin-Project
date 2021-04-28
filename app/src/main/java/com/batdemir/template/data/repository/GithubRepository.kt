@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.batdemir.template.data.Constant
-import com.batdemir.template.data.entities.db.GithubUser
+import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.datasource.GithubUserRemoteDataSource
 import com.batdemir.template.data.remote.datasource.paging.GithubSearchParams
 import com.batdemir.template.data.remote.datasource.paging.GithubUserPagingRemoteDataSource
@@ -17,7 +17,7 @@ class GithubRepository @Inject constructor(
     private val service: GithubService,
     private val remoteDataSource: GithubUserRemoteDataSource
 ) {
-    fun getUsersPaging(searchParams: GithubSearchParams): Flow<PagingData<GithubUser>> = Pager(
+    fun getUsersPaging(searchParams: GithubSearchParams): Flow<PagingData<ActionItemModel>> = Pager(
         config = PagingConfig(pageSize = Constant.NETWORK_PAGE_SIZE, enablePlaceholders = false),
         pagingSourceFactory = { GithubUserPagingRemoteDataSource(service, searchParams) }
     ).flow

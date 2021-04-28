@@ -2,7 +2,7 @@ package com.batdemir.template.ui.view.stackoverflow
 
 import androidx.paging.PagingData
 import com.batdemir.template.data.Constant
-import com.batdemir.template.data.entities.db.StackOverFlowUser
+import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.datasource.paging.StackOverFlowSearchParams
 import com.batdemir.template.data.repository.StackOverFlowRepository
 import com.batdemir.template.ui.base.vm.BaseViewModel
@@ -12,7 +12,7 @@ import javax.inject.Inject
 class StackOverFlowViewModel @Inject constructor(
     private val stackOverFlowRepository: StackOverFlowRepository
 ) : BaseViewModel() {
-    fun getModels(): Flow<PagingData<StackOverFlowUser>> = stackOverFlowRepository.getUsersPaging(
+    fun getModels(): Flow<PagingData<ActionItemModel>> = stackOverFlowRepository.getUsersPaging(
         StackOverFlowSearchParams(pageSize = Constant.NETWORK_PAGE_SIZE.toLong())
     )
 }

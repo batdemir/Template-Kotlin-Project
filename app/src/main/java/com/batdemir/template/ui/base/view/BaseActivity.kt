@@ -20,10 +20,6 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
     private var binding: B? = null
     private var progressDialog: Dialog? = null
 
-    fun getBinding(): B {
-        return if (binding != null) binding!! else throw NullPointerException("Expression 'binding' must not be null")
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()
         super.onCreate(savedInstanceState)
@@ -47,13 +43,15 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
             is BaseViewModel.State.Error -> error()
             is BaseViewModel.State.ShowLoading -> showLoading(state.requestType)
             is BaseViewModel.State.ShowContent -> showContent(state.requestType)
-            is BaseViewModel.State.ShowError -> showError(state.requestType, state.throwable)
+            is BaseViewModel.State.ShowError -> showError(
+                state.requestType,
+                state.throwable
+            )
             is BaseViewModel.State.ShowDialog -> showDialog(state.message)
         }
     }
 
     private fun generateActionRequestError(message: String) {
-        onStateChanged(BaseViewModel.State.ShowContent(BaseViewModel.RequestType.CUSTOM))
         AlertDialog.Builder(this)
             .setMessage(message)
             .setPositiveButton(R.string.ok) { dialog, _ ->
@@ -74,42 +72,6 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
             .show()
     }
 
-    fun showLoading(requestType: BaseViewModel.RequestType) {
-        when (requestType) {
-            BaseViewModel.RequestType.ACTION -> showProgress()
-            BaseViewModel.RequestType.INIT -> showProgress()
-            BaseViewModel.RequestType.CUSTOM -> showContent(requestType)
-        }
-    }
-
-    fun showContent(requestType: BaseViewModel.RequestType) {
-        when (requestType) {
-            BaseViewModel.RequestType.ACTION,
-            BaseViewModel.RequestType.INIT,
-            BaseViewModel.RequestType.CUSTOM,
-            -> dismissProgress()
-        }
-    }
-
-    fun showDialog(message: String) {
-        AlertDialog.Builder(baseContext)
-            .setMessage(message)
-            .setPositiveButton(R.string.ok) { dialog, _ -> dialog?.dismiss() }
-    }
-
-    fun showError(requestType: BaseViewModel.RequestType, throwable: Throwable?) {
-        dismissProgress()
-        when (requestType) {
-            BaseViewModel.RequestType.ACTION -> generateActionRequestError(throwable?.message ?: "")
-            BaseViewModel.RequestType.INIT -> generateInitRequestError(throwable?.message ?: "")
-            BaseViewModel.RequestType.CUSTOM -> showContent(requestType)
-        }
-    }
-
-    fun error() {
-        dismissProgress()
-    }
-
     private fun showProgress() {
         if (progressDialog == null) {
             progressDialog = Dialog(this, R.style.ThemeOverlay_MaterialComponents_Dialog).apply {
@@ -128,5 +90,34 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
                 it.dismiss()
             }
         }
+    }
+
+    fun showLoading(requestType: BaseViewModel.RequestType) {
+        if (requestType == BaseViewModel.RequestType.ACTION) showProgress()
+        else if (requestType == BaseViewModel.RequestType.INIT) showProgress()
+    }
+
+    fun showContent(requestType: BaseViewModel.RequestType) {
+        if (requestType == BaseViewModel.RequestType.ACTION || requestType == BaseViewModel.RequestType.INIT) dismissProgress()
+    }
+
+    fun showDialog(message: String) {
+        AlertDialog.Builder(baseContext)
+            .setMessage(message)
+            .setPositiveButton(R.string.ok) { dialog, _ -> dialog?.dismiss() }
+    }
+
+    fun showError(requestType: BaseViewModel.RequestType, throwable: Throwable?) {
+        dismissProgress()
+        if (requestType == BaseViewModel.RequestType.ACTION) generateActionRequestError(throwable?.message ?: "")
+        else if (requestType == BaseViewModel.RequestType.INIT) generateInitRequestError(throwable?.message ?: "")
+    }
+
+    fun error() {
+        dismissProgress()
+    }
+
+    fun getBinding(): B {
+        return if (binding != null) binding!! else throw NullPointerException("Expression 'binding' must not be null")
     }
 }

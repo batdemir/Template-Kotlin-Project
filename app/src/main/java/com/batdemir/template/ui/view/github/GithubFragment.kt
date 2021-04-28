@@ -2,10 +2,8 @@ package com.batdemir.template.ui.view.github
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.DiffUtil
 import com.batdemir.template.R
-import com.batdemir.template.data.entities.db.GithubUser
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.databinding.FragmentGithubBinding
 import com.batdemir.template.databinding.ItemActionBinding
@@ -13,7 +11,6 @@ import com.batdemir.template.ui.adapter.BasePagingAdapter
 import com.batdemir.template.ui.adapter.BaseViewHolder
 import com.batdemir.template.ui.adapter.BindListener
 import com.batdemir.template.ui.base.view.BaseFragment
-import com.batdemir.template.ui.base.vm.BaseViewModel
 import com.batdemir.template.ui.view.MainActivity
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -23,28 +20,22 @@ class GithubFragment :
     private val adapter by lazy {
         BasePagingAdapter(
             layoutId = R.layout.item_action,
-            bindListener = object : BindListener<GithubUser, ItemActionBinding> {
+            bindListener = object : BindListener<ActionItemModel, ItemActionBinding> {
                 override fun onBind(
                     holderBase: BaseViewHolder<ItemActionBinding>,
-                    model: GithubUser,
+                    model: ActionItemModel,
                     position: Int
                 ) {
-                    holderBase.binding.model = ActionItemModel(
-                        id = model.id,
-                        title = model.login,
-                        subTitle = model.type,
-                        iconRes = model.avatarUrl,
-                        isEnabled = true,
-                        navigateUrl = null,
-                    )
+                    holderBase.binding.model = model
+                    holderBase.binding.executePendingBindings()
                 }
             },
-            diffCallback = object : DiffUtil.ItemCallback<GithubUser>() {
-                override fun areItemsTheSame(oldItem: GithubUser, newItem: GithubUser): Boolean {
+            diffCallback = object : DiffUtil.ItemCallback<ActionItemModel>() {
+                override fun areItemsTheSame(oldItem: ActionItemModel, newItem: ActionItemModel): Boolean {
                     return oldItem == newItem
                 }
 
-                override fun areContentsTheSame(oldItem: GithubUser, newItem: GithubUser): Boolean {
+                override fun areContentsTheSame(oldItem: ActionItemModel, newItem: ActionItemModel): Boolean {
                     return oldItem.id == newItem.id
                 }
             }
@@ -67,31 +58,9 @@ class GithubFragment :
     }
 
     override fun setupListener() {
+        setPagingAdapterLoadStateListener(viewModel, adapter)
         getBinding().rootFragmentGithub.setOnRefreshListener {
             getBinding().rootFragmentGithub.isRefreshing = false
-        }
-        adapter.addLoadStateListener { loadState ->
-            when {
-                loadState.append is LoadState.Loading
-                        || loadState.refresh is LoadState.Loading
-                        || loadState.prepend is LoadState.Loading
-                -> viewModel.baseLiveData.value = BaseViewModel.State.ShowLoading()
-                else -> {
-                    val error = when {
-                        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                        else -> null
-                    }
-                    if (error == null) {
-                        viewModel.baseLiveData.value = BaseViewModel.State.ShowContent()
-                    } else {
-                        viewModel.baseLiveData.value = BaseViewModel.State.ShowError(
-                            throwable = error.error
-                        )
-                    }
-                }
-            }
         }
     }
 }

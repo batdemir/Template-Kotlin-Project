@@ -27,9 +27,9 @@
             android:layout_width="120sp"
             android:layout_height="120sp"
             android:visibility="@{viewModel.hasHdmiConnection() ? View.VISIBLE : View.GONE}"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/view_divider"
             app:layout_constraintEnd_toStartOf="@id/card_view_two"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textview.MaterialTextView

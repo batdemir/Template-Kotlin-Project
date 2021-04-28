@@ -22,10 +22,6 @@ abstract class BaseDialogFragment<B : ViewDataBinding, V : BaseViewModel> constr
     lateinit var viewModel: V
     private var binding: B? = null
 
-    fun getBinding(): B {
-        return if (binding != null) binding!! else throw NullPointerException("Expression 'binding' must not be null")
-    }
-
     override fun onAttach(context: Context) {
         inject()
         super.onAttach(context)
@@ -84,5 +80,9 @@ abstract class BaseDialogFragment<B : ViewDataBinding, V : BaseViewModel> constr
             )
             is BaseViewModel.State.ShowDialog -> (requireActivity() as BaseActivity<*, *>).showDialog(state.message)
         }
+    }
+
+    fun getBinding(): B {
+        return if (binding != null) binding!! else throw NullPointerException("Expression 'binding' must not be null")
     }
 }
