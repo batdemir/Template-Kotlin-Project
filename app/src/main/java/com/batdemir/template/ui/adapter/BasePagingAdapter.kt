@@ -6,17 +6,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import com.batdemir.template.data.entities.RecyclerItem
+import timber.log.Timber
 
 class BasePagingAdapter<T : RecyclerItem, V : ViewDataBinding>(
     private val layoutId: Int,
     private var bindListener: BindListener<T, V>? = null,
     private var itemListener: ItemListener<T>? = null,
-    private val enableSelectionEvent: Boolean = true,
-    diffCallback: DiffUtil.ItemCallback<T>
-) : PagingDataAdapter<T, BaseViewHolder<V>>(diffCallback) {
+    private val enableSingleSelectionEvent: Boolean = true,
+    private val singleSelectionEvent: () -> Unit = {},
+) : PagingDataAdapter<RecyclerItem, BaseViewHolder<V>>(BASE_DIFF_UTIL) {
     private var lastSelectedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<V> {
@@ -29,18 +30,19 @@ class BasePagingAdapter<T : RecyclerItem, V : ViewDataBinding>(
         bindListener?.onBind(holderBase, getMyItem(position), position)
         holderBase.binding.root.setOnClickListener {
             itemListener?.onClick(getMyItem(position))
-            if (enableSelectionEvent)
-                selectionEvent(position)
+            if (enableSingleSelectionEvent)
+                mySingleSelectionEvent(position)
         }
         holderBase.binding.root.setOnLongClickListener {
             itemListener?.onLongClick(getMyItem(position))
-            if (enableSelectionEvent)
-                selectionEvent(position)
+            if (enableSingleSelectionEvent)
+                mySingleSelectionEvent(position)
             true
         }
     }
 
-    private fun selectionEvent(position: Int) {
+    private fun mySingleSelectionEvent(position: Int) {
+        singleSelectionEvent()
         getMyItem(position).isSelected = true
         if (lastSelectedPosition >= 0 && lastSelectedPosition != position) {
             val before = getMyItem(lastSelectedPosition)
@@ -53,6 +55,10 @@ class BasePagingAdapter<T : RecyclerItem, V : ViewDataBinding>(
 
     private fun getMyItem(position: Int): T {
         return getItem(position) as T
+    }
+
+    suspend fun mySummitData(pagingData: PagingData<T>) {
+        submitData(pagingData as PagingData<RecyclerItem>)
     }
 
     fun setBindListener(listener: BindListener<T, V>) {

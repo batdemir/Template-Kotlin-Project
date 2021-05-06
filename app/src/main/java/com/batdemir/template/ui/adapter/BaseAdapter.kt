@@ -13,7 +13,8 @@ class BaseAdapter<T : RecyclerItem, V : ViewDataBinding>(
     private val layoutId: Int,
     private var bindListener: BindListener<T, V>? = null,
     private var itemListener: ItemListener<T>? = null,
-    private val enableSelectionEvent: Boolean = true
+    private val enableSingleSelectionEvent: Boolean = true,
+    private val singleSelectionEvent: () -> Unit = {}
 ) : ListAdapter<RecyclerItem, BaseViewHolder<V>>(BASE_DIFF_UTIL) {
     private var lastSelectedPosition = -1
 
@@ -27,18 +28,19 @@ class BaseAdapter<T : RecyclerItem, V : ViewDataBinding>(
         bindListener?.onBind(holderBase, getMyItem(position), position)
         holderBase.binding.root.setOnClickListener {
             itemListener?.onClick(getMyItem(position))
-            if (enableSelectionEvent)
-                selectionEvent(position)
+            if (enableSingleSelectionEvent)
+                mySingleSelectionEvent(position)
         }
         holderBase.binding.root.setOnLongClickListener {
             itemListener?.onLongClick(getMyItem(position))
-            if (enableSelectionEvent)
-                selectionEvent(position)
+            if (enableSingleSelectionEvent)
+                mySingleSelectionEvent(position)
             true
         }
     }
 
-    private fun selectionEvent(position: Int) {
+    private fun mySingleSelectionEvent(position: Int) {
+        singleSelectionEvent()
         getMyItem(position).isSelected = true
         if (lastSelectedPosition >= 0 && lastSelectedPosition != position) {
             val before = getMyItem(lastSelectedPosition)

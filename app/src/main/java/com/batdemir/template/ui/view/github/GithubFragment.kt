@@ -2,7 +2,6 @@ package com.batdemir.template.ui.view.github
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DiffUtil
 import com.batdemir.template.R
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.databinding.FragmentGithubBinding
@@ -29,15 +28,6 @@ class GithubFragment :
                     holderBase.binding.model = model
                     holderBase.binding.executePendingBindings()
                 }
-            },
-            diffCallback = object : DiffUtil.ItemCallback<ActionItemModel>() {
-                override fun areItemsTheSame(oldItem: ActionItemModel, newItem: ActionItemModel): Boolean {
-                    return oldItem == newItem
-                }
-
-                override fun areContentsTheSame(oldItem: ActionItemModel, newItem: ActionItemModel): Boolean {
-                    return oldItem.id == newItem.id
-                }
             }
         )
     }
@@ -52,7 +42,7 @@ class GithubFragment :
         super.setupData()
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.getModels().collect {
-                adapter.submitData(it)
+                adapter.mySummitData(it)
             }
         }
     }
