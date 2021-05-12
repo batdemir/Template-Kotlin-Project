@@ -1,6 +1,8 @@
 package com.batdemir.template.ui.view.github
 
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.datasource.paging.GithubSearchParams
@@ -14,5 +16,5 @@ class GithubViewModel @Inject constructor(
 ) : BaseViewModel() {
     fun getModels(): Flow<PagingData<ActionItemModel>> = githubRepository.getUsersPaging(
         GithubSearchParams(perPage = Constant.NETWORK_PAGE_SIZE.toLong())
-    )
+    ).cachedIn(viewModelScope)
 }

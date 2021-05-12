@@ -1,6 +1,6 @@
 package com.batdemir.template.data.remote.datasource
 
-import com.batdemir.template.data.remote.BaseDataSource
+import com.batdemir.template.data.remote.base.BaseDataSource
 import com.batdemir.template.data.remote.service.GithubService
 import javax.inject.Inject
 

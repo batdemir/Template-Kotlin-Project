@@ -9,7 +9,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
 import com.batdemir.template.data.entities.RecyclerItem
-import timber.log.Timber
 
 class BasePagingAdapter<T : RecyclerItem, V : ViewDataBinding>(
     private val layoutId: Int,

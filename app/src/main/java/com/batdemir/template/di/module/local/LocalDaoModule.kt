@@ -9,5 +9,9 @@ import javax.inject.Singleton
 object LocalDaoModule {
     @Singleton
     @Provides
-    fun provideDaoExample(db: AppDatabase) = db.exampleDao()
+    fun provideDaoGithub(db: AppDatabase) = db.githubDao()
+
+    @Singleton
+    @Provides
+    fun provideDaoStackOverFlow(db: AppDatabase) = db.stackOverFlowDao()
 }

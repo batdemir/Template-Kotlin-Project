@@ -1,4 +1,4 @@
-package com.batdemir.template.data.remote
+package com.batdemir.template.data.remote.base
 
 import com.batdemir.template.data.entities.Resource
 import retrofit2.Response

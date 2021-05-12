@@ -4,6 +4,7 @@ import android.content.Context
 import com.batdemir.template.di.initializer.AppInitializer
 import com.batdemir.template.di.module.InitializerModule
 import com.batdemir.template.di.module.ManagerModule
+import com.batdemir.template.di.module.MediatorModule
 import com.batdemir.template.di.module.RepositoryModule
 import com.batdemir.template.di.module.local.LocalModule
 import com.batdemir.template.di.module.remote.NetworkModule
@@ -21,6 +22,7 @@ import javax.inject.Singleton
         LocalModule::class,
         NetworkModule::class,
         RepositoryModule::class,
+        MediatorModule::class
     ]
 )
 interface ApplicationComponent {

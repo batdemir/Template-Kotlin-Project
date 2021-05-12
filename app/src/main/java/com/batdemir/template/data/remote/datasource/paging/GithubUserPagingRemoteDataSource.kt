@@ -14,7 +14,6 @@ class GithubUserPagingRemoteDataSource(
     private val searchParams: GithubSearchParams
 ) : PagingSource<GithubLoadParams, ActionItemModel>() {
     override suspend fun load(params: LoadParams<GithubLoadParams>): LoadResult<GithubLoadParams, ActionItemModel> {
-
         return try {
             val key = params.key ?: GithubLoadParams(Constant.START_PAGE_INDEX)
             val response = service.getUsersPaging(

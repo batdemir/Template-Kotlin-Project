@@ -28,6 +28,7 @@ class HomeFragment :
                     position: Int
                 ) {
                     holderBase.binding.model = model
+                    holderBase.binding.executePendingBindings()
                 }
             }
         )

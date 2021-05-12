@@ -52,20 +52,22 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
     }
 
     private fun generateActionRequestError(message: String) {
-        AlertDialog.Builder(this)
+        AlertDialog
+            .Builder(this)
             .setMessage(message)
             .setPositiveButton(R.string.ok) { dialog, _ ->
-                dialog?.dismiss()
+                dialog.dismiss()
             }
             .show()
     }
 
     private fun generateInitRequestError(message: String) {
-        AlertDialog.Builder(this)
+        AlertDialog
+            .Builder(this)
             .setMessage(message)
             .setPositiveButton(R.string.ok) { dialog, _ ->
                 run {
-                    dialog?.dismiss()
+                    dialog.dismiss()
                     onBackPressed()
                 }
             }
@@ -104,7 +106,7 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
     fun showDialog(message: String) {
         AlertDialog.Builder(baseContext)
             .setMessage(message)
-            .setPositiveButton(R.string.ok) { dialog, _ -> dialog?.dismiss() }
+            .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
     }
 
     fun showError(requestType: BaseViewModel.RequestType, throwable: Throwable?) {
