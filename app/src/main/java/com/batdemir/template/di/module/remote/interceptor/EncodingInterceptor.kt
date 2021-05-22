@@ -5,7 +5,6 @@ import okhttp3.Response
 import javax.inject.Inject
 
 class EncodingInterceptor @Inject constructor(
-
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val url = chain

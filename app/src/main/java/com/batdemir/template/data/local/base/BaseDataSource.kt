@@ -2,17 +2,19 @@ package com.batdemir.template.data.local.base
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
-import com.batdemir.template.data.entities.RecyclerItem
 
 /**
- * @param T
+ * BaseDataSource
+ *
+ * @param T type of model
  */
-interface BaseDataSource<T : RecyclerItem> {
+interface BaseDataSource<T : Any> {
     fun get(): LiveData<List<T>>
     fun get(id: Long): LiveData<List<T>>
     fun getPaging(): PagingSource<Int, T>
-    suspend fun insert(model: T)
+    suspend fun deleteAll()
+    suspend fun insert(model: T): Long
+    suspend fun insert(models: List<T>)
     suspend fun update(model: T)
     suspend fun delete(model: T)
-    suspend fun deleteAll()
 }

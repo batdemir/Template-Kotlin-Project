@@ -4,8 +4,10 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import javax.inject.Inject
 
-class HostSelectionInterceptor : Interceptor {
+class HostSelectionInterceptor @Inject constructor(
+) : Interceptor {
     @Volatile
     private var host: String? = null
 

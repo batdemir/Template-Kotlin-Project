@@ -24,9 +24,6 @@ class MainActivity :
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        // Now that BottomNavigationBar has restored its instance state
-        // and its selectedItemId, we can proceed with setting up the
-        // BottomNavigationBar with Navigation
         setupBottomNavigationBar()
     }
 
@@ -52,17 +49,10 @@ class MainActivity :
         }
     }
 
-    override fun setupData() {
-        //("Not yet implemented")
-    }
-
     override fun setupListener() {
         //("Not yet implemented")
     }
 
-    /**
-     * Called on first creation and when restoring state.
-     */
     private fun setupBottomNavigationBar() {
         setSupportActionBar(getBinding().toolbar)
         val navGraphIds = listOf(
@@ -71,7 +61,6 @@ class MainActivity :
             R.navigation.github_navigation
         )
 
-        // Setup the bottom navigation view with a list of navigation graphs
         val controller = getBinding().bottomNavigationView.setupWithNavController(
             navGraphIds = navGraphIds,
             fragmentManager = supportFragmentManager,
@@ -79,7 +68,6 @@ class MainActivity :
             intent = intent
         )
 
-        // Whenever the selected controller changes, setup the action bar.
         controller.observe(
             this,
             { navController -> setupActionBarWithNavController(navController) },

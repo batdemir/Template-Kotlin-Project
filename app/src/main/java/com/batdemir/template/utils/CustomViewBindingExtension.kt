@@ -3,7 +3,7 @@ package com.batdemir.template.utils
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
+import com.batdemir.template.app.GlideApp
 import com.google.android.material.imageview.ShapeableImageView
 
 class CustomViewBindingExtension {
@@ -13,7 +13,7 @@ class CustomViewBindingExtension {
         fun ShapeableImageView.bindImage(res: String?) {
             if (res.isNullOrEmpty())
                 return
-            Glide
+            GlideApp
                 .with(this.context)
                 .load(res)
                 .into(this)

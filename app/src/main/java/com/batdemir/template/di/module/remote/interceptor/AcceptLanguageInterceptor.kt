@@ -6,7 +6,6 @@ import java.util.*
 import javax.inject.Inject
 
 class AcceptLanguageInterceptor @Inject constructor(
-
 ) : Interceptor {
     private var mLanguage: String = Locale.getDefault().language
 

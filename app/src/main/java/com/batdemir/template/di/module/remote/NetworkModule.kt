@@ -70,10 +70,6 @@ object NetworkModule {
             builder.addNetworkInterceptor(interceptor)
             builder.addInterceptor(ChuckInterceptor(context))
         }
-        //builder.addNetworkInterceptor(acceptLanguageInterceptor)
-        //builder.addNetworkInterceptor(authInterceptor)
-        //builder.addNetworkInterceptor(encodingInterceptor)
-        //builder.addNetworkInterceptor(userAgentInterceptor)
         return builder.build()
     }
 }

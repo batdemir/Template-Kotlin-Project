@@ -10,31 +10,19 @@ import javax.inject.Inject
 class StackOverFlowLocalDataSource @Inject constructor(
     private val dao: StackOverFlowDao
 ) : BaseDataSource<StackOverFlowUser> {
-    override fun get(): LiveData<List<StackOverFlowUser>> {
-        return dao.get()
-    }
+    override fun get(): LiveData<List<StackOverFlowUser>> = dao.get()
 
-    override fun get(id: Long): LiveData<List<StackOverFlowUser>> {
-        return dao.get(id)
-    }
+    override fun get(id: Long): LiveData<List<StackOverFlowUser>> = dao.get(id)
 
-    override fun getPaging(): PagingSource<Int, StackOverFlowUser> {
-        return dao.getPaging()
-    }
+    override fun getPaging(): PagingSource<Int, StackOverFlowUser> = dao.getPaging()
 
-    override suspend fun insert(model: StackOverFlowUser) {
-        dao.insert(model)
-    }
+    override suspend fun deleteAll() = dao.deleteAll()
 
-    override suspend fun delete(model: StackOverFlowUser) {
-        dao.delete(model)
-    }
+    override suspend fun insert(model: StackOverFlowUser): Long = dao.insert(model)
 
-    override suspend fun deleteAll() {
-        dao.deleteAll()
-    }
+    override suspend fun insert(models: List<StackOverFlowUser>) = dao.insert(models)
 
-    override suspend fun update(model: StackOverFlowUser) {
-        dao.update(model)
-    }
+    override suspend fun update(model: StackOverFlowUser) = dao.update(model)
+
+    override suspend fun delete(model: StackOverFlowUser) = dao.delete(model)
 }

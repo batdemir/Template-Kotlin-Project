@@ -8,7 +8,6 @@ import com.yariksoffice.lingver.Lingver
 import java.util.*
 import javax.inject.Inject
 
-
 class MyLanguageManagerImp @Inject constructor(
     private val myResourceManager: MyResourceManager,
     private val myStorageManager: MyStorageManager

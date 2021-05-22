@@ -10,31 +10,19 @@ import javax.inject.Inject
 class GithubLocalDataSource @Inject constructor(
     private val dao: GithubDao
 ) : BaseDataSource<GithubUser> {
-    override fun get(): LiveData<List<GithubUser>> {
-        return dao.get()
-    }
+    override fun get(): LiveData<List<GithubUser>> = dao.get()
 
-    override fun get(id: Long): LiveData<List<GithubUser>> {
-        return dao.get(id)
-    }
+    override fun get(id: Long): LiveData<List<GithubUser>> = dao.get(id)
 
-    override fun getPaging(): PagingSource<Int, GithubUser> {
-        return dao.getPaging()
-    }
+    override fun getPaging(): PagingSource<Int, GithubUser> = dao.getPaging()
 
-    override suspend fun insert(model: GithubUser) {
-        dao.insert(model)
-    }
+    override suspend fun deleteAll() = dao.deleteAll()
 
-    override suspend fun delete(model: GithubUser) {
-        dao.delete(model)
-    }
+    override suspend fun insert(model: GithubUser): Long = dao.insert(model)
 
-    override suspend fun deleteAll() {
-        dao.deleteAll()
-    }
+    override suspend fun insert(models: List<GithubUser>) = dao.insert(models)
 
-    override suspend fun update(model: GithubUser) {
-        dao.update(model)
-    }
+    override suspend fun update(model: GithubUser) = dao.update(model)
+
+    override suspend fun delete(model: GithubUser) = dao.delete(model)
 }

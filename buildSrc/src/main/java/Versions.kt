@@ -19,7 +19,7 @@ object Versions {
     const val androidxNavigationVersion = "2.3.5"
     const val androidxPagingVersion = "3.0.0-beta03"
     const val androidxPreferenceVersion = "1.1.1"
-    const val androidxRoomVersion = "2.2.6"
+    const val androidxRoomVersion = "2.3.0-rc01"
     const val androidxStartUpVersion = "1.0.0"
     const val androidxViewPagerVersion = "1.0.0"
     const val googleMaterialVersion = "1.3.0"

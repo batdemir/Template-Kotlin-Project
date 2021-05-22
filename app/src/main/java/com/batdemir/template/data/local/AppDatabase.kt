@@ -14,7 +14,7 @@ import com.batdemir.template.data.local.dao.StackOverFlowDao
         GithubUser::class,
         StackOverFlowUser::class
     ],
-    version = 2,
+    version = 1,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

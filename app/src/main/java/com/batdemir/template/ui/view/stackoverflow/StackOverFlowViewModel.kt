@@ -1,20 +1,34 @@
 package com.batdemir.template.ui.view.stackoverflow
 
-import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.batdemir.template.data.Constant
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asFlow
 import com.batdemir.template.data.entities.ui.ActionItemModel
-import com.batdemir.template.data.remote.datasource.paging.StackOverFlowSearchParams
 import com.batdemir.template.data.repository.StackOverFlowRepository
 import com.batdemir.template.ui.base.vm.BaseViewModel
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class StackOverFlowViewModel @Inject constructor(
-    private val stackOverFlowRepository: StackOverFlowRepository
+    repository: StackOverFlowRepository
 ) : BaseViewModel() {
-    fun getModels(): Flow<PagingData<ActionItemModel>> = stackOverFlowRepository.getUsersPaging(
-        StackOverFlowSearchParams(pageSize = Constant.NETWORK_PAGE_SIZE.toLong())
-    ).cachedIn(viewModelScope)
+    val liveData: MutableLiveData<State> = MutableLiveData()
+
+    init {
+        repository.getUsers().asFlow().handle {
+            liveData.value = State.OnDataResumed(it.items.map { item ->
+                ActionItemModel(
+                    id = item.id,
+                    title = item.displayName,
+                    subTitle = item.displayName,
+                    iconRes = item.profileImage,
+                    isEnabled = true,
+                    navigateUrl = null,
+                    isSelected = false,
+                )
+            })
+        }
+    }
+
+    sealed class State {
+        data class OnDataResumed(val data: List<ActionItemModel>) : State()
+    }
 }
