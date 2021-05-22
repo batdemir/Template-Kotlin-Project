@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.batdemir.template.data.entities.db.Example
-import com.batdemir.template.data.local.dao.ExampleDao
+import com.batdemir.template.data.entities.db.GithubUser
+import com.batdemir.template.data.entities.db.StackOverFlowUser
+import com.batdemir.template.data.local.dao.GithubDao
+import com.batdemir.template.data.local.dao.StackOverFlowDao
 
 @Database(
     entities = [
-        Example::class
+        GithubUser::class,
+        StackOverFlowUser::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -36,5 +39,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
 
-    abstract fun exampleDao(): ExampleDao
+    abstract fun githubDao(): GithubDao
+    abstract fun stackOverFlowDao(): StackOverFlowDao
 }

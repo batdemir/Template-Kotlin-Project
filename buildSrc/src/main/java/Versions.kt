@@ -2,7 +2,7 @@
 object Versions {
     //app level
     const val gradle = "4.2.0"
-    const val kotlin = "1.4.32"
+    const val kotlin = "1.5.0"
 
     //dependency level
     const val androidxAppCompatVersion = "1.2.0"

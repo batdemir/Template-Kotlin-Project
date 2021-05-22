@@ -11,7 +11,7 @@ import com.batdemir.template.ui.adapter.BaseViewHolder
 import com.batdemir.template.ui.adapter.BindListener
 import com.batdemir.template.ui.base.view.BaseFragment
 import com.batdemir.template.ui.view.MainActivity
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class StackOverFlowFragment :
@@ -42,7 +42,7 @@ class StackOverFlowFragment :
     override fun setupData() {
         super.setupData()
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getModels().collect {
+            viewModel.getModels().collectLatest {
                 adapter.mySummitData(it)
             }
         }

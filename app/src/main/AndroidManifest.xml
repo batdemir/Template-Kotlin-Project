@@ -18,11 +18,13 @@
         <activity
             android:name=".ui.view.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.Project.NoActionBar" />
+            android:theme="@style/Theme.Project.NoActionBar"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.view.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

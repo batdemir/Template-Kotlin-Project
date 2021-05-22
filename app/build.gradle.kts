@@ -20,6 +20,9 @@ plugins {
 }
 
 val buildType: BuildType = BuildType.RELEASE
+val apiTypeName: String = "String"
+val githubApi: String = "GITHUB_API"
+val stackOverFlowApi: String = "STACK_OVER_FLOW_API"
 
 android {
     compileSdkVersion(AppConfig.compileSdk)
@@ -38,29 +41,29 @@ android {
         when (buildType) {
             BuildType.DEBUG -> {
                 this.buildConfigField(
-                    "String",
-                    "GITHUB_API",
+                    apiTypeName,
+                    githubApi,
                     properties["TEST_GITHUB_API"].toString()
                 )
                 this.buildConfigField(
-                    "String",
-                    "STACK_OVER_FLOW_API",
+                    apiTypeName,
+                    stackOverFlowApi,
                     properties["TEST_STACK_OVER_FLOW_API"].toString()
                 )
-                this.resValue("string", "app_name", getAppName(BuildType.DEBUG))
+                this.resValue("string", "app_name", getAppName(buildType))
             }
             BuildType.RELEASE -> {
                 this.buildConfigField(
-                    "String",
-                    "GITHUB_API",
+                    apiTypeName,
+                    githubApi,
                     properties["PROD_GITHUB_API"].toString()
                 )
                 this.buildConfigField(
-                    "String",
-                    "STACK_OVER_FLOW_API",
+                    apiTypeName,
+                    stackOverFlowApi,
                     properties["PROD_STACK_OVER_FLOW_API"].toString()
                 )
-                this.resValue("string", "app_name", getAppName(BuildType.RELEASE))
+                this.resValue("string", "app_name", getAppName(buildType))
                 isMinifyEnabled = false
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
