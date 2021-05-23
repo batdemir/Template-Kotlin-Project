@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.batdemir.template.ui.adapter.BaseAdapter" />
+            type="com.batdemir.template.ui.adapter.BasePagingAdapter" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
