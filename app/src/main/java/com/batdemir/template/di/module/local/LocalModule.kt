@@ -1,6 +1,7 @@
 package com.batdemir.template.di.module.local
 
-import com.batdemir.template.app.MyApplication
+import android.content.Context
+import androidx.room.Room
 import com.batdemir.template.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -15,5 +16,10 @@ import javax.inject.Singleton
 object LocalModule {
     @Singleton
     @Provides
-    fun provideDatabase(application: MyApplication) = AppDatabase.getDatabase(application)
+    fun provideDatabase(context: Context): AppDatabase {
+        return Room
+            .databaseBuilder(context, AppDatabase::class.java, "batdemir.db")
+            .fallbackToDestructiveMigration()
+            .build()
+    }
 }

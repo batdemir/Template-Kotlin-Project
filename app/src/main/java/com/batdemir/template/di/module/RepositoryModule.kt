@@ -1,5 +1,7 @@
 package com.batdemir.template.di.module
 
+import com.batdemir.template.data.local.datasource.GithubLocalDataSource
+import com.batdemir.template.data.local.datasource.StackOverFlowLocalDataSource
 import com.batdemir.template.data.remote.datasource.GithubUserRemoteDataSource
 import com.batdemir.template.data.remote.datasource.StackOverFlowRemoteDataSource
 import com.batdemir.template.data.repository.GithubRepository
@@ -13,12 +15,14 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideRepositoryGithub(
+        localDataSource: GithubLocalDataSource,
         remoteDataSource: GithubUserRemoteDataSource
-    ) = GithubRepository(remoteDataSource)
+    ) = GithubRepository(localDataSource, remoteDataSource)
 
     @Singleton
     @Provides
     fun provideRepositoryStackOverFlow(
+        localDataSource: StackOverFlowLocalDataSource,
         remoteDataSource: StackOverFlowRemoteDataSource
-    ) = StackOverFlowRepository(remoteDataSource)
+    ) = StackOverFlowRepository(localDataSource, remoteDataSource)
 }

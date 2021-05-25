@@ -14,7 +14,7 @@ class StackOverFlowViewModel @Inject constructor(
 
     init {
         repository.getUsers().asFlow().handle {
-            liveData.value = State.OnDataResumed(it.items.map { item ->
+            liveData.value = State.OnDataResumed(it.map { item ->
                 ActionItemModel(
                     id = item.id,
                     title = item.displayName,
