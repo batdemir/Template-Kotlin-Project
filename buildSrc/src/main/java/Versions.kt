@@ -1,7 +1,7 @@
 //version constants for the Kotlin DSL dependencies
 object Versions {
     //app level
-    const val gradle = "4.2.1"
+    const val gradle = "4.2.0"
     const val kotlin = "1.5.0"
 
     //dependency level

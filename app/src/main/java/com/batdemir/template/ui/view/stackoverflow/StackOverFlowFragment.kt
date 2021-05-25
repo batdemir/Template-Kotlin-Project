@@ -1,24 +1,21 @@
 package com.batdemir.template.ui.view.stackoverflow
 
 import android.os.Bundle
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.map
 import com.batdemir.template.R
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.databinding.FragmentStackOverFlowBinding
 import com.batdemir.template.databinding.ItemActionBinding
-import com.batdemir.template.ui.adapter.BasePagingAdapter
+import com.batdemir.template.ui.adapter.BaseAdapter
 import com.batdemir.template.ui.adapter.BaseViewHolder
 import com.batdemir.template.ui.adapter.BindListener
 import com.batdemir.template.ui.base.view.BaseFragment
 import com.batdemir.template.ui.view.MainActivity
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import com.batdemir.template.utils.observe
 
 class StackOverFlowFragment :
     BaseFragment<FragmentStackOverFlowBinding, StackOverFlowViewModel>(R.layout.fragment_stack_over_flow) {
     private val adapter by lazy {
-        BasePagingAdapter(
+        BaseAdapter(
             layoutId = R.layout.item_action,
             bindListener = object : BindListener<ActionItemModel, ItemActionBinding> {
                 override fun onBind(
@@ -41,32 +38,18 @@ class StackOverFlowFragment :
 
     override fun setupData() {
         super.setupData()
-        viewLifecycleOwner
-            .lifecycleScope
-            .launch {
-                viewModel
-                    .repository
-                    .getUsersMediator()
-                    .collectLatest {
-                        adapter.mySummitData(it.map { x ->
-                            ActionItemModel(
-                                id = x.id,
-                                title = x.displayName,
-                                subTitle = x.displayName,
-                                iconRes = x.profileImage,
-                                isEnabled = true,
-                                navigateUrl = null,
-                                isSelected = false
-                            )
-                        })
-                    }
-            }
+        observe(viewModel.liveData, ::onStateChanged)
     }
 
     override fun setupListener() {
-        setPagingAdapterLoadStateListener(viewModel, adapter)
         getBinding().rootFragmentStackOverFlow.setOnRefreshListener {
             getBinding().rootFragmentStackOverFlow.isRefreshing = false
+        }
+    }
+
+    private fun onStateChanged(state: StackOverFlowViewModel.State) {
+        when (state) {
+            is StackOverFlowViewModel.State.OnDataResumed -> adapter.submitList(state.data)
         }
     }
 }

@@ -7,8 +7,7 @@ import javax.inject.Inject
 class GithubUserRemoteDataSource @Inject constructor(
     private val githubService: GithubService
 ) : BaseDataSource() {
-    suspend fun getUsers(since: Long? = null, perPage: Long? = null) =
-        getResult { githubService.getUsers(since, perPage) }
+    suspend fun getUsers() = getResult { githubService.getUsers() }
 
     suspend fun getUser(user: String) = getResult { githubService.getUser(user) }
 }
