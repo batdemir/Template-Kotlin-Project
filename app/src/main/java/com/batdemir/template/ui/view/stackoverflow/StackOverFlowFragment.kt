@@ -2,9 +2,6 @@ package com.batdemir.template.ui.view.stackoverflow
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.map
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.cachedIn
 import com.batdemir.template.R
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.ui.ActionItemModel
@@ -50,28 +47,14 @@ class StackOverFlowFragment :
             .launch {
                 viewModel
                     .repository
-                    .getUsersMediator()
+                    .getUsersPaging(
+                        StackOverFlowSearchParams(
+                            pageSize = Constant.NETWORK_PAGE_SIZE.toLong(),
+                        )
+                    )
                     .collectLatest {
-                        adapter.mySummitData(it.map { x ->
-                            ActionItemModel(
-                                id = x.id,
-                                title = x.displayName,
-                                subTitle = x.displayName,
-                                iconRes = x.profileImage,
-                                isEnabled = true,
-                                navigateUrl = null,
-                                isSelected = false
-                            )
-                        })
+                        adapter.mySummitData(it)
                     }
-            }
-        viewLifecycleOwner
-            .lifecycleScope
-            .launch {
-                viewModel
-                    .repository
-                    .getUsersPaging(StackOverFlowSearchParams(pageSize = Constant.NETWORK_PAGE_SIZE.toLong()))
-                    .collectLatest { adapter.mySummitData(it) }
             }
     }
 
@@ -80,5 +63,10 @@ class StackOverFlowFragment :
         getBinding().rootFragmentStackOverFlow.setOnRefreshListener {
             getBinding().rootFragmentStackOverFlow.isRefreshing = false
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        removePagingAdapterLoadStateListener(viewModel, adapter)
     }
 }

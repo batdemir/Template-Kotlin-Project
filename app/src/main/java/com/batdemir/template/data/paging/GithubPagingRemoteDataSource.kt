@@ -3,6 +3,7 @@ package com.batdemir.template.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.batdemir.template.data.Constant
+import com.batdemir.template.data.entities.Resource
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.datasource.GithubUserRemoteDataSource
 import com.batdemir.template.di.module.remote.exception.Error
@@ -20,6 +21,9 @@ class GithubUserPagingRemoteDataSource(
                 since = key.since,
                 perPage = searchParams.perPage,
             )
+            if (response.status == Resource.Status.ERROR) {
+                throw Exception(response.throwable)
+            }
             val prevKey = when (key.since) {
                 Constant.START_PAGE_INDEX -> null
                 else -> GithubLoadParams(key.since - 1)

@@ -6,15 +6,11 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.db.GithubUser
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.ui.ActionItemModel
-import com.batdemir.template.data.paging.GithubSearchParams
-import com.batdemir.template.data.paging.GithubUserPagingRemoteDataSource
 import com.batdemir.template.data.local.datasource.GithubLocalDataSource
 import com.batdemir.template.data.mediator.GithubMediatorDataSource
+import com.batdemir.template.data.paging.GithubSearchParams
+import com.batdemir.template.data.paging.GithubUserPagingRemoteDataSource
 import com.batdemir.template.data.remote.datasource.GithubUserRemoteDataSource
 import com.batdemir.template.utils.performGetOperation
 import kotlinx.coroutines.flow.Flow
@@ -31,15 +27,16 @@ class GithubRepository @Inject constructor(
         pagingSourceFactory = { localDataSource.getPaging() }
     ).flow
 
-    fun getUsers() = performGetOperation(
-        databaseQuery = { localDataSource.get() },
-        networkCall = { remoteDataSource.getUsers() },
-        saveCallResult = { localDataSource.insert(it) }
-    )
     fun getUsersPaging(searchParams: GithubSearchParams): Flow<PagingData<ActionItemModel>> = Pager(
         config = PagingConfig(pageSize = Constant.NETWORK_PAGE_SIZE, enablePlaceholders = false),
         pagingSourceFactory = { GithubUserPagingRemoteDataSource(remoteDataSource, searchParams) }
     ).flow
+
+    fun getUsersRemoteAndLocal() = performGetOperation(
+        databaseQuery = { localDataSource.get() },
+        networkCall = { remoteDataSource.getUsers() },
+        saveCallResult = { localDataSource.insert(it) }
+    )
 
     fun getUsers() = performGetOperation(networkCall = { remoteDataSource.getUsers() })
 

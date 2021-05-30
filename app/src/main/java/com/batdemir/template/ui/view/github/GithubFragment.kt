@@ -2,8 +2,6 @@ package com.batdemir.template.ui.view.github
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.map
-import androidx.lifecycle.lifecycleScope
 import com.batdemir.template.R
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.ui.ActionItemModel
@@ -49,28 +47,14 @@ class GithubFragment :
             .launch {
                 viewModel
                     .repository
-                    .getUsersMediator()
+                    .getUsersPaging(
+                        GithubSearchParams(
+                            perPage = Constant.NETWORK_PAGE_SIZE.toLong()
+                        )
+                    )
                     .collectLatest {
-                        adapter.mySummitData(it.map { x ->
-                            ActionItemModel(
-                                id = x.id,
-                                title = x.login,
-                                subTitle = x.login,
-                                iconRes = x.avatarUrl,
-                                isEnabled = true,
-                                navigateUrl = null,
-                                isSelected = false
-                            )
-                        })
+                        adapter.mySummitData(it)
                     }
-            }
-        viewLifecycleOwner
-            .lifecycleScope
-            .launch {
-                viewModel
-                    .repository
-                    .getUsersPaging(GithubSearchParams(perPage = Constant.NETWORK_PAGE_SIZE.toLong()))
-                    .collectLatest { adapter.mySummitData(it) }
             }
     }
 
@@ -79,5 +63,10 @@ class GithubFragment :
         getBinding().rootFragmentGithub.setOnRefreshListener {
             getBinding().rootFragmentGithub.isRefreshing = false
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        removePagingAdapterLoadStateListener(viewModel, adapter)
     }
 }

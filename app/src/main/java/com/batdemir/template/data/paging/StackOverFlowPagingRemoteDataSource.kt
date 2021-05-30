@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.StackOverFlowOrderType
 import com.batdemir.template.data.StackOverFlowSortType
+import com.batdemir.template.data.entities.Resource
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.datasource.StackOverFlowRemoteDataSource
 import com.batdemir.template.di.module.remote.exception.Error
@@ -29,6 +30,9 @@ class StackOverFlowPagingRemoteDataSource(
                 sortType = searchParams.sortType ?: StackOverFlowSortType.NAME,
                 inName = searchParams.inName
             )
+            if (response.status == Resource.Status.ERROR) {
+                throw Exception(response.throwable)
+            }
             val prevKey = when (key.page) {
                 Constant.START_PAGE_INDEX -> null
                 else -> StackOverFlowLoadParams(key.page - 1)

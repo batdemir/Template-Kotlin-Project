@@ -56,6 +56,7 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
             .Builder(this)
             .setMessage(message)
             .setPositiveButton(R.string.ok) { dialog, _ ->
+                viewModel.baseLiveData.value = BaseViewModel.State.Empty
                 dialog.dismiss()
             }
             .show()
@@ -66,10 +67,9 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
             .Builder(this)
             .setMessage(message)
             .setPositiveButton(R.string.ok) { dialog, _ ->
-                run {
-                    dialog.dismiss()
-                    onBackPressed()
-                }
+                viewModel.baseLiveData.value = BaseViewModel.State.Empty
+                dialog.dismiss()
+                onBackPressed()
             }
             .show()
     }

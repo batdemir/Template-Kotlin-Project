@@ -58,6 +58,7 @@ abstract class BaseViewModel(
     }
 
     sealed class State {
+        object Empty : State()
         object Error : State()
         data class ShowContent(val requestType: RequestType = RequestType.INIT) : State()
         data class ShowLoading(val requestType: RequestType = RequestType.INIT) : State()

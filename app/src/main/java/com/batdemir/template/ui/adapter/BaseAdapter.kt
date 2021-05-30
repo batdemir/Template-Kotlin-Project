@@ -25,14 +25,14 @@ class BaseAdapter<T : RecyclerItem, V : ViewDataBinding>(
     }
 
     override fun onBindViewHolder(holderBase: BaseViewHolder<V>, position: Int) {
-        bindListener?.onBind(holderBase, getMyItem(position), position)
+        bindListener?.onBind(holderBase, myGetItem(position), position)
         holderBase.binding.root.setOnClickListener {
-            itemListener?.onClick(getMyItem(position))
+            itemListener?.onClick(myGetItem(position))
             if (enableSingleSelectionEvent)
                 mySingleSelectionEvent(position)
         }
         holderBase.binding.root.setOnLongClickListener {
-            itemListener?.onLongClick(getMyItem(position))
+            itemListener?.onLongClick(myGetItem(position))
             if (enableSingleSelectionEvent)
                 mySingleSelectionEvent(position)
             true
@@ -41,9 +41,9 @@ class BaseAdapter<T : RecyclerItem, V : ViewDataBinding>(
 
     private fun mySingleSelectionEvent(position: Int) {
         singleSelectionEvent()
-        getMyItem(position).isSelected = true
+        myGetItem(position).isSelected = true
         if (lastSelectedPosition >= 0 && lastSelectedPosition != position) {
-            val before = getMyItem(lastSelectedPosition)
+            val before = myGetItem(lastSelectedPosition)
             before.isSelected = false
             notifyItemChanged(lastSelectedPosition)
         }
@@ -51,7 +51,7 @@ class BaseAdapter<T : RecyclerItem, V : ViewDataBinding>(
         notifyItemChanged(position)
     }
 
-    private fun getMyItem(position: Int): T {
+    private fun myGetItem(position: Int): T {
         return getItem(position) as T
     }
 }
