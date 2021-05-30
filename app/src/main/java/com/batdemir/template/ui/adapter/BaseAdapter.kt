@@ -54,12 +54,4 @@ class BaseAdapter<T : RecyclerItem, V : ViewDataBinding>(
     private fun getMyItem(position: Int): T {
         return getItem(position) as T
     }
-
-    fun setBindListener(listener: BindListener<T, V>) {
-        this.bindListener = listener
-    }
-
-    fun setItemListener(listener: ItemListener<T>) {
-        this.itemListener = listener
-    }
 }

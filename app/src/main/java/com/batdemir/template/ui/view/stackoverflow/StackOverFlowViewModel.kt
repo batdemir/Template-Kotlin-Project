@@ -1,13 +1,12 @@
 package com.batdemir.template.ui.view.stackoverflow
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asFlow
-import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.repository.StackOverFlowRepository
 import com.batdemir.template.ui.base.vm.BaseViewModel
 import javax.inject.Inject
 
 class StackOverFlowViewModel @Inject constructor(
+    val repository: StackOverFlowRepository
+) : BaseViewModel()
     repository: StackOverFlowRepository
 ) : BaseViewModel() {
     val liveData: MutableLiveData<State> = MutableLiveData()

@@ -59,12 +59,4 @@ class BasePagingAdapter<T : RecyclerItem, V : ViewDataBinding>(
     suspend fun mySummitData(pagingData: PagingData<T>) {
         submitData(pagingData as PagingData<RecyclerItem>)
     }
-
-    fun setBindListener(listener: BindListener<T, V>) {
-        this.bindListener = listener
-    }
-
-    fun setItemListener(listener: ItemListener<T>) {
-        this.itemListener = listener
-    }
 }
