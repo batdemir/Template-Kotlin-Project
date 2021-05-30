@@ -2,6 +2,8 @@ package com.batdemir.template.ui.view.github
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.map
+import androidx.lifecycle.lifecycleScope
 import com.batdemir.template.R
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.ui.ActionItemModel
@@ -42,6 +44,26 @@ class GithubFragment :
 
     override fun setupData() {
         super.setupData()
+        viewLifecycleOwner
+            .lifecycleScope
+            .launch {
+                viewModel
+                    .repository
+                    .getUsersMediator()
+                    .collectLatest {
+                        adapter.mySummitData(it.map { x ->
+                            ActionItemModel(
+                                id = x.id,
+                                title = x.login,
+                                subTitle = x.login,
+                                iconRes = x.avatarUrl,
+                                isEnabled = true,
+                                navigateUrl = null,
+                                isSelected = false
+                            )
+                        })
+                    }
+            }
         viewLifecycleOwner
             .lifecycleScope
             .launch {

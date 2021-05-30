@@ -2,6 +2,8 @@ package com.batdemir.template.ui.view.stackoverflow
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.map
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.cachedIn
 import com.batdemir.template.R
 import com.batdemir.template.data.Constant
@@ -43,6 +45,26 @@ class StackOverFlowFragment :
 
     override fun setupData() {
         super.setupData()
+        viewLifecycleOwner
+            .lifecycleScope
+            .launch {
+                viewModel
+                    .repository
+                    .getUsersMediator()
+                    .collectLatest {
+                        adapter.mySummitData(it.map { x ->
+                            ActionItemModel(
+                                id = x.id,
+                                title = x.displayName,
+                                subTitle = x.displayName,
+                                iconRes = x.profileImage,
+                                isEnabled = true,
+                                navigateUrl = null,
+                                isSelected = false
+                            )
+                        })
+                    }
+            }
         viewLifecycleOwner
             .lifecycleScope
             .launch {

@@ -7,6 +7,8 @@ import javax.inject.Inject
 class StackOverFlowViewModel @Inject constructor(
     val repository: StackOverFlowRepository
 ) : BaseViewModel()
+    val repository: StackOverFlowRepository
+) : BaseViewModel()
     repository: StackOverFlowRepository
 ) : BaseViewModel() {
     val liveData: MutableLiveData<State> = MutableLiveData()
