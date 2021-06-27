@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/home_navigation">
+
+    <include
+        android:id="@+id/home_navigation"
+        app:graph="@navigation/home_navigation" />
+
+    <include
+        android:id="@+id/stack_over_flow_navigation"
+        app:graph="@navigation/stack_over_flow_navigation" />
+
+    <include
+        android:id="@+id/github_navigation"
+        app:graph="@navigation/github_navigation" />
+</navigation>

@@ -9,5 +9,26 @@
         android:id="@+id/stackOverFlowFragment"
         android:name="com.batdemir.template.ui.view.stackoverflow.StackOverFlowFragment"
         android:label="@string/title_stack_over_flow"
-        tools:layout="@layout/fragment_stack_over_flow" />
+        tools:layout="@layout/fragment_stack_over_flow">
+        <action
+            android:id="@+id/action_stackOverFlowFragment_to_stackOverFlowDetailFragment"
+            app:destination="@id/stackOverFlowDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="model"
+                app:argType="com.batdemir.template.data.entities.ui.ActionItemModel" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/stackOverFlowDetailFragment"
+        android:name="com.batdemir.template.ui.view.stackoverflow.detail.StackOverFlowDetailFragment"
+        android:label="@string/title_stack_over_flow_detail"
+        tools:layout="@layout/fragment_stack_over_flow_detail">
+        <argument
+            android:name="model"
+            app:argType="com.batdemir.template.data.entities.ui.ActionItemModel" />
+    </fragment>
 </navigation>

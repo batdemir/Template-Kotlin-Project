@@ -1,9 +1,10 @@
 package com.batdemir.template.ui.view
 
 import android.os.Bundle
-import androidx.lifecycle.LiveData
-import androidx.navigation.NavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.batdemir.template.R
 import com.batdemir.template.app.MyApplication
 import com.batdemir.template.databinding.ActivityMainBinding
@@ -12,7 +13,6 @@ import com.batdemir.template.di.component.HomeComponent
 import com.batdemir.template.di.component.SettingsComponent
 import com.batdemir.template.di.component.StackOverFlowComponent
 import com.batdemir.template.ui.base.view.BaseActivity
-import com.batdemir.template.utils.setupWithNavController
 
 class MainActivity :
     BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
@@ -20,14 +20,8 @@ class MainActivity :
     lateinit var stackOverFlowComponent: StackOverFlowComponent
     lateinit var githubComponent: GithubComponent
     lateinit var settingsComponent: SettingsComponent
-    private var currentNavController: LiveData<NavController>? = null
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        setupBottomNavigationBar()
-    }
-
-    override fun onSupportNavigateUp(): Boolean = currentNavController?.value?.navigateUp() ?: false
+    override fun onSupportNavigateUp(): Boolean = findNavController(R.id.navigation_host_fragment).navigateUp()
 
     override fun onBackPressed() {
         if (!onSupportNavigateUp())
@@ -44,34 +38,18 @@ class MainActivity :
     }
 
     override fun setupDefinition(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) {
-            setupBottomNavigationBar()
-        }
+        val toolbar = getBinding().toolbar
+        val bottomNavigationView = getBinding().bottomNavigationView
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navigation_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        setSupportActionBar(toolbar)
+        toolbar.setupWithNavController(navController, appBarConfiguration)
+        bottomNavigationView.setupWithNavController(navController)
     }
 
     override fun setupListener() {
         //("Not yet implemented")
-    }
-
-    private fun setupBottomNavigationBar() {
-        setSupportActionBar(getBinding().toolbar)
-        val navGraphIds = listOf(
-            R.navigation.home_navigation,
-            R.navigation.stack_over_flow_navigation,
-            R.navigation.github_navigation
-        )
-
-        val controller = getBinding().bottomNavigationView.setupWithNavController(
-            navGraphIds = navGraphIds,
-            fragmentManager = supportFragmentManager,
-            containerId = getBinding().navigationHostFragment.id,
-            intent = intent
-        )
-
-        controller.observe(
-            this,
-            { navController -> setupActionBarWithNavController(navController) },
-        )
-        currentNavController = controller
     }
 }

@@ -2,6 +2,7 @@ package com.batdemir.template.ui.view.github
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.batdemir.template.R
 import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.ui.ActionItemModel
@@ -11,6 +12,7 @@ import com.batdemir.template.databinding.ItemActionBinding
 import com.batdemir.template.ui.adapter.BasePagingAdapter
 import com.batdemir.template.ui.adapter.BaseViewHolder
 import com.batdemir.template.ui.adapter.BindListener
+import com.batdemir.template.ui.adapter.ItemListener
 import com.batdemir.template.ui.base.view.BaseFragment
 import com.batdemir.template.ui.view.MainActivity
 import kotlinx.coroutines.flow.collectLatest
@@ -29,6 +31,19 @@ class GithubFragment :
                 ) {
                     holderBase.binding.model = model
                     holderBase.binding.executePendingBindings()
+                }
+            },
+            itemListener = object : ItemListener<ActionItemModel> {
+                override fun onClick(value: ActionItemModel) {
+                    findNavController().navigate(
+                        GithubFragmentDirections.actionGithubFragmentToGithubDetailFragment(
+                            value
+                        )
+                    )
+                }
+
+                override fun onLongClick(value: ActionItemModel) {
+                    //("Not yet implemented")
                 }
             }
         )

@@ -12,7 +12,7 @@ object AppDependencies {
         add("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.androidxLifeCycleLiveDataVersion}")
         add("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.androidxLifeCycleViewModelVersion}")
         add("androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.androidxLifeCycleStateVersion}")
-        add("androidx.navigation:navigation-compose:${Versions.androidxNavigationComposeVersion}")
+        add("androidx.navigation:navigation-compose:${Versions.androidxNavigationVersion}")
         add("androidx.navigation:navigation-dynamic-features-fragment:${Versions.androidxNavigationVersion}")
         add("androidx.navigation:navigation-fragment-ktx:${Versions.androidxNavigationVersion}")
         add("androidx.navigation:navigation-ui-ktx:${Versions.androidxNavigationVersion}")

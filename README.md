@@ -12,5 +12,3 @@
   - Bind adapter
 ## App Architecture
   - [Guide to app architecture](https://developer.android.com/jetpack/guide)
-### Navigation
-  - [Navigation Advance Sample](https://github.com/android/architecture-components-samples/tree/master/NavigationAdvancedSample)

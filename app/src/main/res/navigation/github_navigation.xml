@@ -9,5 +9,26 @@
         android:id="@+id/githubFragment"
         android:name="com.batdemir.template.ui.view.github.GithubFragment"
         android:label="@string/title_github"
-        tools:layout="@layout/fragment_github" />
+        tools:layout="@layout/fragment_github">
+        <action
+            android:id="@+id/action_githubFragment_to_githubDetailFragment"
+            app:destination="@id/githubDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="model"
+                app:argType="com.batdemir.template.data.entities.ui.ActionItemModel" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/githubDetailFragment"
+        android:name="com.batdemir.template.ui.view.github.detail.GithubDetailFragment"
+        android:label="@string/title_github_detail"
+        tools:layout="@layout/fragment_github_detail">
+        <argument
+            android:name="model"
+            app:argType="com.batdemir.template.data.entities.ui.ActionItemModel" />
+    </fragment>
 </navigation>
