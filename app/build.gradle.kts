@@ -14,8 +14,8 @@
 // * limitations under the License.
 plugins {
     id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
+    id("kotlin-android")
+    id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -25,14 +25,14 @@ val githubApi: String = "GITHUB_API"
 val stackOverFlowApi: String = "STACK_OVER_FLOW_API"
 
 android {
-    compileSdkVersion(AppConfig.compileSdk)
+    compileSdk = AppConfig.compileSdk
     defaultConfig {
-        applicationId(AppConfig.applicationId)
-        minSdkVersion(AppConfig.minSdk)
-        targetSdkVersion(AppConfig.targetSdk)
-        versionCode(AppConfig.versionCode)
-        versionName(AppConfig.versionName)
-        testInstrumentationRunner(AppConfig.androidTestInstrumentation)
+        applicationId = AppConfig.applicationId
+        minSdk = AppConfig.minSdk
+        targetSdk = AppConfig.targetSdk
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
+        testInstrumentationRunner = AppConfig.androidTestInstrumentation
     }
     buildFeatures {
         dataBinding = true
@@ -73,11 +73,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
