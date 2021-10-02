@@ -2,6 +2,7 @@
 *.apk
 *.ap_
 *.aab
+*.DS_Store
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -36,6 +37,8 @@ captures/
 
 # IntelliJ
 *.iml
+.idea/codeStyles/
+.idea/deploymentTargetDropDown.xml
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml

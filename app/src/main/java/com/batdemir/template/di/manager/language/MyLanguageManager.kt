@@ -1,13 +1,27 @@
 package com.batdemir.template.di.manager.language
 
+import com.batdemir.template.R
 import com.batdemir.template.app.MyApplication
 
 interface MyLanguageManager {
     fun setDefaultLanguage(application: MyApplication)
-    fun changeLanguage(language: Languages)
+    fun getCurrentLanguage(): Languages
+    fun changeLanguage(
+        language: Languages,
+        application: MyApplication? = null
+    )
 }
 
-enum class Languages(val languageName: String, val languageCode: String) {
-    ENGLISH("English", "en-US"),
-    TURKISH("Türkçe", "tr-TR")
+enum class Languages(
+    val languageName: Int,
+    val languageCode: String
+) {
+    ENGLISH(
+        R.string.language_english,
+        "en-US"
+    ),
+    TURKISH(
+        R.string.language_turkish,
+        "tr-TR"
+    )
 }

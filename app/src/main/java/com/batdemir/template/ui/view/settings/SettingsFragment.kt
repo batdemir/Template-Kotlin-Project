@@ -18,23 +18,29 @@ class SettingsFragment :
     @Inject
     lateinit var viewModel: SettingsViewModel
     private lateinit var languagePreference: ListPreference
-    private lateinit var themePreference: SwitchPreference
+    private lateinit var themePreference: ListPreference
     private lateinit var versionPreference: Preference
     private lateinit var privacyPreference: Preference
-
     override fun onAttach(context: Context) {
         inject()
         super.onAttach(context)
     }
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.preference, rootKey)
+    override fun onCreatePreferences(
+        savedInstanceState: Bundle?,
+        rootKey: String?
+    ) {
+        setPreferencesFromResource(
+            R.xml.preference,
+            rootKey
+        )
         setupDefinition(savedInstanceState)
         setupData()
         setupListener()
     }
 
-    override fun inject() = (requireActivity() as MainActivity).settingsComponent.inject(this)
+    override fun inject() =
+        (requireActivity() as MainActivity).settingsComponent.inject(this)
 
     override fun setupDefinition(savedInstanceState: Bundle?) {
         languagePreference = findPreference(getString(R.string.KEY_LANGUAGE))!!
@@ -45,6 +51,8 @@ class SettingsFragment :
 
     override fun setupData() {
         versionPreference.summary = viewModel.getVersionName()
+        languagePreference.value = getString(viewModel.getLanguageResId())
+        themePreference.value = getString(viewModel.getThemeResId())
     }
 
     override fun setupListener() {
@@ -56,7 +64,7 @@ class SettingsFragment :
             }
         themePreference.onPreferenceChangeListener =
             Preference.OnPreferenceChangeListener { _, newValue ->
-                viewModel.changeTheme(newValue = newValue as Boolean)
+                viewModel.changeTheme(newValue = newValue.toString())
                 true
             }
     }

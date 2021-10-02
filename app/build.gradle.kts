@@ -50,7 +50,11 @@ android {
                     stackOverFlowApi,
                     properties["TEST_STACK_OVER_FLOW_API"].toString()
                 )
-                this.resValue("string", "app_name", getAppName(buildType))
+                this.resValue(
+                    "string",
+                    "app_name",
+                    getAppName(buildType)
+                )
             }
             BuildType.RELEASE -> {
                 this.buildConfigField(
@@ -63,7 +67,11 @@ android {
                     stackOverFlowApi,
                     properties["PROD_STACK_OVER_FLOW_API"].toString()
                 )
-                this.resValue("string", "app_name", getAppName(buildType))
+                this.resValue(
+                    "string",
+                    "app_name",
+                    getAppName(buildType)
+                )
                 isMinifyEnabled = false
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -82,7 +90,14 @@ android {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation(
+        fileTree(
+            mapOf(
+                "dir" to "libs",
+                "include" to listOf("*.jar")
+            )
+        )
+    )
     kapt(AppDependencies.compilerLibraries)
     implementation(AppDependencies.appLibraries)
     debugImplementation(AppDependencies.debugLibraries)

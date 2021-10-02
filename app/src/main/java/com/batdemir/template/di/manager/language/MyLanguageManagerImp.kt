@@ -13,32 +13,53 @@ class MyLanguageManagerImp @Inject constructor(
     private val myStorageManager: MyStorageManager
 ) : MyLanguageManager {
     override fun setDefaultLanguage(application: MyApplication) {
-        val languageName = myStorageManager.getString(
-            myResourceManager.getResources().getString(R.string.KEY_LANGUAGE)
+        changeLanguage(
+            getCurrentLanguage(),
+            application
         )
-        if (languageName.isEmpty())
-            Lingver.init(
-                application,
-                Locale.forLanguageTag(Languages.ENGLISH.languageCode)
-            )
-        else
-            Lingver.init(
-                application,
-                Locale.forLanguageTag(
-                    Languages.values().first { x -> x.languageName == languageName }.languageCode
-                )
-            )
     }
 
-    override fun changeLanguage(language: Languages) {
-        Lingver.getInstance()
-            .setLocale(
-                myResourceManager.getContext(),
-                Locale.forLanguageTag(language.languageCode)
+    override fun getCurrentLanguage(): Languages {
+        val languageName = myStorageManager.getString(
+            myResourceManager.getResources()
+                .getString(R.string.KEY_LANGUAGE)
+        )
+        return if (languageName.isEmpty()) {
+            Languages.values()
+                .first { x ->
+                    x.languageCode == Locale.getDefault()
+                        .toLanguageTag()
+                }
+        } else {
+            Languages.values()
+                .first { x ->
+                    myResourceManager.getResources()
+                        .getString(x.languageName) == languageName
+                }
+        }
+    }
+
+    override fun changeLanguage(
+        language: Languages,
+        application: MyApplication?
+    ) {
+        try {
+            Lingver.getInstance()
+                .setLocale(
+                    myResourceManager.getContext(),
+                    Locale.forLanguageTag(language.languageCode)
+                )
+        } catch (e: IllegalStateException) {
+            Lingver.init(
+                application!!,
+                language.languageCode
             )
+        }
         myStorageManager.setString(
-            myResourceManager.getResources().getString(R.string.KEY_LANGUAGE),
-            language.languageName
+            myResourceManager.getResources()
+                .getString(R.string.KEY_LANGUAGE),
+            myResourceManager.getResources()
+                .getString(language.languageName)
         )
     }
 }

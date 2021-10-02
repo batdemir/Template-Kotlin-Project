@@ -16,12 +16,13 @@
             app:title="@string/language"
             app:useSimpleSummaryProvider="true" />
 
-        <SwitchPreference
+        <ListPreference
+            app:entries="@array/themes"
+            app:entryValues="@array/themes"
             app:icon="@drawable/ic_black_theme"
             app:key="@string/KEY_THEME"
-            app:summaryOff="@string/light"
-            app:summaryOn="@string/dark"
-            app:title="@string/theme" />
+            app:title="@string/theme"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
     <PreferenceCategory
