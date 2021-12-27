@@ -12,6 +12,7 @@
     <string name="language">Dil</string>
     <string name="theme">Tema</string>
     <string name="theme_flow_system">Sistemi Kullan</string>
+    <string name="theme_unspecified">Belirtilmemiş</string>
     <string name="theme_dark">Koyu</string>
     <string name="theme_light">Açık</string>
     <string-array name="themes">

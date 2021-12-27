@@ -20,12 +20,18 @@ class MyThemeManagerImp @Inject constructor(
                 myResourceManager.getResources()
                     .getString(R.string.KEY_THEME)
             )
-        return if (themeMode == -1) {
-            Themes.values()
-                .first { x -> x.themeValue == AppCompatDelegate.getDefaultNightMode() }
-        } else {
-            Themes.values()
-                .first { x -> x.themeValue == themeMode }
+        return when (themeMode) {
+            AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM -> {
+                Themes.values()
+                    .first { x -> x.themeValue == AppCompatDelegate.getDefaultNightMode() }
+            }
+            AppCompatDelegate.MODE_NIGHT_UNSPECIFIED -> {
+                Themes.FLOW_SYSTEM
+            }
+            else -> {
+                Themes.values()
+                    .first { x -> x.themeValue == themeMode }
+            }
         }
     }
 

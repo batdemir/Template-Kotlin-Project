@@ -15,16 +15,20 @@ enum class Themes(
     val themeName: Int,
     val themeValue: Int
 ) {
+    UNSPECIFIED(
+        R.string.theme_unspecified,
+        AppCompatDelegate.MODE_NIGHT_UNSPECIFIED,
+    ),
     FLOW_SYSTEM(
         R.string.theme_flow_system,
-        AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM,
     ),
     DARK(
         R.string.theme_dark,
-        AppCompatDelegate.MODE_NIGHT_YES
+        AppCompatDelegate.MODE_NIGHT_YES,
     ),
     LIGHT(
         R.string.theme_light,
-        AppCompatDelegate.MODE_NIGHT_NO
+        AppCompatDelegate.MODE_NIGHT_NO,
     ),
 }

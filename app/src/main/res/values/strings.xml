@@ -25,6 +25,7 @@
     </string-array>
     <string name="theme">Theme</string>
     <string name="theme_flow_system">Flow System</string>
+    <string name="theme_unspecified">Unspecified</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_light">Light</string>
     <string-array name="themes">
