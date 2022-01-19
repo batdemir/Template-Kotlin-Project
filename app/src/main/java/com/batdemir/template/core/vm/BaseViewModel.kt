@@ -16,22 +16,12 @@ abstract class BaseViewModel(
         errorType: ErrorType = ErrorType.NOT_SHOW,
         crossinline onComplete: (T) -> Unit,
     ) {
-        onEach { response ->
-            when (response.status) {
-                Resource.Status.LOADING -> baseLiveData.value = State.ShowLoading(requestType)
-                Resource.Status.ERROR -> {
-                    when (errorType) {
-                        ErrorType.NOT_SHOW -> baseLiveData.value = State.Error
-                        ErrorType.SHOW -> baseLiveData.value =
-                            State.ShowError(requestType, response.throwable)
-                    }
-                }
-                Resource.Status.SUCCESS -> {
-                    onComplete(response.data!!)
-                    baseLiveData.value = State.ShowContent(requestType)
-                }
-            }
-        }.launchIn(viewModelScope)
+        handle(
+            requestType,
+            errorType,
+            onComplete,
+            onError = {}
+        )
     }
 
     inline fun <T> Flow<Resource<T>>.handle(
