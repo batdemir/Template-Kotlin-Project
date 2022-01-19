@@ -34,12 +34,12 @@
                 android:id="@+id/image_icon"
                 android:layout_width="32sp"
                 android:layout_height="32sp"
-                android:visibility="@{TextUtils.isEmpty(model.iconRes) ? View.GONE: View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/text_view_edit_title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:setImage="@{model.iconRes}"
+                app:setVisibilityForString="@{model.iconRes}"
                 tools:src="@mipmap/ic_launcher"
                 tools:visibility="visible" />
 
@@ -52,11 +52,11 @@
                 android:singleLine="true"
                 android:text="@{model.title}"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-                android:visibility="@{TextUtils.isEmpty(model.title) ? View.GONE: View.VISIBLE}"
                 app:layout_constraintBottom_toTopOf="@id/text_view_edit_sub_title"
                 app:layout_constraintEnd_toStartOf="@id/image_next"
                 app:layout_constraintStart_toEndOf="@id/image_icon"
                 app:layout_constraintTop_toTopOf="parent"
+                app:setVisibilityForString="@{model.title}"
                 tools:text="Title"
                 tools:visibility="visible" />
 
@@ -69,11 +69,11 @@
                 android:singleLine="true"
                 android:text="@{model.subTitle}"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-                android:visibility="@{TextUtils.isEmpty(model.subTitle) ? View.GONE: View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/image_next"
                 app:layout_constraintStart_toEndOf="@id/image_icon"
                 app:layout_constraintTop_toBottomOf="@id/text_view_edit_title"
+                app:setVisibilityForString="@{model.subTitle}"
                 tools:text="Sub title"
                 tools:visibility="visible" />
 

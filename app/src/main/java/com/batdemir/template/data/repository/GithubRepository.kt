@@ -4,7 +4,6 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.batdemir.template.data.Constant
 import com.batdemir.template.data.entities.db.GithubUser
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.local.datasource.GithubLocalDataSource
@@ -12,6 +11,7 @@ import com.batdemir.template.data.mediator.GithubMediatorDataSource
 import com.batdemir.template.data.paging.GithubSearchParams
 import com.batdemir.template.data.paging.GithubUserPagingRemoteDataSource
 import com.batdemir.template.data.remote.datasource.GithubUserRemoteDataSource
+import com.batdemir.template.other.Constant
 import com.batdemir.template.utils.performGetOperation
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -40,5 +40,6 @@ class GithubRepository @Inject constructor(
 
     fun getUsers() = performGetOperation(networkCall = { remoteDataSource.getUsers() })
 
-    fun getUser(user: String) = performGetOperation(networkCall = { remoteDataSource.getUser(user) })
+    fun getUser(user: String) =
+        performGetOperation(networkCall = { remoteDataSource.getUser(user) })
 }

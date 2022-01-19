@@ -2,10 +2,11 @@ package com.batdemir.template.di.manager.resource
 
 import android.content.Context
 import android.content.res.Resources
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class MyResourceManagerImp @Inject constructor(
-    context: Context
+    @ApplicationContext context: Context
 ) : MyResourceManager {
     private val _context = context
 

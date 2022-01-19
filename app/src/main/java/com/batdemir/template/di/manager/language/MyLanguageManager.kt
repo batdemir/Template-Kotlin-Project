@@ -1,15 +1,11 @@
 package com.batdemir.template.di.manager.language
 
 import com.batdemir.template.R
-import com.batdemir.template.app.MyApplication
 
 interface MyLanguageManager {
-    fun setDefaultLanguage(application: MyApplication)
+    fun setDefaultLanguage()
     fun getCurrentLanguage(): Languages
-    fun changeLanguage(
-        language: Languages,
-        application: MyApplication? = null
-    )
+    fun changeLanguage(language: Languages)
 }
 
 enum class Languages(
@@ -18,10 +14,10 @@ enum class Languages(
 ) {
     ENGLISH(
         R.string.language_english,
-        "en-US"
+        "en"
     ),
     TURKISH(
         R.string.language_turkish,
-        "tr-TR"
+        "tr"
     )
 }

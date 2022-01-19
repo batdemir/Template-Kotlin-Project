@@ -2,15 +2,15 @@ package com.batdemir.template.data.entities.ui
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.batdemir.template.data.entities.RecyclerItem
+import com.batdemir.template.other.RecyclerItem
 
 data class ActionItemModel(
     override val id: Long,
-    val title: String?,
-    val subTitle: String?,
-    val iconRes: String?,
-    val isEnabled: Boolean,
-    val navigateUrl: String?,
+    val title: String? = null,
+    val subTitle: String? = null,
+    val iconRes: String? = null,
+    val isEnabled: Boolean = true,
+    val navigateUrl: String? = null,
     override var isSelected: Boolean = false
 ) : Parcelable, RecyclerItem {
     constructor(parcel: Parcel) : this(

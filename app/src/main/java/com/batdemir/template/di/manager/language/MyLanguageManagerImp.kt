@@ -1,21 +1,23 @@
 package com.batdemir.template.di.manager.language
 
+import android.app.Application
+import android.content.Context
 import com.batdemir.template.R
-import com.batdemir.template.app.MyApplication
 import com.batdemir.template.di.manager.resource.MyResourceManager
 import com.batdemir.template.di.manager.storage.MyStorageManager
 import com.yariksoffice.lingver.Lingver
+import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.*
 import javax.inject.Inject
 
 class MyLanguageManagerImp @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val myResourceManager: MyResourceManager,
-    private val myStorageManager: MyStorageManager
+    private val myStorageManager: MyStorageManager,
 ) : MyLanguageManager {
-    override fun setDefaultLanguage(application: MyApplication) {
+    override fun setDefaultLanguage() {
         changeLanguage(
             getCurrentLanguage(),
-            application
         )
     }
 
@@ -28,7 +30,7 @@ class MyLanguageManagerImp @Inject constructor(
             Languages.values()
                 .first { x ->
                     x.languageCode == Locale.getDefault()
-                        .toLanguageTag()
+                        .language
                 }
         } else {
             Languages.values()
@@ -41,7 +43,6 @@ class MyLanguageManagerImp @Inject constructor(
 
     override fun changeLanguage(
         language: Languages,
-        application: MyApplication?
     ) {
         try {
             Lingver.getInstance()
@@ -51,7 +52,7 @@ class MyLanguageManagerImp @Inject constructor(
                 )
         } catch (e: IllegalStateException) {
             Lingver.init(
-                application!!,
+                context as Application,
                 language.languageCode
             )
         }

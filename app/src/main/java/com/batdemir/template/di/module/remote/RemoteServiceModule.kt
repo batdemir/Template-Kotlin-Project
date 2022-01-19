@@ -5,15 +5,16 @@ import com.batdemir.template.data.remote.service.GithubService
 import com.batdemir.template.data.remote.service.StackOverFlowService
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
+@InstallIn(SingletonComponent::class)
 @Module
 object RemoteServiceModule {
     @Provides
-    @Singleton
     fun provideGithubService(
         builder: Retrofit.Builder,
         converterFactory: Converter.Factory,
@@ -28,7 +29,6 @@ object RemoteServiceModule {
     }
 
     @Provides
-    @Singleton
     fun provideStackOverFlowService(
         builder: Retrofit.Builder,
         converterFactory: Converter.Factory,

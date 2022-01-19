@@ -1,9 +1,9 @@
 package com.batdemir.template.data.remote.datasource
 
-import com.batdemir.template.data.StackOverFlowOrderType
-import com.batdemir.template.data.StackOverFlowSortType
 import com.batdemir.template.data.remote.base.BaseDataSource
 import com.batdemir.template.data.remote.service.StackOverFlowService
+import com.batdemir.template.other.StackOverFlowOrderType
+import com.batdemir.template.other.StackOverFlowSortType
 import javax.inject.Inject
 
 class StackOverFlowRemoteDataSource @Inject constructor(

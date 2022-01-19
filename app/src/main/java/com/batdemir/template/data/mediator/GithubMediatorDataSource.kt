@@ -15,7 +15,10 @@ class GithubMediatorDataSource(
     private val localDataSource: GithubLocalDataSource,
     private val remoteDataSource: GithubUserRemoteDataSource
 ) : RemoteMediator<Int, GithubUser>() {
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, GithubUser>): MediatorResult {
+    override suspend fun load(
+        loadType: LoadType,
+        state: PagingState<Int, GithubUser>
+    ): MediatorResult {
         return try {
             val loadKey = when (loadType) {
                 LoadType.REFRESH -> null

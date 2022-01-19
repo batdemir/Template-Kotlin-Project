@@ -6,15 +6,16 @@ import com.batdemir.template.data.local.datasource.GithubLocalDataSource
 import com.batdemir.template.data.local.datasource.StackOverFlowLocalDataSource
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module
 object LocalDataSourceModule {
-    @Singleton
     @Provides
     fun provideLocalDataSourceGithub(dao: GithubDao) = GithubLocalDataSource(dao)
 
-    @Singleton
     @Provides
-    fun provideLocalDataSourceStackOverFlow(dao: StackOverFlowDao) = StackOverFlowLocalDataSource(dao)
+    fun provideLocalDataSourceStackOverFlow(dao: StackOverFlowDao) =
+        StackOverFlowLocalDataSource(dao)
 }

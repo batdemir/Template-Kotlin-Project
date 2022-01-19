@@ -1,5 +1,6 @@
 package com.batdemir.template.utils
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -34,6 +35,15 @@ class CustomViewBindingExtension {
             if (adapter == null)
                 return
             this.adapter = adapter
+        }
+
+        @JvmStatic
+        @BindingAdapter("setVisibilityForString")
+        fun View.bindVisibilityForString(value: String?) {
+            if (value.isNullOrEmpty())
+                this.dismiss()
+            else
+                this.show()
         }
     }
 }

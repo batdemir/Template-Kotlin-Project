@@ -5,7 +5,9 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class HostSelectionInterceptor @Inject constructor(
 ) : Interceptor {
     @Volatile

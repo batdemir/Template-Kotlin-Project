@@ -24,7 +24,7 @@ object AppDependencies {
         add("androidx.viewpager2:viewpager2:${Versions.androidxViewPagerVersion}")
         add("androidx.startup:startup-runtime:${Versions.androidxStartUpVersion}")
         add("com.google.android.material:material:${Versions.googleMaterialVersion}")
-        add("com.google.dagger:dagger:${Versions.googleDaggerVersion}")
+        add("com.google.dagger:hilt-android:${Versions.googleHiltVersion}")
         add("com.google.firebase:firebase-analytics-ktx:${Versions.googleFirebaseAnalyticsVersion}")
         add("com.google.firebase:firebase-bom:${Versions.googleFirebaseBomVersion}")
         add("com.google.firebase:firebase-config-ktx:${Versions.googleFirebaseConfigVersion}")
@@ -45,7 +45,7 @@ object AppDependencies {
     val compilerLibraries = arrayListOf<String>().apply {
         add("androidx.room:room-compiler:${Versions.androidxRoomVersion}")
         add("com.github.bumptech.glide:compiler:${Versions.githubGlideVersion}")
-        add("com.google.dagger:dagger-compiler:${Versions.googleDaggerVersion}")
+        add("com.google.dagger:hilt-android-compiler:${Versions.googleHiltVersion}")
     }
 
     val debugLibraries = arrayListOf<String>().apply {

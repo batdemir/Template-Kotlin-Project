@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/stackOverFlowFragment"
-        android:name="com.batdemir.template.ui.view.stackoverflow.StackOverFlowFragment"
+        android:name="com.batdemir.template.ui.stackoverflow.StackOverFlowFragment"
         android:label="@string/title_stack_over_flow"
         tools:layout="@layout/fragment_stack_over_flow">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/stackOverFlowDetailFragment"
-        android:name="com.batdemir.template.ui.view.stackoverflow.detail.StackOverFlowDetailFragment"
+        android:name="com.batdemir.template.ui.stackoverflow.detail.StackOverFlowDetailFragment"
         android:label="@string/title_stack_over_flow_detail"
         tools:layout="@layout/fragment_stack_over_flow_detail">
         <argument

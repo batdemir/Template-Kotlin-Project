@@ -7,7 +7,7 @@ import androidx.room.*
 /**
  * BaseDao
  *
- * @param T type of model,
+ * @param T type of model
  */
 @Dao
 abstract class BaseDao<T : Any> {

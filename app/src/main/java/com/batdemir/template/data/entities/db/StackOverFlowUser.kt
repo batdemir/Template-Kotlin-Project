@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.batdemir.template.data.entities.RecyclerItem
+import com.batdemir.template.other.RecyclerItem
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "StackOverFlowUser")

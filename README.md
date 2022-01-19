@@ -3,7 +3,7 @@
 [![API](https://img.shields.io/badge/API-26%2B-red.svg?style=flat)](https://android-arsenal.com/api?level=21)
   - ViewModel
   - LiveData
-  - Dagger 2 (for dependency injection)
+  - Hilt / Dagger (for dependency injection)
   - Kotlin Coroutines
   - Retrofit
   - Room
@@ -12,3 +12,5 @@
   - Bind adapter
 ## App Architecture
   - [Guide to app architecture](https://developer.android.com/jetpack/guide)
+## MAD Score
+  - [MAD Score](https://madscorecard.withgoogle.com/scorecards/831958734/)

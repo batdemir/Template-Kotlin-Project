@@ -32,7 +32,11 @@
         <item>@string/theme_flow_system</item>
         <item>@string/theme_dark</item>
         <item>@string/theme_light</item>
-    </string-array>    <string name="version">Version</string>
+    </string-array>
+    <string name="version">Version</string>
     <string name="about">About</string>
     <string name="privacy">Privacy</string>
+
+    <!-- EMPTY -->
+    <string name="not_found">Not Found</string>
 </resources>

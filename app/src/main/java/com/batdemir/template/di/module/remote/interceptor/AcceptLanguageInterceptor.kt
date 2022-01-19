@@ -4,7 +4,9 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class AcceptLanguageInterceptor @Inject constructor(
 ) : Interceptor {
     private var mLanguage: String = Locale.getDefault().language

@@ -3,7 +3,7 @@ package com.batdemir.template.utils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import com.batdemir.template.data.entities.Resource
+import com.batdemir.template.other.Resource
 import kotlinx.coroutines.Dispatchers
 
 //Local and remote

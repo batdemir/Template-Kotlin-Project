@@ -12,27 +12,24 @@ import com.batdemir.template.di.manager.theme.MyThemeManager
 import com.batdemir.template.di.manager.theme.MyThemeManagerImp
 import dagger.Binds
 import dagger.Module
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@InstallIn(SingletonComponent::class)
 @Module
 abstract class ManagerModule {
-    @Singleton
     @Binds
     abstract fun provideHdmi(myHdmiManagerImp: MyHdmiManagerImp): MyHdmiManager
 
-    @Singleton
     @Binds
     abstract fun provideLanguage(myLanguageHandlerImp: MyLanguageManagerImp): MyLanguageManager
 
-    @Singleton
     @Binds
     abstract fun provideResource(resourceInitializerImp: MyResourceManagerImp): MyResourceManager
 
-    @Singleton
     @Binds
     abstract fun provideStorage(prefStorageManagerImp: MyStorageManagerImp): MyStorageManager
 
-    @Singleton
     @Binds
     abstract fun provideTheme(myThemeManagerImp: MyThemeManagerImp): MyThemeManager
 }

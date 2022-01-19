@@ -1,4 +1,5 @@
 @file:SuppressWarnings("kotlin:S107")
+
 package com.batdemir.template.data.remote.service
 
 import com.batdemir.template.data.entities.db.StackOverFlowResponse

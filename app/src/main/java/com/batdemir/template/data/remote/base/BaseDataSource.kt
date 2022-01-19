@@ -1,6 +1,6 @@
 package com.batdemir.template.data.remote.base
 
-import com.batdemir.template.data.entities.Resource
+import com.batdemir.template.other.Resource
 import retrofit2.Response
 import timber.log.Timber
 

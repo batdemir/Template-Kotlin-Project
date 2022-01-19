@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.batdemir.template.ui.view.home.HomeFragment"
+        android:name="com.batdemir.template.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -20,6 +20,6 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.batdemir.template.ui.view.settings.SettingsFragment"
+        android:name="com.batdemir.template.ui.settings.SettingsFragment"
         android:label="@string/title_settings" />
 </navigation>

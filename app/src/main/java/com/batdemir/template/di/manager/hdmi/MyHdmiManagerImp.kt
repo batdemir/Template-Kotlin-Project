@@ -6,14 +6,17 @@ import android.hardware.display.DisplayManager
 import android.view.Display
 import androidx.lifecycle.MutableLiveData
 import com.batdemir.template.app.MyHdmiReceiver
+import dagger.hilt.android.qualifiers.ApplicationContext
+import timber.log.Timber
 import javax.inject.Inject
 
 class MyHdmiManagerImp @Inject constructor(
-    private val context: Context
+    @ApplicationContext private val context: Context
 ) : MyHdmiReceiver.HdmiOnStateListener,
     MyHdmiManager {
     private val myHdmiReceiver: MyHdmiReceiver = MyHdmiReceiver()
-    private val displayManager: DisplayManager = context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+    private val displayManager: DisplayManager =
+        context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
     private val displays: MutableLiveData<List<Display>?> = MutableLiveData()
     private val presentationDisplay: MutableLiveData<Display?> = MutableLiveData()
     private val state: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply { value = false }
@@ -32,7 +35,7 @@ class MyHdmiManagerImp @Inject constructor(
     }
 
     override fun hdmiConnectionChanged() {
-        // TODO: 3/11/21
+        Timber.d("Hdmi connection has been changed.")
     }
 
     override fun hasHdmiConnection(): MutableLiveData<Boolean> {

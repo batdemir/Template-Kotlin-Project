@@ -1,13 +1,21 @@
 package com.batdemir.template.di.initializer
 
-import com.batdemir.template.app.MyApplication
+import android.content.Context
+import androidx.startup.Initializer
 import com.batdemir.template.di.manager.language.MyLanguageManager
 import javax.inject.Inject
 
-class LanguageInitializer @Inject constructor(
-    private val myLanguageManager: MyLanguageManager
-) : Initializer {
-    override fun initialize(application: MyApplication) {
-        myLanguageManager.setDefaultLanguage(application)
+class LanguageInitializer : Initializer<MyLanguageManager> {
+    @Inject
+    lateinit var myLanguageManager: MyLanguageManager
+
+    override fun create(context: Context): MyLanguageManager {
+        InitializerEntryPoint.resolve(context).inject(this)
+        myLanguageManager.setDefaultLanguage()
+        return myLanguageManager
+    }
+
+    override fun dependencies(): List<Class<out Initializer<*>>> {
+        return emptyList()
     }
 }

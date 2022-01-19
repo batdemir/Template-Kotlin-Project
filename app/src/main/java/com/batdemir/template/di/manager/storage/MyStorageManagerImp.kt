@@ -1,12 +1,15 @@
 package com.batdemir.template.di.manager.storage
 
 import android.content.Context
+import com.batdemir.template.other.Constant
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class MyStorageManagerImp @Inject constructor(
-    context: Context
+    @ApplicationContext context: Context
 ) : MyStorageManager {
-    private val sharedPreferences = context.getSharedPreferences("batdemir", Context.MODE_PRIVATE)
+    private val sharedPreferences =
+        context.getSharedPreferences(Constant.APP_STORAGE, Context.MODE_PRIVATE)
 
     override fun setString(key: String, value: String) {
         with(sharedPreferences.edit()) {

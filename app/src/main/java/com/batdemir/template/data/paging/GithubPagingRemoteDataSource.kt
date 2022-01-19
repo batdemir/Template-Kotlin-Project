@@ -2,11 +2,11 @@ package com.batdemir.template.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.batdemir.template.data.Constant
-import com.batdemir.template.data.entities.Resource
 import com.batdemir.template.data.entities.ui.ActionItemModel
 import com.batdemir.template.data.remote.datasource.GithubUserRemoteDataSource
 import com.batdemir.template.di.module.remote.exception.Error
+import com.batdemir.template.other.Constant
+import com.batdemir.template.other.Resource
 import com.google.gson.Gson
 import retrofit2.HttpException
 
@@ -47,7 +47,14 @@ class GithubUserPagingRemoteDataSource(
                 nextKey = nextKey
             )
         } catch (e: HttpException) {
-            LoadResult.Error(Throwable(Gson().fromJson(e.response()?.errorBody()?.charStream(), Error::class.java)))
+            LoadResult.Error(
+                Throwable(
+                    Gson().fromJson(
+                        e.response()?.errorBody()?.charStream(),
+                        Error::class.java
+                    )
+                )
+            )
         } catch (e: Exception) {
             LoadResult.Error(e)
         }

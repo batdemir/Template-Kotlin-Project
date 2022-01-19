@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.batdemir.template.R
-import com.batdemir.template.ui.view.SplashActivity
+import com.batdemir.template.ui.SplashActivity
 
 fun Activity.move(
     to: Class<*>,

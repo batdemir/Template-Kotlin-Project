@@ -2,12 +2,15 @@ package com.batdemir.template.di.module.remote.interceptor
 
 import android.content.Context
 import com.batdemir.template.utils.NetworkUtil
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UserAgentInterceptor @Inject constructor(
-    context: Context
+    @ApplicationContext context: Context
 ) : Interceptor {
     private val mUserAgent: String = NetworkUtil.getUserAgent(context)
 
