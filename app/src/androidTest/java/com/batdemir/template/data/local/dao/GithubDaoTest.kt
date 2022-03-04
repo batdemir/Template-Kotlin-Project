@@ -2,9 +2,10 @@ package com.batdemir.template.data.local.dao
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.filters.SmallTest
-import com.batdemir.template.data.entities.db.GithubUser
-import com.batdemir.template.data.local.AppDatabase
+import com.batdemir.template.di.local.AppDatabase
+import com.batdemir.template.features.github.GithubDao
 import com.batdemir.template.getOrAwaitValue
+import com.batdemir.template.models.db.GithubUser
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

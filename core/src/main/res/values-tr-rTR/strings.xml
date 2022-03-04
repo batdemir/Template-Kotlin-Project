@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- SETTINGS -->
+    <string name="application_settings">Uygulama Ayarları</string>
+    <string name="language">Dil</string>
+    <string name="theme">Tema</string>
+    <string name="theme_flow_system">Sistemi Kullan</string>
+    <string name="theme_unspecified">Belirtilmemiş</string>
+    <string name="theme_dark">Koyu</string>
+    <string name="theme_light">Açık</string>
+    <string-array name="themes">
+        <item>@string/theme_flow_system</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_light</item>
+    </string-array>
+    <string name="version">Versiyon</string>
+    <string name="about">Bilgi</string>
+    <string name="privacy">Gizlilik</string>
+</resources>

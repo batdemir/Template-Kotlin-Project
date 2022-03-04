@@ -2,7 +2,6 @@ package com.batdemir.template.other
 
 object Constant {
     const val APP_DB = "batdemir.db"
-    const val APP_STORAGE = "batdemir"
     const val TIMEOUT = 120.toLong()
     const val START_PAGE_INDEX: Long = 1
     const val NETWORK_PAGE_SIZE: Int = 30

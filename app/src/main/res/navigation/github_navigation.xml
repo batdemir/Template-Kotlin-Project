@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/githubFragment"
-        android:name="com.batdemir.template.ui.github.GithubFragment"
+        android:name="com.batdemir.template.features.github.GithubFragment"
         android:label="@string/title_github"
         tools:layout="@layout/fragment_github">
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/githubDetailFragment"
-        android:name="com.batdemir.template.ui.github.detail.GithubDetailFragment"
+        android:name="com.batdemir.template.features.github.detail.GithubDetailFragment"
         android:label="@string/title_github_detail"
         tools:layout="@layout/fragment_github_detail">
         <argument

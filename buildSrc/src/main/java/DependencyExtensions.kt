@@ -31,7 +31,7 @@ fun DependencyHandler.kaptTest(dependencies: List<Dependency>) {
     addAny(this, "kaptTest", dependencies)
 }
 
-fun DependencyHandler.kaptAndroidTet(dependencies: List<Dependency>) {
+fun DependencyHandler.kaptAndroidTest(dependencies: List<Dependency>) {
     addAny(this, "kaptAndroidTest", dependencies)
 }
 

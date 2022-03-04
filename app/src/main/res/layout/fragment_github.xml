@@ -7,14 +7,14 @@
 
         <variable
             name="adapter"
-            type="com.batdemir.template.core.adapter.BaseAdapter" />
+            type="com.batdemir.core.adapter.BaseAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_fragment_github"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.github.GithubFragment">
+        tools:context=".features.github.GithubFragment">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"

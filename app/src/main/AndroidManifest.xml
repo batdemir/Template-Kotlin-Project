@@ -16,12 +16,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".features.main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Project.NoActionBar"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".features.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
@@ -32,29 +32,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <receiver
-            android:name="com.batdemir.template.app.MyHdmiReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.HDMI_PLUGGED" />
-            </intent-filter>
-        </receiver>
-
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            android:exported="false"
-            tools:node="merge">
-            <meta-data
-                android:name="com.batdemir.template.di.initializer.LanguageInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.batdemir.template.di.initializer.ThemeInitializer"
-                android:value="androidx.startup" />
-            <meta-data
-                android:name="com.batdemir.template.di.initializer.TimberInitializer"
-                android:value="androidx.startup" />
-        </provider>
     </application>
 </manifest>

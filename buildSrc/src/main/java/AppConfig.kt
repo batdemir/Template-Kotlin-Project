@@ -7,4 +7,5 @@ object AppConfig {
     const val versionCode = 1
     const val versionName = "0.0.0.1"
     const val androidTestInstrumentation = "com.batdemir.template.HiltTestRunner"
+    const val defaultAndroidTestInstrumentation = "androidx.test.runner.AndroidJUnitRunner"
 }

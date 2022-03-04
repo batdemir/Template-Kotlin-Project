@@ -9,18 +9,18 @@
 
         <variable
             name="adapter"
-            type="com.batdemir.template.core.adapter.BaseAdapter" />
+            type="com.batdemir.core.adapter.BaseAdapter" />
 
         <variable
             name="viewModel"
-            type="com.batdemir.template.ui.home.HomeViewModel" />
+            type="com.batdemir.template.features.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_fragment_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeFragment">
+        tools:context=".features.home.HomeFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view"

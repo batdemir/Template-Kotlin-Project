@@ -11,7 +11,7 @@
 
         <variable
             name="model"
-            type="com.batdemir.template.data.entities.ui.ActionItemModel" />
+            type="com.batdemir.template.models.ui.ActionItemModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

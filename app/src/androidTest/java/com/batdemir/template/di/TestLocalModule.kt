@@ -2,7 +2,7 @@ package com.batdemir.template.di
 
 import android.content.Context
 import androidx.room.Room
-import com.batdemir.template.data.local.AppDatabase
+import com.batdemir.template.di.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
