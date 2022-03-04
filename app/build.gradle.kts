@@ -20,7 +20,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
-val buildType: BuildType = BuildType.RELEASE
+val buildType: BuildType = BuildType.DEBUG
 val apiTypeName: String = "String"
 val githubApi: String = "GITHUB_API"
 val stackOverFlowApi: String = "STACK_OVER_FLOW_API"
@@ -34,6 +34,7 @@ android {
         versionCode = AppConfig.versionCode
         versionName = AppConfig.versionName
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
+        multiDexEnabled = true
     }
     buildFeatures {
         dataBinding = true
@@ -73,7 +74,9 @@ android {
                     "app_name",
                     getAppName(buildType)
                 )
-                isMinifyEnabled = false
+                isMinifyEnabled = true
+                isShrinkResources = true
+                isDebuggable = false
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
@@ -82,11 +85,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -101,10 +104,13 @@ dependencies {
     )
     kapt(AppDependencies.compilerLibraries)
     implementation(AppDependencies.appLibraries)
-    debugImplementation(AppDependencies.debugLibraries)
-    releaseImplementation(AppDependencies.releaseLibraries)
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)
+    kapt(AppDependencies.compilerLibraries)
+    kaptTest(AppDependencies.compilerTestLibraries)
+    kaptAndroidTet(AppDependencies.compilerAndroidTestLibraries)
+    debugImplementation(AppDependencies.debugLibraries)
+    releaseImplementation(AppDependencies.releaseLibraries)
 }
 
 enum class BuildType(val value: String) {

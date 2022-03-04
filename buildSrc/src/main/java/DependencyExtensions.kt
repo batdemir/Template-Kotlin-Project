@@ -1,37 +1,56 @@
+import models.Dependency
+import models.ExcludeWithDependency
+import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.exclude
 
-fun DependencyHandler.kapt(list: List<String>) {
-    list.forEach { dependency ->
-        add("kapt", dependency)
+private fun addAny(
+    handler: DependencyHandler,
+    configurationName: String,
+    dependencies: List<Dependency>
+) {
+    dependencies.forEach {
+        val dependency = handler.add(configurationName, it.path)
+        when (it) {
+            is ExcludeWithDependency -> {
+                if (dependency is ExternalModuleDependency && it.excludeDependency.isNotEmpty()) {
+                    it.excludeDependency.forEach { excludeDependency ->
+                        dependency.exclude(excludeDependency.group, excludeDependency.module)
+                    }
+                }
+            }
+        }
     }
 }
 
-fun DependencyHandler.implementation(list: List<String>) {
-    list.forEach { dependency ->
-        add("implementation", dependency)
-    }
+fun DependencyHandler.kapt(dependencies: List<Dependency>) {
+    addAny(this, "kapt", dependencies)
 }
 
-fun DependencyHandler.debugImplementation(list: List<String>) {
-    list.forEach { dependency ->
-        add("debugImplementation", dependency)
-    }
+fun DependencyHandler.kaptTest(dependencies: List<Dependency>) {
+    addAny(this, "kaptTest", dependencies)
 }
 
-fun DependencyHandler.releaseImplementation(list: List<String>) {
-    list.forEach { dependency ->
-        add("releaseImplementation", dependency)
-    }
+fun DependencyHandler.kaptAndroidTet(dependencies: List<Dependency>) {
+    addAny(this, "kaptAndroidTest", dependencies)
 }
 
-fun DependencyHandler.androidTestImplementation(list: List<String>) {
-    list.forEach { dependency ->
-        add("androidTestImplementation", dependency)
-    }
+fun DependencyHandler.implementation(dependencies: List<Dependency>) {
+    addAny(this, "implementation", dependencies)
 }
 
-fun DependencyHandler.testImplementation(list: List<String>) {
-    list.forEach { dependency ->
-        add("testImplementation", dependency)
-    }
+fun DependencyHandler.testImplementation(dependencies: List<Dependency>) {
+    addAny(this, "testImplementation", dependencies)
+}
+
+fun DependencyHandler.androidTestImplementation(dependencies: List<Dependency>) {
+    addAny(this, "androidTestImplementation", dependencies)
+}
+
+fun DependencyHandler.debugImplementation(dependencies: List<Dependency>) {
+    addAny(this, "debugImplementation", dependencies)
+}
+
+fun DependencyHandler.releaseImplementation(dependencies: List<Dependency>) {
+    addAny(this, "releaseImplementation", dependencies)
 }
