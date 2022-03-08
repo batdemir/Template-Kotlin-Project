@@ -9,6 +9,7 @@ import com.batdemir.template.other.Constant
 import com.batdemir.template.other.StackOverFlowOrderType
 import com.batdemir.template.other.StackOverFlowSortType
 import com.google.gson.Gson
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 
 class StackOverFlowPagingRemoteDataSource(
@@ -41,6 +42,7 @@ class StackOverFlowPagingRemoteDataSource(
                 response.data?.items.isNullOrEmpty() -> null
                 else -> StackOverFlowLoadParams(key.page + 1)
             }
+            delay(Constant.DELAY)
             LoadResult.Page(
                 data = response.data?.items?.map { model ->
                     ActionItemModel(
@@ -70,6 +72,15 @@ class StackOverFlowPagingRemoteDataSource(
     }
 
     override fun getRefreshKey(state: PagingState<StackOverFlowLoadParams, ActionItemModel>): StackOverFlowLoadParams {
+        val anchorPosition = state.anchorPosition
+        val prevKey = anchorPosition?.let { state.closestPageToPosition(it)?.prevKey?.page?.plus(1) }
+        val nextKey = anchorPosition?.let { state.closestPageToPosition(it)?.nextKey?.page?.minus(1) }
+        prevKey?.let {
+            return StackOverFlowLoadParams(prevKey)
+        }
+        nextKey?.let {
+            return StackOverFlowLoadParams(nextKey)
+        }
         return StackOverFlowLoadParams(0)
     }
 }

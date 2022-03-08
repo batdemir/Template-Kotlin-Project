@@ -7,46 +7,28 @@
 
         <variable
             name="adapter"
-            type="com.batdemir.core.adapter.BaseAdapter" />
+            type="androidx.recyclerview.widget.ConcatAdapter" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/root_fragment_github"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/root_fragment_stack_over_flow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".features.github.GithubFragment">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".features.stackoverflow.StackOverFlowFragment">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_refresh_layout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:fastScrollEnabled="false"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:reverseLayout="false"
-                app:setAdapter="@{adapter}"
-                app:spanCount="1"
-                tools:listitem="@layout/item_action" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <include
-            android:id="@+id/view_empty"
-            layout="@layout/view_empty"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:fastScrollEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:reverseLayout="false"
+            app:setAdapter="@{adapter}"
+            app:spanCount="1"
+            tools:listitem="@layout/item_action" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

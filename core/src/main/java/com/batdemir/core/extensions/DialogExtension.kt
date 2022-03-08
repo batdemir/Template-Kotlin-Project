@@ -4,8 +4,10 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import androidx.annotation.StringRes
 import com.batdemir.core.R
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.suspendCancellableCoroutine
 
+@OptIn(ExperimentalCoroutinesApi::class)
 suspend fun AlertDialog.await(
     showPositiveButton: Boolean = true,
     showNegativeButton: Boolean = false,

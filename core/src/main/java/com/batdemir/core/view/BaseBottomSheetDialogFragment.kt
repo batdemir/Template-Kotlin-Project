@@ -1,19 +1,25 @@
 package com.batdemir.core.view
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.Fragment
+import com.batdemir.core.R
 import com.batdemir.core.extensions.observe
 import com.batdemir.core.vm.BaseViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel> constructor(
-    private val layoutId: Int
-) : Fragment(),
-    BaseAction {
+abstract class BaseBottomSheetDialogFragment<B : ViewDataBinding, V : BaseViewModel> constructor(
+    private val layoutId: Int,
+    @BottomSheetBehavior.State private val state: Int = BottomSheetBehavior.STATE_EXPANDED
+) : BottomSheetDialogFragment(), BaseAction {
     private var viewModel: V? = null
     private var binding: B? = null
 
@@ -23,7 +29,12 @@ abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel> constructor(
         savedInstanceState: Bundle?
     ): View? {
         if (binding == null) {
-            binding = DataBindingUtil.inflate<B>(layoutInflater, layoutId, container, false).apply {
+            binding = DataBindingUtil.inflate<B>(
+                layoutInflater,
+                layoutId,
+                container,
+                false
+            ).apply {
                 this.lifecycleOwner = viewLifecycleOwner
             }
             setupDefinition(savedInstanceState)
@@ -33,10 +44,31 @@ abstract class BaseFragment<B : ViewDataBinding, V : BaseViewModel> constructor(
         return getBinding().root
     }
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.setOnShowListener {
+            val bottomSheet =
+                (it as BottomSheetDialog).findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout?
+            bottomSheet?.let { frameLayout ->
+                val layoutParams = frameLayout.layoutParams
+                layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+                frameLayout.layoutParams = layoutParams
+                with(BottomSheetBehavior.from(frameLayout)) {
+                    this.state = this@BaseBottomSheetDialogFragment.state
+                }
+            }
+        }
+        return dialog
+    }
+
     override fun setupData() {
         viewModel?.let {
             observe(it.baseLiveData, ::onStateChanged)
         }
+    }
+
+    override fun getTheme(): Int {
+        return R.style.CustomBottomSheetDialog
     }
 
     private fun onStateChanged(state: BaseViewModel.State) {

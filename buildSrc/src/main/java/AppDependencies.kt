@@ -16,7 +16,6 @@ object AppDependencies {
         add(Libraries.lifecycleViewModel)
         add(Libraries.lifecycleViewModelSavedState)
         add(Libraries.multidex)
-        add(Libraries.navigationCompose)
         add(Libraries.navigationDynamicFeatures)
         add(Libraries.navigationFragment)
         add(Libraries.navigationUi)

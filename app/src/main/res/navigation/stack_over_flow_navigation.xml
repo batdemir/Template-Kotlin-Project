@@ -19,7 +19,7 @@
             app:popExitAnim="@anim/slide_out_right">
             <argument
                 android:name="model"
-                app:argType="com.batdemir.template.data.entities.ui.ActionItemModel" />
+                app:argType="com.batdemir.template.models.ui.ActionItemModel" />
         </action>
     </fragment>
     <fragment
@@ -29,6 +29,6 @@
         tools:layout="@layout/fragment_stack_over_flow_detail">
         <argument
             android:name="model"
-            app:argType="com.batdemir.template.data.entities.ui.ActionItemModel" />
+            app:argType="com.batdemir.template.models.ui.ActionItemModel" />
     </fragment>
 </navigation>

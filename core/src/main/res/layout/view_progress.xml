@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.progressindicator.CircularProgressIndicator xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/progress"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:indeterminate="true" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:id="@+id/view_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </LinearLayout>
+</layout>

@@ -35,6 +35,9 @@ class MainActivity :
         setSupportActionBar(toolbar)
         toolbar.setupWithNavController(navController, appBarConfiguration)
         bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, _, _ ->
+            dismissProgress()
+        }
     }
 
     override fun setupListener() {

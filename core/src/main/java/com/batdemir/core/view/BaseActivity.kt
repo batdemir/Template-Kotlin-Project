@@ -12,7 +12,6 @@ import com.batdemir.core.extensions.await
 import com.batdemir.core.extensions.observe
 import com.batdemir.core.vm.BaseViewModel
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
     private val layoutId: Int
@@ -63,7 +62,7 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
                 }
             }
             is BaseViewModel.State.Empty -> {
-                Timber.d("State Empty")
+                dismissProgress()
             }
         }
     }
@@ -97,7 +96,7 @@ abstract class BaseActivity<B : ViewDataBinding, V : BaseViewModel> constructor(
         }
     }
 
-    private fun dismissProgress() {
+    fun dismissProgress() {
         progressDialog?.let {
             if (it.isShowing) {
                 it.dismiss()

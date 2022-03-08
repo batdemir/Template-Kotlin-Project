@@ -1,7 +1,7 @@
 //version constants for the Kotlin DSL dependencies
 object Versions {
     //app level
-    const val gradle = "7.0.4"
+    const val gradle = "7.1.2"
     const val kotlin = "1.6.10"
 
     //dependency level
@@ -17,7 +17,7 @@ object Versions {
     const val androidxLifeCycleViewModelVersion = "2.3.1"
     const val androidxLifeCycleStateVersion = "2.3.1"
     const val androidxMultidex = "2.0.1"
-    const val androidxNavigationVersion = "2.4.0-alpha03"
+    const val androidxNavigationVersion = "2.5.0-alpha01"
     const val androidxPagingVersion = "3.1.0-alpha01"
     const val androidxPreferenceVersion = "1.1.1"
     const val androidxRoomVersion = "2.4.0-alpha03"
@@ -27,6 +27,7 @@ object Versions {
     const val githubGlideVersion = "4.12.0"
     const val githubLingverVersion = "1.3.0"
     const val githubMPAndroidChartVersion = "v3.1.0"
+    const val googleMaterialVersion = "1.5.0"
     const val googleHiltVersion = "2.41"
     const val jetBrainsCoroutinesVersion = "1.5.0"
     const val squareupRetrofitVersion = "2.9.0"

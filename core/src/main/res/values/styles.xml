@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceBottomSheetDialog</item>
+    </style>
+
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/bottom_sheet_dialog_background_top_radius</item>
+        <item name="cornerSizeTopLeft">@dimen/bottom_sheet_dialog_background_top_radius</item>
+        <item name="cornerSizeBottomRight">@dimen/bottom_sheet_dialog_background_bottom_radius</item>
+        <item name="cornerSizeBottomLeft">@dimen/bottom_sheet_dialog_background_bottom_radius</item>
+    </style>
+</resources>

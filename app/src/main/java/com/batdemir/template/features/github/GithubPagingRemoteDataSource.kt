@@ -7,6 +7,7 @@ import com.batdemir.core.models.Resource
 import com.batdemir.template.models.ui.ActionItemModel
 import com.batdemir.template.other.Constant
 import com.google.gson.Gson
+import kotlinx.coroutines.delay
 import retrofit2.HttpException
 
 class GithubUserPagingRemoteDataSource(
@@ -31,6 +32,7 @@ class GithubUserPagingRemoteDataSource(
                 response.data?.isNullOrEmpty() == true -> null
                 else -> GithubLoadParams(response.data?.maxOf { x -> x.id } ?: 0L)
             }
+            delay(Constant.DELAY)
             LoadResult.Page(
                 data = response.data?.map { model ->
                     ActionItemModel(
@@ -60,6 +62,15 @@ class GithubUserPagingRemoteDataSource(
     }
 
     override fun getRefreshKey(state: PagingState<GithubLoadParams, ActionItemModel>): GithubLoadParams {
+        val anchorPosition = state.anchorPosition
+        val prevKey = anchorPosition?.let { state.closestPageToPosition(it)?.prevKey?.since?.plus(1) }
+        val nextKey = anchorPosition?.let { state.closestPageToPosition(it)?.nextKey?.since?.minus(1) }
+        prevKey?.let {
+            return GithubLoadParams(prevKey)
+        }
+        nextKey?.let {
+            return GithubLoadParams(nextKey)
+        }
         return GithubLoadParams(0)
     }
 }

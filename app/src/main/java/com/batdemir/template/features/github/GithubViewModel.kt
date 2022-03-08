@@ -1,10 +1,14 @@
 package com.batdemir.template.features.github
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asFlow
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.batdemir.core.vm.BaseViewModel
 import com.batdemir.template.models.ui.ActionItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -14,21 +18,16 @@ class GithubViewModel @Inject constructor(
     val liveData: MutableLiveData<State> = MutableLiveData()
 
     init {
-        repository.getUsersRemoteAndLocal().asFlow().handle {
-            val items = it.map { item ->
-                ActionItemModel(
-                    id = item.id,
-                    title = item.login,
-                    subTitle = item.name,
-                    iconRes = item.avatarUrl,
-                )
-            }
-            liveData.value = if (items.isNullOrEmpty()) State.Empty else State.Init(items)
+        viewModelScope.launch {
+            repository.getUsersPaging(GithubSearchParams())
+                .cachedIn(viewModelScope)
+                .collectLatest { items ->
+                    liveData.value = State.LoadItems(items)
+                }
         }
     }
 
     sealed class State {
-        data class Init(val items: List<ActionItemModel>) : State()
-        object Empty : State()
+        data class LoadItems(val items: PagingData<ActionItemModel>) : State()
     }
 }

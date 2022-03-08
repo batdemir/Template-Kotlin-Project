@@ -67,7 +67,7 @@ class HomeFragment :
 
     override fun setupData() {
         super.setupData()
-        getViewModel().myHdmiManager.getDisplays().observe(viewLifecycleOwner, {
+        getViewModel().myHdmiManager.getDisplays().observe(viewLifecycleOwner) {
             val list = it?.mapIndexed { index, display ->
                 ActionItemModel(
                     index.toLong(),
@@ -80,10 +80,10 @@ class HomeFragment :
                 )
             }
             adapter.submitList(list)
-        })
-        getViewModel().myHdmiManager.hasHdmiConnection().observe(viewLifecycleOwner, {
+        }
+        getViewModel().myHdmiManager.hasHdmiConnection().observe(viewLifecycleOwner) {
             getBinding().executePendingBindings()
-        })
+        }
     }
 
     override fun setupListener() {

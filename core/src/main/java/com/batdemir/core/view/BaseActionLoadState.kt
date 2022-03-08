@@ -6,7 +6,7 @@ import com.batdemir.core.adapter.BasePagingAdapter
 import com.batdemir.core.vm.BaseViewModel
 
 interface BaseActionLoadState {
-    fun <V : BaseViewModel, A : BasePagingAdapter<*, *>> setPagingAdapterLoadStateListener(
+    fun <V : BaseViewModel, A : BasePagingAdapter<*, *>> addPagingAdapterLoadStateListener(
         viewModel: V,
         adapter: A
     ) = adapter.addLoadStateListener(getLoadStateListener(viewModel))
@@ -18,26 +18,10 @@ interface BaseActionLoadState {
 
     private fun <V : BaseViewModel> getLoadStateListener(viewModel: V): (CombinedLoadStates) -> Unit {
         return { loadState ->
-            when {
-                loadState.append is LoadState.Loading
-                        || loadState.refresh is LoadState.Loading
-                        || loadState.prepend is LoadState.Loading
-                -> viewModel.baseLiveData.value = BaseViewModel.State.ShowLoading()
-                else -> {
-                    val error = when {
-                        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                        else -> null
-                    }
-                    if (error == null) {
-                        viewModel.baseLiveData.value = BaseViewModel.State.ShowContent()
-                    } else {
-                        viewModel.baseLiveData.value = BaseViewModel.State.ShowError(
-                            throwable = error.error
-                        )
-                    }
-                }
+            when (loadState.refresh) {
+                is LoadState.Loading -> viewModel.baseLiveData.value = BaseViewModel.State.ShowLoading()
+                is LoadState.NotLoading -> viewModel.baseLiveData.value = BaseViewModel.State.Empty
+                is LoadState.Error -> viewModel.baseLiveData.value = BaseViewModel.State.Empty
             }
         }
     }

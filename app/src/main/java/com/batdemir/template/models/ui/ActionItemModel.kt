@@ -14,13 +14,13 @@ data class ActionItemModel(
     override var isSelected: Boolean = false
 ) : RecyclerItem, Parcelable {
     constructor(parcel: Parcel) : this(
-        id = parcel.readLong(),
-        title = parcel.readString(),
-        subTitle = parcel.readString(),
-        iconRes = parcel.readString(),
-        isEnabled = parcel.readByte() != 0.toByte(),
-        navigateUrl = parcel.readString(),
-        isSelected = parcel.readByte() != 0.toByte()
+        parcel.readLong(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
