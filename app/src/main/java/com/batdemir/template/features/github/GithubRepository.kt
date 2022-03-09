@@ -15,7 +15,7 @@ class GithubRepository @Inject constructor(
     private val localDataSource: GithubLocalDataSource,
     private val remoteDataSource: GithubUserRemoteDataSource
 ) {
-    @OptIn(ExperimentalPagingApi::class)
+    @ExperimentalPagingApi
     fun getUsersMediator(): Flow<PagingData<GithubUser>> = Pager(
         config = PagingConfig(pageSize = Constant.NETWORK_PAGE_SIZE, enablePlaceholders = false),
         remoteMediator = GithubMediatorDataSource(localDataSource, remoteDataSource),

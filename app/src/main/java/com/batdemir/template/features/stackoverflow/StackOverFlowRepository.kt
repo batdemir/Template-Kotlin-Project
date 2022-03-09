@@ -15,7 +15,7 @@ class StackOverFlowRepository @Inject constructor(
     private val localDataSource: StackOverFlowLocalDataSource,
     private val remoteDataSource: StackOverFlowRemoteDataSource
 ) {
-    @OptIn(ExperimentalPagingApi::class)
+    @ExperimentalPagingApi
     fun getUsersMediator(): Flow<PagingData<StackOverFlowUser>> = Pager(
         config = PagingConfig(pageSize = Constant.NETWORK_PAGE_SIZE, enablePlaceholders = false),
         remoteMediator = StackOverFlowMediatorDataSource(localDataSource, remoteDataSource),

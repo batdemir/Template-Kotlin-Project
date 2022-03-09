@@ -79,3 +79,7 @@ dependencies {
     androidTestImplementation(Libraries.extJunit.path)
     androidTestImplementation(Libraries.espressoCore.path)
 }
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.RequiresOptIn")
+}

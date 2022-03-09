@@ -8,7 +8,7 @@ import com.batdemir.template.models.db.GithubUser
 import com.bumptech.glide.load.HttpException
 import java.io.IOException
 
-@OptIn(ExperimentalPagingApi::class)
+@ExperimentalPagingApi
 class GithubMediatorDataSource(
     private val localDataSource: GithubLocalDataSource,
     private val remoteDataSource: GithubUserRemoteDataSource

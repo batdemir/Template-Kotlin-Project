@@ -1,7 +1,7 @@
 package com.batdemir.template.di.remote
 
 import android.content.Context
-import com.batdemir.core.data.remote.interceptor.*
+import com.batdemir.core.data.remote.interceptor.HostSelectionInterceptor
 import com.batdemir.core.extensions.DateFormat
 import com.batdemir.template.BuildConfig
 import com.batdemir.template.other.Constant
@@ -57,10 +57,6 @@ object NetworkModule {
         @ApplicationContext context: Context,
         builder: OkHttpClient.Builder,
         interceptor: HttpLoggingInterceptor,
-        acceptLanguageInterceptor: AcceptLanguageInterceptor,
-        authInterceptor: AuthInterceptor,
-        encodingInterceptor: EncodingInterceptor,
-        userAgentInterceptor: UserAgentInterceptor
     ): OkHttpClient {
         if (BuildConfig.DEBUG) {
             interceptor.level = HttpLoggingInterceptor.Level.BODY

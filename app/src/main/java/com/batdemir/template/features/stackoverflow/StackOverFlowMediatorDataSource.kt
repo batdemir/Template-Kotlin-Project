@@ -10,7 +10,7 @@ import com.batdemir.template.other.StackOverFlowSortType
 import com.bumptech.glide.load.HttpException
 import java.io.IOException
 
-@OptIn(ExperimentalPagingApi::class)
+@ExperimentalPagingApi
 class StackOverFlowMediatorDataSource(
     private val localDataSource: StackOverFlowLocalDataSource,
     private val remoteDataSource: StackOverFlowRemoteDataSource
