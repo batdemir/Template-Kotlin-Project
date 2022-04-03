@@ -13,22 +13,14 @@ import com.batdemir.core.extensions.reset
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsFragment :
-    PreferenceFragmentCompat(),
-    BaseAction {
+class SettingsFragment : PreferenceFragmentCompat(), BaseAction {
     private lateinit var languagePreference: ListPreference
     private lateinit var themePreference: ListPreference
     private lateinit var versionPreference: Preference
     private lateinit var privacyPreference: Preference
     private val viewModel: SettingsViewModel by viewModels()
-    override fun onCreatePreferences(
-        savedInstanceState: Bundle?,
-        rootKey: String?
-    ) {
-        setPreferencesFromResource(
-            R.xml.preference,
-            rootKey
-        )
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.preference, rootKey)
         setupDefinition(savedInstanceState)
         setupData()
         setupListener()

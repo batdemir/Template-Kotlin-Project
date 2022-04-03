@@ -63,7 +63,7 @@ android {
                 "\"${gradleLocalProperties(rootDir).getProperty("stack_over_flow_api")}\""
             )
         }
-        getByName("debug") {
+        debug {
             this.resValue(
                 "string",
                 "app_name",
@@ -72,7 +72,7 @@ android {
             // signingConfig = signingConfigs.getByName("debug")
             applicationIdSuffix = ".debug"
         }
-        getByName("release") {
+        release {
             this.resValue(
                 "string",
                 "app_name",

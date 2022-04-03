@@ -6,9 +6,13 @@ object Libraries {
     val archCoreTesting = Dependency("androidx.arch.core:core-testing:${Versions.androidxArchCoreVersion}")
     val constraintLayout = Dependency("androidx.constraintlayout:constraintlayout:${Versions.androidxConstraintLayoutVersion}")
     val core = Dependency("androidx.core:core-ktx:${Versions.androidxCoreVersion}")
+    val dataStoreTyped = Dependency("androidx.datastore:datastore:${Versions.androidxDataStoreVersion}")
+    val dataStoreTypedCore = Dependency("androidx.datastore:datastore-core:${Versions.androidxDataStoreVersion}")
+    val dataStorePreferences = Dependency("androidx.datastore:datastore-preferences:${Versions.androidxDataStoreVersion}")
+    val dataStorePreferencesCore = Dependency("androidx.datastore:datastore-preferences-core:${Versions.androidxDataStoreVersion}")
     val fragment = Dependency("androidx.fragment:fragment-ktx:${Versions.androidxFragmentVersion}")
-    val hiltWork = Dependency("androidx.hilt:hilt-work:${Versions.androidxHiltWork}")
-    val hiltWorkCompiler = Dependency("androidx.hilt:hilt-compiler:${Versions.androidxHiltWork}")
+    val hiltWork = Dependency("androidx.hilt:hilt-work:${Versions.androidxHiltWorkVersion}")
+    val hiltWorkCompiler = Dependency("androidx.hilt:hilt-compiler:${Versions.androidxHiltWorkVersion}")
     val legacySupport = Dependency("androidx.legacy:legacy-support-v4:${Versions.androidxLegacySupportVersion}")
     val lifecycleExtensions = Dependency("androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifeCycleExtensionsVersion}")
     val lifecycleRuntime = Dependency("androidx.lifecycle:lifecycle-runtime-ktx:${Versions.androidxLifeCycleRuntimeVersion}")
@@ -16,7 +20,7 @@ object Libraries {
     val lifecycleViewModel = Dependency("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.androidxLifeCycleViewModelVersion}")
     val lifecycleViewModelSavedState =
         Dependency("androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.androidxLifeCycleViewModelStateVersion}")
-    val multidex = Dependency("androidx.multidex:multidex:${Versions.androidxMultidex}")
+    val multidex = Dependency("androidx.multidex:multidex:${Versions.androidxMultidexVersion}")
     val navigationDynamicFeatures = Dependency("androidx.navigation:navigation-dynamic-features-fragment:${Versions.androidxNavigationVersion}")
     val navigationFragment = Dependency("androidx.navigation:navigation-fragment-ktx:${Versions.androidxNavigationVersion}")
     val navigationUi = Dependency("androidx.navigation:navigation-ui-ktx:${Versions.androidxNavigationVersion}")
@@ -31,8 +35,8 @@ object Libraries {
     val swipeRefreshLayout = Dependency("androidx.swiperefreshlayout:swiperefreshlayout:${Versions.androidxSwipeRefreshLayoutVersion}")
     val viewpager2 = Dependency("androidx.viewpager2:viewpager2:${Versions.androidxViewPagerVersion}")
     val webKit = Dependency("androidx.webkit:webkit:${Versions.androidxWebKitVersion}")
-    val workManagerRuntime = Dependency("androidx.work:work-runtime-ktx:${Versions.androidxWorkManager}")
-    val workManagerMultiProcess = Dependency("androidx.work:work-multiprocess:${Versions.androidxWorkManager}")
+    val workManagerRuntime = Dependency("androidx.work:work-runtime-ktx:${Versions.androidxWorkManagerVersion}")
+    val workManagerMultiProcess = Dependency("androidx.work:work-multiprocess:${Versions.androidxWorkManagerVersion}")
     val glide = Dependency("com.github.bumptech.glide:glide:${Versions.githubGlideVersion}")
     val glideCompiler = Dependency("com.github.bumptech.glide:compiler:${Versions.githubGlideVersion}")
     val glideOkhttp3Integration = Dependency("com.github.bumptech.glide:okhttp3-integration:${Versions.githubGlideVersion}")
@@ -53,7 +57,7 @@ object Libraries {
     val retrofitLoggingInterceptor = Dependency("com.squareup.okhttp3:logging-interceptor:${Versions.squareupOkHttpVersion}")
     val truth = Dependency("com.google.truth:truth:${Versions.testGoogleTruthVersion}")
     val junit = Dependency("junit:junit:${Versions.testJunitVersion}")
-    val espressoCore = Dependency("androidx.test.espresso:espresso-core:${Versions.testAndroidxTestEspresso}")
+    val espressoCore = Dependency("androidx.test.espresso:espresso-core:${Versions.testAndroidxTestEspressoVersion}")
     val extJunit = Dependency("androidx.test.ext:junit-ktx:${Versions.testAndroidxTestJunitVersion}")
     val chuckLibrary = Dependency("com.readystatesoftware.chuck:library:${Versions.chuckVersion}")
     val chuckLibraryNoOp = Dependency("com.readystatesoftware.chuck:library-no-op:${Versions.chuckVersion}")
@@ -70,4 +74,8 @@ object Libraries {
     const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
     const val firebaseUIAuth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUIVersion}"
     const val firebaseUIDatabase = "com.firebaseui:firebase-ui-database:${Versions.firebaseUIVersion}"
+
+    // proto
+    val protobufProtoc = Dependency("com.google.protobuf:protoc:${Versions.protobufKotlinLiteVersion}")
+    val protobufJavaLite = Dependency("com.google.protobuf:protobuf-javalite:${Versions.protobufKotlinLiteVersion}")
 }

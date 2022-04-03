@@ -1,3 +1,7 @@
+import com.google.protobuf.gradle.generateProtoTasks
+import com.google.protobuf.gradle.protobuf
+import com.google.protobuf.gradle.protoc
+
 // /*
 // * Designed and developed by 2021 Batuhan Demir
 // *
@@ -17,6 +21,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.protobuf").version(Versions.protobufVersion)
 }
 
 android {
@@ -48,6 +53,13 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    sourceSets {
+        getByName("main") {
+            proto {
+                java.srcDir("src/main/proto")
+            }
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -58,22 +70,10 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.appcompat.path)
+    implementation(Libraries.dataStoreTyped.path)
     implementation(Libraries.hiltAndroid.path)
     kapt(Libraries.hiltAndroidCompiler.path)
-    implementation(Libraries.kotlinxCoroutinesAndroid.path)
-    implementation(Libraries.lifecycleLivedata.path)
-    implementation(Libraries.lingver.path)
-    implementation(Libraries.material.path)
-    implementation(Libraries.pagingGuava.path)
-    implementation(Libraries.pagingRuntime.path)
-    implementation(Libraries.preference.path)
-    implementation(Libraries.retrofit.path)
-    implementation(Libraries.retrofitOkhttp.path)
-    implementation(Libraries.room.path)
-    implementation(Libraries.roomRuntime.path)
-    kapt(Libraries.roomCompiler.path)
-    implementation(Libraries.startupRuntime.path)
+    implementation(Libraries.protobufJavaLite.path)
     implementation(Libraries.timber.path)
     testImplementation(Libraries.junit.path)
     androidTestImplementation(Libraries.extJunit.path)
@@ -82,4 +82,29 @@ dependencies {
 
 kotlin.sourceSets.all {
     languageSettings.optIn("kotlin.RequiresOptIn")
+}
+
+protobuf {
+    protoc {
+        artifact = Libraries.protobufProtoc.path
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                task.plugins {
+                    create("java") {
+                        option("lite")
+                    }
+                }
+            }
+        }
+    }
+}
+
+fun com.android.build.api.dsl.AndroidSourceSet.proto(action: SourceDirectorySet.() -> Unit) {
+    (this as? ExtensionAware)
+        ?.extensions
+        ?.getByName("proto")
+        ?.let { it as? SourceDirectorySet }
+        ?.apply(action)
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Constants -->
+    <string name="AUTH_RESPONSE_TYPE" translatable="false">code</string>
+    <string name="AUTH_REDIRECT_URI" translatable="false">redirect_uri</string>
+    <string name="AUTH_SCOPE" translatable="false">auth_scope</string>
+    <string name="TOKEN_GRANT_TYPE" translatable="false">authorization_code</string>
+    <!-- KEYS -->
+    <string name="KEY_REFRESH_TOKEN" translatable="false">key_refresh_token</string>
+</resources>

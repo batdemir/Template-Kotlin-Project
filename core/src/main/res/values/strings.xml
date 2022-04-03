@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Constant -->
     <string name="domain" tools:ignore="MissingTranslation" />
     <string name="privacy_link" tools:ignore="MissingTranslation" />
     <string name="notification_name" tools:ignore="MissingTranslation" />

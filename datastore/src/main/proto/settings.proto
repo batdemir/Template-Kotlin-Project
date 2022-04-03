@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.batdemir.datastore";
+option java_multiple_files = true;
+
+message Settings {
+  string version = 1;
+  enum Languages {
+    ENGLISH = 0;
+    TURKISH = 1;
+  }
+  enum Themes {
+    FLOW_SYSTEM = 0;
+    DARK = 1;
+    LIGHT = 2;
+  }
+  Languages languages = 2;
+  Themes theme = 3;
+}

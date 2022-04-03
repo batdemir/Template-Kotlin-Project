@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 // /*
 // * Designed and developed by 2021 Batuhan Demir
 // *
@@ -42,6 +44,26 @@ android {
                 "VERSION_CODE",
                 AppConfig.versionCode.toString()
             )
+            this.buildConfigField(
+                "String",
+                "AUTH_BASE_URL",
+                "\"${gradleLocalProperties(rootDir).getProperty("auth_base_url")}\""
+            )
+            this.buildConfigField(
+                "String",
+                "TOKEN_BASE_URL",
+                "\"${gradleLocalProperties(rootDir).getProperty("token_base_url")}\""
+            )
+            this.buildConfigField(
+                "String",
+                "CLIENT_ID",
+                "\"${gradleLocalProperties(rootDir).getProperty("client_id")}\""
+            )
+            this.buildConfigField(
+                "String",
+                "SECRET_KEY",
+                "\"${gradleLocalProperties(rootDir).getProperty("secret_key")}\""
+            )
         }
         release {
             isMinifyEnabled = false
@@ -58,23 +80,22 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(Libraries.appcompat.path)
     implementation(Libraries.hiltAndroid.path)
     kapt(Libraries.hiltAndroidCompiler.path)
-    implementation(Libraries.kotlinxCoroutinesAndroid.path)
+    implementation(Libraries.lifecycleExtensions.path)
     implementation(Libraries.lifecycleLivedata.path)
-    implementation(Libraries.lingver.path)
-    implementation(Libraries.material.path)
-    implementation(Libraries.pagingGuava.path)
-    implementation(Libraries.pagingRuntime.path)
-    implementation(Libraries.preference.path)
+    implementation(Libraries.lifecycleRuntime.path)
+    implementation(Libraries.lifecycleViewModel.path)
+    implementation(Libraries.lifecycleViewModelSavedState.path)
     implementation(Libraries.retrofit.path)
+    implementation(Libraries.retrofitConverterGson.path)
     implementation(Libraries.retrofitOkhttp.path)
-    implementation(Libraries.room.path)
-    implementation(Libraries.roomRuntime.path)
-    kapt(Libraries.roomCompiler.path)
-    implementation(Libraries.startupRuntime.path)
+    implementation(Libraries.retrofitLoggingInterceptor.path)
     implementation(Libraries.timber.path)
+    debugImplementation(AppDependencies.debugLibraries)
+    releaseImplementation(AppDependencies.releaseLibraries)
     testImplementation(Libraries.junit.path)
     androidTestImplementation(Libraries.extJunit.path)
     androidTestImplementation(Libraries.espressoCore.path)
