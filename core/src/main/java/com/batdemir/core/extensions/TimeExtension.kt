@@ -1,7 +1,8 @@
 package com.batdemir.core.extensions
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 fun String.toDate(format: DateFormat, locale: Locale = Locale.ROOT): Date? {
     val simpleDateFormat = SimpleDateFormat(format.toString(), locale)

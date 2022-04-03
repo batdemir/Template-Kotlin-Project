@@ -13,7 +13,6 @@ class UserAgentInterceptor @Inject constructor(
     @ApplicationContext context: Context
 ) : Interceptor {
     private val mUserAgent: String = NetworkUtil.getUserAgent(context)
-
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain
             .request()

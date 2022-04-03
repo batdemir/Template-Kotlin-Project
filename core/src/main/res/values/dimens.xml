@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="one">1dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
     <dimen name="bottom_sheet_dialog_background_top_radius">16dp</dimen>
     <dimen name="bottom_sheet_dialog_background_bottom_radius">0dp</dimen>
 </resources>

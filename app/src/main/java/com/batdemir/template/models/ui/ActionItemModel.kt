@@ -6,21 +6,21 @@ import com.batdemir.core.models.RecyclerItem
 
 data class ActionItemModel(
     override val id: Long,
+    override var isSelected: Boolean = false,
     val title: String? = null,
     val subTitle: String? = null,
     val iconRes: String? = null,
     val isEnabled: Boolean = true,
-    val navigateUrl: String? = null,
-    override var isSelected: Boolean = false
+    val navigateUrl: String? = null
 ) : RecyclerItem, Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readLong(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readByte() != 0.toByte(),
-        parcel.readString(),
-        parcel.readByte() != 0.toByte()
+        id = parcel.readLong(),
+        isSelected = parcel.readByte() != 0.toByte(),
+        title = parcel.readString(),
+        subTitle = parcel.readString(),
+        iconRes = parcel.readString(),
+        isEnabled = parcel.readByte() != 0.toByte(),
+        navigateUrl = parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.batdemir.core.vm.BaseViewModel
+import com.batdemir.core.core.vm.BaseViewModel
 import com.batdemir.template.models.ui.ActionItemModel
 import com.batdemir.template.other.Constant
 import dagger.hilt.android.lifecycle.HiltViewModel

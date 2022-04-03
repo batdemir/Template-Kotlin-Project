@@ -32,6 +32,17 @@ class MyStorageManagerImp @Inject constructor(
         return sharedPreferences.getInt(key, -1)
     }
 
+    override fun setBoolean(key: String, value: Boolean) {
+        with(sharedPreferences.edit()) {
+            putBoolean(key, value)
+            commit()
+        }
+    }
+
+    override fun getBoolean(key: String): Boolean {
+        return sharedPreferences.getBoolean(key, false)
+    }
+
     companion object {
         const val APP_STORAGE = "batdemir"
     }

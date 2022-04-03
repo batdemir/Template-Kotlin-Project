@@ -1,4 +1,4 @@
-//app level config constants
+// app level config constants
 object AppConfig {
     const val applicationId = "com.batdemir.template"
     const val compileSdk = 31

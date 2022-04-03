@@ -20,6 +20,6 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.batdemir.core.ui.settings.SettingsFragment"
+        android:name="com.batdemir.core.features.settings.SettingsFragment"
         android:label="@string/title_settings" />
 </navigation>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="domain" tools:ignore="MissingTranslation" />
+    <string name="privacy_link" tools:ignore="MissingTranslation" />
+    <string name="notification_name" tools:ignore="MissingTranslation" />
+    <string name="app_name" tools:ignore="MissingTranslation" />
+
     <!-- KEYS -->
     <string name="KEY_LANGUAGE" translatable="false">language</string>
     <string name="KEY_THEME" translatable="false">theme</string>

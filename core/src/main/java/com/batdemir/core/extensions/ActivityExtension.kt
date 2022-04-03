@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import com.batdemir.core.R
 
-
 fun Activity.move(
     to: Class<*>,
     isKeepHistory: Boolean = false,

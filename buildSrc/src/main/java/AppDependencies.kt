@@ -39,12 +39,10 @@ object AppDependencies {
         add(Libraries.retrofitOkhttp)
         add(Libraries.retrofitLoggingInterceptor)
     }
-
     val testLibraries = arrayListOf<Dependency>().apply {
         add(Libraries.truth)
         add(Libraries.junit)
     }
-
     val androidTestLibraries = arrayListOf<Dependency>().apply {
         add(Libraries.archCoreTesting)
         add(Libraries.espressoCore)
@@ -53,24 +51,19 @@ object AppDependencies {
         add(Libraries.truth)
         add(Libraries.kotlinxCoroutinesTest)
     }
-
     val compilerLibraries = arrayListOf<Dependency>().apply {
         add(Libraries.roomCompiler)
         add(Libraries.glideCompiler)
         add(Libraries.hiltAndroidCompiler)
     }
-
     val compilerTestLibraries = arrayListOf<Dependency>().apply {
     }
-
     val compilerAndroidTestLibraries = arrayListOf<Dependency>().apply {
         add(Libraries.hiltAndroidCompiler)
     }
-
     val debugLibraries = arrayListOf<Dependency>().apply {
         add(Libraries.chuckLibrary)
     }
-
     val releaseLibraries = arrayListOf<Dependency>().apply {
         add(Libraries.chuckLibraryNoOp)
     }

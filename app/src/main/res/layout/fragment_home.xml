@@ -9,7 +9,7 @@
 
         <variable
             name="adapter"
-            type="com.batdemir.core.adapter.BaseAdapter" />
+            type="com.batdemir.core.core.adapter.BaseAdapter" />
 
         <variable
             name="viewModel"

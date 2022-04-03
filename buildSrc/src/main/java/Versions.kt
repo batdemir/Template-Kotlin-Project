@@ -1,15 +1,16 @@
-//version constants for the Kotlin DSL dependencies
+// version constants for the Kotlin DSL dependencies
 object Versions {
-    //app level
+    // app level
     const val gradle = "7.1.2"
     const val kotlin = "1.6.10"
 
-    //dependency level
+    // dependency level
     const val androidxAppCompatVersion = "1.4.1"
     const val androidxArchCoreVersion = "2.1.0"
     const val androidxConstraintLayoutVersion = "2.1.3"
     const val androidxCoreVersion = "1.7.0"
     const val androidxFragmentVersion = "1.4.1"
+    const val androidxHiltWork = "1.0.0"
     const val androidxLegacySupportVersion = "1.0.0"
     const val androidxLifeCycleExtensionsVersion = "2.2.0"
     const val androidxLifeCycleLiveDataVersion = "2.4.1"
@@ -22,7 +23,10 @@ object Versions {
     const val androidxPreferenceVersion = "1.2.0"
     const val androidxRoomVersion = "2.4.2"
     const val androidxStartUpVersion = "1.1.1"
+    const val androidxSwipeRefreshLayoutVersion = "1.1.0"
     const val androidxViewPagerVersion = "1.0.0"
+    const val androidxWebKitVersion = "1.4.0"
+    const val androidxWorkManager = "2.7.1"
     const val chuckVersion = "1.1.0"
     const val githubGlideVersion = "4.13.1"
     const val githubLingverVersion = "1.3.0"
@@ -34,10 +38,19 @@ object Versions {
     const val squareupOkHttpVersion = "4.9.3"
     const val timberVersion = "5.0.1"
 
-    //dependency level test
+    // dependency level test
     const val testAndroidxTestJunitVersion = "1.1.2"
     const val testAndroidxTestEspresso = "3.4.0"
     const val testGoogleTruthVersion = "1.1.3"
     const val testJetBrainsCoroutinesVersion = "1.2.1"
     const val testJunitVersion = "4.13.2"
+
+    // google-firebase
+    const val googleServiceVersion = "4.3.10"
+    const val googleAuthVersion = "20.1.0"
+    const val firebaseVersion = "29.2.0"
+    const val firebaseUIVersion = "8.0.0"
+    const val firebasePerformancePluginVersion = "1.4.1"
+    const val firebaseCrashlyticsGradleVersion = "2.8.1"
+    const val firebaseAppDistributionGradleVersion = "2.1.3"
 }

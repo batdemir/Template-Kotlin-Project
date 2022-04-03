@@ -17,20 +17,17 @@
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity
             android:name=".features.main.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Project.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".features.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme"
+            android:theme="@style/Theme.Project.NoActionBar"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <nav-graph android:value="@navigation/app_navigation" />
         </activity>
     </application>
 </manifest>

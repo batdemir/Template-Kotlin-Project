@@ -2,8 +2,8 @@ package com.batdemir.template.features.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.batdemir.core.core.vm.BaseViewModel
 import com.batdemir.core.manager.hdmi.MyHdmiManager
-import com.batdemir.core.vm.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Constant -->
+    <string name="domain" translatable="false">https://batdemir.com</string>
+    <string name="privacy_link" translatable="false">https://sites.google.com/view/agile-poker/home</string>
+    <string name="string_empty" translatable="false" />
+    <string name="number_zero" translatable="false">0</string>
+    <string name="notification_name" translatable="false">@string/app_name</string>
+
+    <!-- Title -->
     <string name="title_home">Home</string>
     <string name="title_stack_over_flow">StackOverFlow</string>
     <string name="title_stack_over_flow_detail">StackOverFlowDetail</string>

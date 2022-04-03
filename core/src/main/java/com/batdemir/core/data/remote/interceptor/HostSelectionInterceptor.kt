@@ -8,11 +8,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class HostSelectionInterceptor @Inject constructor(
-) : Interceptor {
+class HostSelectionInterceptor @Inject constructor() : Interceptor {
     @Volatile
     private var host: String? = null
-
     fun setHost(host: String?) {
         this.host = host
     }

@@ -9,9 +9,9 @@ data class StackOverFlowBadgeCounts(
     val gold: Long
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readLong(),
-        parcel.readLong(),
-        parcel.readLong()
+        bronze = parcel.readLong(),
+        silver = parcel.readLong(),
+        gold = parcel.readLong()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

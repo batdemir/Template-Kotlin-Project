@@ -6,7 +6,6 @@ import android.content.Intent
 
 class MyHdmiReceiver : BroadcastReceiver() {
     private var listener: HdmiOnStateListener? = null
-
     fun setListener(listener: HdmiOnStateListener) {
         this.listener = listener
     }

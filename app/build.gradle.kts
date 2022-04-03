@@ -1,4 +1,6 @@
-///*
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
+// /*
 // * Designed and developed by 2021 Batuhan Demir
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,11 +22,6 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
-val buildType: BuildType = BuildType.DEBUG
-val apiTypeName: String = "String"
-val githubApi: String = "GITHUB_API"
-val stackOverFlowApi: String = "STACK_OVER_FLOW_API"
-
 android {
     compileSdk = AppConfig.compileSdk
     defaultConfig {
@@ -39,49 +36,56 @@ android {
     buildFeatures {
         dataBinding = true
     }
-    buildTypes.all {
-        when (buildType) {
-            BuildType.DEBUG -> {
-                this.buildConfigField(
-                    apiTypeName,
-                    githubApi,
-                    properties["TEST_GITHUB_API"].toString()
-                )
-                this.buildConfigField(
-                    apiTypeName,
-                    stackOverFlowApi,
-                    properties["TEST_STACK_OVER_FLOW_API"].toString()
-                )
-                this.resValue(
-                    "string",
-                    "app_name",
-                    getAppName(buildType)
-                )
-            }
-            BuildType.RELEASE -> {
-                this.buildConfigField(
-                    apiTypeName,
-                    githubApi,
-                    properties["PROD_GITHUB_API"].toString()
-                )
-                this.buildConfigField(
-                    apiTypeName,
-                    stackOverFlowApi,
-                    properties["PROD_STACK_OVER_FLOW_API"].toString()
-                )
-                this.resValue(
-                    "string",
-                    "app_name",
-                    getAppName(buildType)
-                )
-                isMinifyEnabled = true
-                isShrinkResources = true
-                isDebuggable = false
-                proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
-                )
-            }
+    // signingConfigs {
+    //     getByName("debug") {
+    //         storeFile = rootProject.file(gradleLocalProperties(rootDir).getProperty("keystore_path"))
+    //         storePassword = gradleLocalProperties(rootDir).getProperty("keystore_password")
+    //         keyAlias = gradleLocalProperties(rootDir).getProperty("key_alias")
+    //         keyPassword = gradleLocalProperties(rootDir).getProperty("key_alias_password")
+    //     }
+    //     create("release") {
+    //         storeFile = rootProject.file(gradleLocalProperties(rootDir).getProperty("keystore_path"))
+    //         storePassword = gradleLocalProperties(rootDir).getProperty("keystore_password")
+    //         keyAlias = gradleLocalProperties(rootDir).getProperty("key_alias")
+    //         keyPassword = gradleLocalProperties(rootDir).getProperty("key_alias_password")
+    //     }
+    // }
+    buildTypes {
+        all {
+            this.buildConfigField(
+                "String",
+                "GITHUB_API",
+                "\"${gradleLocalProperties(rootDir).getProperty("github_api")}\""
+            )
+            this.buildConfigField(
+                "String",
+                "STACK_OVER_FLOW_API",
+                "\"${gradleLocalProperties(rootDir).getProperty("stack_over_flow_api")}\""
+            )
+        }
+        getByName("debug") {
+            this.resValue(
+                "string",
+                "app_name",
+                "batdemir - Debug"
+            )
+            // signingConfig = signingConfigs.getByName("debug")
+            applicationIdSuffix = ".debug"
+        }
+        getByName("release") {
+            this.resValue(
+                "string",
+                "app_name",
+                "batdemir"
+            )
+            // signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            isDebuggable = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -113,15 +117,6 @@ dependencies {
     releaseImplementation(AppDependencies.releaseLibraries)
 }
 
-enum class BuildType(val value: String) {
-    DEBUG("debug"),
-    RELEASE("release")
-}
-
-fun getAppName(buildType: BuildType): String {
-    val appName = "batdemir"
-    return when (buildType) {
-        BuildType.DEBUG -> "$appName - Debug"
-        BuildType.RELEASE -> appName
-    }
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.RequiresOptIn")
 }

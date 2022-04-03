@@ -1,4 +1,4 @@
-///*
+// /*
 // * Designed and developed by 2021 Batuhan Demir
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");

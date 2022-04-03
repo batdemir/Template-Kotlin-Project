@@ -6,7 +6,7 @@ import androidx.lifecycle.map
 import com.batdemir.core.models.Resource
 import kotlinx.coroutines.Dispatchers
 
-//Local and remote
+// Local and remote
 fun <T, A> performGetOperation(
     databaseQuery: () -> LiveData<T>,
     networkCall: suspend () -> Resource<A>,
@@ -27,7 +27,7 @@ fun <T, A> performGetOperation(
 
 // Only remote
 fun <T> performGetOperation(networkCall: suspend () -> Resource<T>):
-        LiveData<Resource<T>> =
+    LiveData<Resource<T>> =
     liveData(Dispatchers.IO) {
         emit(Resource.loading())
         val responseStatus = networkCall.invoke()
@@ -40,7 +40,7 @@ fun <T> performGetOperation(networkCall: suspend () -> Resource<T>):
 
 // Only local
 fun <T> performGetOperation(databaseQuery: () -> LiveData<T>):
-        LiveData<Resource<T>> =
+    LiveData<Resource<T>> =
     liveData(Dispatchers.IO) {
         emit(Resource.loading())
         val source = databaseQuery.invoke().map { Resource.success(it) }

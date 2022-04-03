@@ -7,7 +7,7 @@ import com.batdemir.core.manager.resource.MyResourceManager
 import com.batdemir.core.manager.storage.MyStorageManager
 import com.yariksoffice.lingver.Lingver
 import dagger.hilt.android.qualifiers.ApplicationContext
-import java.util.*
+import java.util.Locale
 import javax.inject.Inject
 
 class MyLanguageManagerImp @Inject constructor(

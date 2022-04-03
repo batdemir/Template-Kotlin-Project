@@ -6,7 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.batdemir.core.view.BaseActivity
+import com.batdemir.core.core.view.BaseActivity
 import com.batdemir.template.R
 import com.batdemir.template.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity :
     BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main) {
     private val viewModel: MainViewModel by viewModels()
-
     override fun onSupportNavigateUp(): Boolean =
         findNavController(R.id.navigation_host_fragment).navigateUp()
 
@@ -38,9 +37,5 @@ class MainActivity :
         navController.addOnDestinationChangedListener { _, _, _ ->
             dismissProgress()
         }
-    }
-
-    override fun setupListener() {
-        //("Not yet implemented")
     }
 }

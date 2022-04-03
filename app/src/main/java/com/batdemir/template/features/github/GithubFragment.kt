@@ -4,10 +4,14 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.batdemir.core.adapter.*
+import com.batdemir.core.core.adapter.BasePagingAdapter
+import com.batdemir.core.core.adapter.BaseViewHolder
+import com.batdemir.core.core.adapter.BindListener
+import com.batdemir.core.core.adapter.ItemListener
+import com.batdemir.core.core.adapter.LoadStateAdapter
+import com.batdemir.core.core.view.BaseActionLoadState
+import com.batdemir.core.core.view.BaseFragment
 import com.batdemir.core.extensions.observe
-import com.batdemir.core.view.BaseActionLoadState
-import com.batdemir.core.view.BaseFragment
 import com.batdemir.template.R
 import com.batdemir.template.databinding.FragmentGithubBinding
 import com.batdemir.template.databinding.ItemActionBinding
@@ -39,10 +43,6 @@ class GithubFragment :
                             value
                         )
                     )
-                }
-
-                override fun onLongClick(value: ActionItemModel) {
-                    //("Not yet implemented")
                 }
             }
         )

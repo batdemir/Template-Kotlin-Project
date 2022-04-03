@@ -14,8 +14,7 @@ class MyHdmiManagerImp @Inject constructor(
 ) : MyHdmiReceiver.HdmiOnStateListener,
     MyHdmiManager {
     private val myHdmiReceiver: MyHdmiReceiver = MyHdmiReceiver()
-    private val displayManager: DisplayManager =
-        context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+    private val displayManager: DisplayManager = context.getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
     private val displays: MutableLiveData<List<Display>?> = MutableLiveData()
     private val presentationDisplay: MutableLiveData<Display?> = MutableLiveData()
     private val state: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply { value = false }

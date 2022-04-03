@@ -34,7 +34,5 @@ class GithubRepository @Inject constructor(
     )
 
     fun getUsers() = performGetOperation(networkCall = { remoteDataSource.getUsers() })
-
-    fun getUser(user: String) =
-        performGetOperation(networkCall = { remoteDataSource.getUser(user) })
+    fun getUser(user: String) = performGetOperation(networkCall = { remoteDataSource.getUser(user) })
 }

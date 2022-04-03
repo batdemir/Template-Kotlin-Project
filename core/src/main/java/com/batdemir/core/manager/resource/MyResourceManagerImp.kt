@@ -9,7 +9,6 @@ class MyResourceManagerImp @Inject constructor(
     @ApplicationContext context: Context
 ) : MyResourceManager {
     private val _context = context
-
     override fun getContext(): Context {
         return _context
     }

@@ -45,23 +45,23 @@ data class StackOverFlowUser(
     @ColumnInfo(name = "stack_over_flow_display_name") var displayName: String? = null,
 ) : RecyclerItem, Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readLong(),
-        parcel.readByte() != 0.toByte(),
-        parcel.readParcelable(StackOverFlowBadgeCounts::class.java.classLoader),
-        parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readString(),
-        parcel.readValue(Long::class.java.classLoader) as? Long,
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
+        id = parcel.readLong(),
+        isSelected = parcel.readByte() != 0.toByte(),
+        stackOverFlowBadgeCounts = parcel.readParcelable(StackOverFlowBadgeCounts::class.java.classLoader),
+        isEmployee = parcel.readValue(Boolean::class.java.classLoader) as? Boolean,
+        lastAccessDate = parcel.readValue(Long::class.java.classLoader) as? Long,
+        reputationChangeYear = parcel.readValue(Long::class.java.classLoader) as? Long,
+        reputationChangeQuarter = parcel.readValue(Long::class.java.classLoader) as? Long,
+        reputationChangeMonth = parcel.readValue(Long::class.java.classLoader) as? Long,
+        reputationChangeWeek = parcel.readValue(Long::class.java.classLoader) as? Long,
+        reputationChangeDay = parcel.readValue(Long::class.java.classLoader) as? Long,
+        reputation = parcel.readValue(Long::class.java.classLoader) as? Long,
+        creationDate = parcel.readValue(Long::class.java.classLoader) as? Long,
+        userType = parcel.readString(),
+        userId = parcel.readValue(Long::class.java.classLoader) as? Long,
+        link = parcel.readString(),
+        profileImage = parcel.readString(),
+        displayName = parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

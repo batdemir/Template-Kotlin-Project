@@ -6,12 +6,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.batdemir.core.adapter.BaseAdapter
-import com.batdemir.core.adapter.BaseViewHolder
-import com.batdemir.core.adapter.BindListener
-import com.batdemir.core.adapter.ItemListener
-import com.batdemir.core.view.BaseFragment
-import com.batdemir.core.vm.BaseViewModel
+import com.batdemir.core.core.adapter.BaseAdapter
+import com.batdemir.core.core.adapter.BaseViewHolder
+import com.batdemir.core.core.adapter.BindListener
+import com.batdemir.core.core.adapter.ItemListener
+import com.batdemir.core.core.view.BaseFragment
+import com.batdemir.core.core.vm.BaseViewModel
 import com.batdemir.template.R
 import com.batdemir.template.databinding.FragmentHomeBinding
 import com.batdemir.template.databinding.ItemActionBinding
@@ -70,13 +70,13 @@ class HomeFragment :
         getViewModel().myHdmiManager.getDisplays().observe(viewLifecycleOwner) {
             val list = it?.mapIndexed { index, display ->
                 ActionItemModel(
-                    index.toLong(),
-                    display.name,
-                    display.displayId.toString(),
-                    null,
-                    true,
-                    null,
-                    false
+                    id = index.toLong(),
+                    isSelected = false,
+                    title = display.name,
+                    subTitle = display.displayId.toString(),
+                    iconRes = null,
+                    isEnabled = true,
+                    navigateUrl = null,
                 )
             }
             adapter.submitList(list)
@@ -84,10 +84,6 @@ class HomeFragment :
         getViewModel().myHdmiManager.hasHdmiConnection().observe(viewLifecycleOwner) {
             getBinding().executePendingBindings()
         }
-    }
-
-    override fun setupListener() {
-        //("Not yet implemented")
     }
 
     override fun onResume() {

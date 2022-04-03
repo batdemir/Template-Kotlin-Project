@@ -3,7 +3,6 @@ package com.batdemir.template.data.local.datasource
 import org.junit.Test
 
 class GithubLocalDataSourceTest {
-
     @Test
     fun get() {
     }
