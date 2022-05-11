@@ -106,6 +106,7 @@ dependencies {
             )
         )
     )
+    implementation(project(":abtest"))
     implementation(project(":core"))
     implementation(AppDependencies.appLibraries)
     testImplementation(AppDependencies.testLibraries)

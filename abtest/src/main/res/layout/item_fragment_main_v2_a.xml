@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.batdemir.abtest.z_other.ActionItemModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/root_item_fragment_main_v2_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        app:contentPadding="@dimen/padding_large">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{model.title}" />
+    </com.google.android.material.card.MaterialCardView>
+</layout>

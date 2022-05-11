@@ -7,8 +7,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.batdemir.core.core.view.BaseActivity
+import com.batdemir.core.extensions.move
 import com.batdemir.template.R
 import com.batdemir.template.databinding.ActivityMainBinding
+import com.batdemir.abtest.scenario_v1.usage_1.view.MainActivityV1
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +19,11 @@ class MainActivity :
     private val viewModel: MainViewModel by viewModels()
     override fun onSupportNavigateUp(): Boolean =
         findNavController(R.id.navigation_host_fragment).navigateUp()
+
+    override fun onResume() {
+        super.onResume()
+        move(com.batdemir.abtest.scenario_v1.usage_1.view.MainActivityV1::class.java, isKeepHistory = true)
+    }
 
     override fun onBackPressed() {
         if (!onSupportNavigateUp())
